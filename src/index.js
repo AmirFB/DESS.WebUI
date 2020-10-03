@@ -6,8 +6,13 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import configureStore from "./redux/configureStore";
 import "leaflet/dist/leaflet.css";
+import axios from "axios";
 
 const store = configureStore();
+
+axios.defaults.baseURL = window.location.origin;
+axios.defaults.headers.common["Authorization"] =
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwidW5pcXVlX25hbWUiOiJleHBlcnQiLCJQZXJtaXNzaW9uIjpbIklzQWxtaWdodHkiLCJDYW5TZWN1cmVTaXRlcyIsIkNhbkVkaXRTaXRlcyIsIkNhbkVkaXRVc2VyR3JvdXBzIiwiQ2FuRWRpdFVzZXJzIl0sIm5iZiI6MTYwMTc0ODQwNSwiZXhwIjoxNjAxODM0ODA1LCJpYXQiOjE2MDE3NDg0MDV9.5g7D0gk7HwZD6AJ-gMwA_ckW6Z0QJPmDvPANoIhGxTI";
 
 ReactDOM.render(
   <ReduxProvider store={store}>
