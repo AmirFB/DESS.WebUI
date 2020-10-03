@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import Body from './components/main/body/body';
+import Body from "./components/main/body/body";
 
 function App() {
   return (
