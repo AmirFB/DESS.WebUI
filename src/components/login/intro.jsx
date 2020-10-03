@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './login.css';
+
 export default function Intro() {
     return (
         <div className="intro-form">
