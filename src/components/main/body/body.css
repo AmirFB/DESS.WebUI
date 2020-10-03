@@ -1,0 +1,17 @@
+.body-form {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    flex: 1;
+}
+
+.tabbar {
+    flex: 5;
+}
+
+.map {
+    height: 624px;
+    width: 1250px;
+  }
