@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
@@ -6,16 +5,9 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import configureStore from "./redux/configureStore";
 import { Provider as ReduxProvider } from "./react-redux";
+import "leaflet/dist/leaflet.css";
 
 const store = configureStore();
-=======
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import 'leaflet/dist/leaflet.css';
->>>>>>> b6d67e3afa217bd75ff49da8102dc58b9314be2e
 
 ReactDOM.render(
   <ReduxProvider store={store}>
