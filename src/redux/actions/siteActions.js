@@ -1,34 +1,35 @@
-import * as types from "../actions/actionTypes";
 import * as siteApi from "../../api/siteApi";
-import { beginApiCall, apiCallError } from "./apiStatusActions";
 
-export function getSitesSuccess(courses) {
-  return { type: types.GET_SITES_SUCCESS, courses };
+export const GET_SITES_REQUEST = "GET_SITES_REQUEST";
+export const GET_SITES_SUCCESS = "GET_SITES_SUCCESS";
+export const GET_SITES_ERROR = "GET_SITES_ERROR";
+
+export function getSitesSuccess(sites) {
+  return {
+    type: GET_SITES_SUCCESS,
+    sites,
+  };
 }
 
-export function addSiteSuccess(course) {
-  return { type: types.ADD_SITE_SUCCESS, course };
-}
-
-export function updateSiteSuccess(course) {
-  return { type: types.UPDATE_SITE_SUCCESS, course };
-}
-
-export function deleteSiteOptimistic(course) {
-  return { type: types.DELETE_SITE_OPTIMISTIC, course };
+export function getSitesError(sites) {
+  return {
+    type: GET_SITES_ERROR,
+    sites,
+  };
 }
 
 export function getSites() {
   return function (dispatch) {
-    dispatch(beginApiCall());
+    dispatch({ type: GET_SITES_REQUEST });
+
     return siteApi
       .getSites()
-      .then((sites) => {
-        dispatch(getSitesSuccess(sites));
+      .then((response) => {
+        dispatch(getSitesSuccess(response.data));
+        console.log("Dispatched successfully.");
       })
       .catch((error) => {
-        dispatch(apiCallError(error));
-        throw error;
+        dispatch(getSitesError(error));
       });
   };
 }
