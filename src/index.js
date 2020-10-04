@@ -10,15 +10,15 @@ import axios from "axios";
 
 const store = configureStore();
 
-axios.defaults.baseURL = window.location.origin;
+axios.defaults.baseURL =
+  // "http://" + window.location.hostname + ":5000/api/web/";
+  "http://192.168.0.10:5000/api/web/";
 axios.defaults.headers.common["Authorization"] =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwidW5pcXVlX25hbWUiOiJleHBlcnQiLCJQZXJtaXNzaW9uIjpbIklzQWxtaWdodHkiLCJDYW5TZWN1cmVTaXRlcyIsIkNhbkVkaXRTaXRlcyIsIkNhbkVkaXRVc2VyR3JvdXBzIiwiQ2FuRWRpdFVzZXJzIl0sIm5iZiI6MTYwMTc0ODQwNSwiZXhwIjoxNjAxODM0ODA1LCJpYXQiOjE2MDE3NDg0MDV9.5g7D0gk7HwZD6AJ-gMwA_ckW6Z0QJPmDvPANoIhGxTI";
 
 ReactDOM.render(
   <ReduxProvider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <App />
   </ReduxProvider>,
   document.getElementById("root")
 );
