@@ -26,7 +26,6 @@ export function getSites() {
       .getSites()
       .then((response) => {
         dispatch(getSitesSuccess(response.data));
-        console.log("Dispatched successfully.");
       })
       .catch((error) => {
         dispatch(getSitesError(error));

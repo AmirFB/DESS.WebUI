@@ -20,9 +20,6 @@ export default function siteRecuder(state = INITIAL_STATE, action) {
       };
 
     case GET_SITES_SUCCESS:
-      console.log("Recuder GetSuceess.");
-      console.log("data: ");
-      console.log(action.sites);
       return {
         ...state,
         loading: false,

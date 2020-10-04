@@ -8,23 +8,16 @@ import * as siteActions from "../../../../redux/actions/siteActions";
 
 class SiteList extends React.Component {
   componentDidMount() {
-    const { siteRecuder, actions } = this.props;
-    const sites = siteRecuder.sites;
+    const { siteReducer, actions } = this.props;
+    const sites = siteReducer.sites;
 
     if (sites.length === 0) {
-      actions.getSites().catch((error) => {
-        alert("Loading sites failed" + error);
-      });
+      actions.getSites();
     }
-
-    setTimeout(() => {
-      console.log("sites");
-      console.log(this.props.siteRecuder.sites);
-    }, 3000);
   }
 
   render() {
-    return <SiteGrid sites={this.props.siteRecuder.sites} />;
+    return <SiteGrid sites={this.props.siteReducer.sites} />;
   }
 }
 
@@ -35,7 +28,7 @@ SiteList.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    siteRecuder: state.siteRecuder,
+    siteReducer: state.siteReducer,
   };
 }
 
