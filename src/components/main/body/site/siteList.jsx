@@ -2,7 +2,6 @@ import React from "react";
 import "@progress/kendo-theme-material/dist/all.css";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { bindActionCreators } from "redux";
 import SiteGrid from "./siteGrid";
 import * as siteActions from "../../../../redux/actions/siteActions";
 
