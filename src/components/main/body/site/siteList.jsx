@@ -8,11 +8,11 @@ import * as siteActions from "../../../../redux/actions/siteActions";
 
 class SiteList extends React.Component {
   componentDidMount() {
-    const { siteReducer, actions } = this.props;
+    const { siteReducer, getSites } = this.props;
     const sites = siteReducer.sites;
 
     if (sites.length === 0) {
-      actions.getSites();
+      getSites();
     }
   }
 
@@ -32,12 +32,8 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: {
-      getSites: bindActionCreators(siteActions.getSites, dispatch),
-    },
-  };
-}
+const mapDispatchToProps = {
+  getSites: siteActions.getSites,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SiteList);
