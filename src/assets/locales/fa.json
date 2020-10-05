@@ -2,28 +2,35 @@
   "common": {
     "ok": "تایید",
     "cancel": "انصراف",
-    "about": "About",
-    "save": "Save",
-    "enable": "Enable",
-    "enabled": "Enabled",
-    "disable": "Disable",
-    "disabled": "Disabled",
-    "min": "Min",
-    "max": "Max",
-    "back": "Back",
-    "reload": "Reload",
+    "about": "درباره",
+    "save": "ذخیره",
+    "enable": "فعال کردن",
+    "enabled": "فعال",
+    "disable": "غیر فعال کردن",
+    "disabled": "غیر فعال",
+    "min": "حداقل",
+    "max": "حداکثر",
+    "back": "برگشت",
+    "refresh": "بارگذاری",
     "home": "خانه",
     "site": "سایت",
     "sites": "سایت ها",
     "settings": "تنظیمات",
-    "Users": "کاربر ها",
+    "users": "کاربر ها",
     "report": "گزارش",
     "help": "کمک",
     "name": "نام",
     "number": "شماره",
     "location": "مکان",
     "latitude": "طول جغرافیایی",
-    "longitude": "عرض جفرافیایی"
+    "longitude": "عرض جفرافیایی",
+    "input1": "ورودی 1",
+    "input2": "ورودی 2",
+    "output1": "خروجی 1",
+    "output2": "خروجی 2",
+    "teperature": "دما",
+    "ipAdd": "آدرس آی پی",
+    "serialNo": "شماره سریال"
   },
 
   "sidePanel": {
@@ -67,10 +74,15 @@
     "search": "جستجو",
     "filter": "فیلتر",
     "name": "نام",
-    "serialNo": "شماره سریال",
-    "ipAdd": "آدرس آی پی",
     "interval": "بروز رسانی",
-    "autoLoc": "مکان یابی خودکار"
+    "autoLoc": "مکان یابی خودکار",
+    "hvPow": "توان HV",
+    "hvTre": "آستانه HV",
+    "hvRep": "تکرار HV",
+    "temperatureMin": "حداقل دما",
+    "temperatureMax": "حداکثر دما",
+    "batteryMin": "حداقل باطری",
+    "batteryMax": "حداکثر باطری"
   },
 
   "editSite": {
@@ -80,8 +92,29 @@
     "hvProtection": "محافظت ولتاژ بالا",
     "lvProtection": "محافظت ولتاژ پایین",
     "boxTamper": "تمپر جعبه",
-    "teperature": "دما",
     "battery": "باتری",
     "voltage": "ولتاژ"
+  },
+
+  "users": {
+    "userName": "نام کاربری",
+    "firstName": "نام",
+    "lastName": "نام خنوادگی",
+    "group": "گروه",
+    "pass": "رمز عبور"
+  },
+
+  "report": {
+    "applied": "اعمال شده",
+    "hvAlarm": "HV",
+    "lvAlarm": "LV",
+    "tamperAlarm": "دستکاری",
+    "mainPowerFault": "تغذیه اصلی",
+    "hvPowerFault": "تغذیه HV",
+    "hvChargeFault": "شارژ HV",
+    "hvDichargeFault": "تخلیه HV",
+    "hvVoltage": "ولتاژ HV",
+    "batteryStatus": "وضعیت باطری",
+    "signalStrength": "قدرت سیگنال"
   }
 }

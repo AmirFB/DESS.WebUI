@@ -11,17 +11,22 @@
     "min": "Min",
     "max": "Max",
     "back": "Back",
-    "reload": "Reload",
+    "refresh": "Refresh",
     "home": "Home",
     "site": "Site",
     "sites": "Sites",
     "settings": "Settings",
-    "Users": "users",
+    "users": "users",
     "report": "Report",
     "help": "Help",
     "name": "Name",
     "number": "Number",
-    "location": "Location"
+    "location": "Location",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "temperature": "Temperature",
+    "ipAdd": "Ip Address",
+    "serialNo": "Serial Number"
   },
 
   "sidePanel": {
@@ -65,23 +70,53 @@
     "search": "Search",
     "filter": "Filter",
     "naem": "Name",
-    "serialNo": "Serial Number",
-    "ipAdd": "Ip Address",
     "interval": "Interval",
-    "autoLoc": "Auto Location"
+    "autoLoc": "Auto Location",
+    "hvPow": "HV Power",
+    "hvTre": "HV Treshold",
+    "hvRep": "HV Repeat",
+    "temperatureMin": "Temperature Min",
+    "temperatureMax": "Temperature Max",
+    "batteryMin": "Battery Min",
+    "batteryMax": "Battery Max",
+    "input1": "Input 1",
+    "input2": "Input 2",
+    "output1": "Output 1",
+    "output2": "Output 2"
   },
 
   "editSite": {
     "serialNumber": "Serial Num.",
     "enterName": "Enter Name",
     "auto": "Auto",
-    "latitude": "Latitude",
-    "longitude": "Longitude",
     "hvProtection": "HV Protection",
     "lvProtection": "LV Protection",
     "boxTamper": "Box Tamper",
-    "teperature": "Temperature",
     "battery": "Battery",
     "voltage": "Voltage"
-  }
+  },
+
+  "users": {
+    "userName": "Username",
+    "firstName": "First name",
+    "lastName": "Last Naem",
+    "group": "Group",
+    "pass": "Password"
+  },
+
+  "report": {
+    "applied": "Applied",
+    "hvAlarm": "HV Alarm",
+    "lvAlarm": "LV Alarm",
+    "tamperAlarm": "Tamper Alarm",
+    "mainPowerFault": "Main Power Fault",
+    "hvPowerFault": "HV Power Fault",
+    "hvChargeFault": "HV Charge Fault",
+    "hvDichargeFault": "HV Discharge Fault",
+    "hvVoltage": "HV Voltage",
+    "batteryStatus": "Battery Status",
+    "signalStrength": "Signal Strength"
+  },
+
+  "login": {}
 }
