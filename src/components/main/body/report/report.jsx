@@ -1,8 +1,9 @@
 import React from "react";
+import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
 
 import "@progress/kendo-theme-material/dist/all.css";
 
-import "./reports.json";
+import Reports from "./reports.json";
 
 export default function Report() {
   return (
