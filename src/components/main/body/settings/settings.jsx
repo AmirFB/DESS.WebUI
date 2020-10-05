@@ -1,6 +1,12 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Settings() {
+  const [t, i18n] = useTranslation();
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language);
+  };
+
   return (
     <div>
       <div>Icons place</div>
@@ -10,10 +16,10 @@ export default function Settings() {
             <tr>
               <td>Language</td>
               <td>
-                <button>English</button>
+                <button onClick={() => changeLanguage("en")}>English</button>
               </td>
               <td>
-                <button>Farsi</button>
+                <button onClick={() => changeLanguage("fa")}>Farsi</button>
               </td>
             </tr>
 

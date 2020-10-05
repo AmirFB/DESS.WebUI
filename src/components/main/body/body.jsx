@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TabStrip, TabStripTab } from "@progress/kendo-react-layout";
+import { useTranslation } from "react-i18next";
 
 import "@progress/kendo-theme-material/dist/all.css";
 
@@ -15,6 +16,7 @@ import SiteList from "./site/siteList";
 
 export default function Body() {
   const [selected, setSelected] = useState(0);
+  const [t, i18n] = useTranslation();
 
   function handleSelect(e) {
     setSelected(e.selected);
@@ -28,29 +30,29 @@ export default function Body() {
 
       <div className="tabbar">
         <TabStrip selected={selected} onSelect={handleSelect}>
-          <TabStripTab title="Home">
+          <TabStripTab title={t("common.home")}>
             <div>
               <Home />
             </div>
           </TabStripTab>
 
-          <TabStripTab title="Sites">
+          <TabStripTab title={t("common.sites")}>
             <SiteList></SiteList>
           </TabStripTab>
 
-          <TabStripTab title="Settings">
+          <TabStripTab title={t("common.settings")}>
             <Settings />
           </TabStripTab>
 
-          <TabStripTab title="Users">
+          <TabStripTab title={t("common.users")}>
             <Users />
           </TabStripTab>
 
-          <TabStripTab title="Report">
+          <TabStripTab title={t("common.report")}>
             <Report />
           </TabStripTab>
 
-          <TabStripTab title="About">
+          <TabStripTab title={t("common.about")}>
             <About />
           </TabStripTab>
         </TabStrip>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
 import PropType from "prop-types";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 export default function SiteGrid(props) {
   const [t, i18n] = useTranslation();
@@ -23,19 +23,27 @@ export default function SiteGrid(props) {
       <Column field="autoLocation" title={t("site.autoLoc")} width="90px" />
       <Column field="latitude" title={t("common.latitude")} width="110px" />
       <Column field="longitude" title={t("common.longitude")} width="110px" />
-      <Column field="hvEnabled" title="HV enabled" width="100px" />
-      <Column field="lvEnabled" title="LV enabled" width="100px" />
-      <Column field="hvPower" title="HV power" />
-      <Column field="hvThreshold" title="HV treshold" />
-      <Column field="hvRepeat" title="HV repeat" />
-      <Column field="temperatureMin" title="Temperature min" />
-      <Column field="temperatureMax" title="Temperature max" />
-      <Column field="batteryMin" title="Battery min" />
-      <Column field="batteryMax" title="Battery max" />
-      <Column field="input1" title="Input 1" />
-      <Column field="input2" title="Input 2" />
-      <Column field="output1" title="Output 1" />
-      <Column field="output2" title="Output 2" />
+      <Column field="hvEnabled" title="HV" width="100px" />
+      <Column field="lvEnabled" title="LV" width="100px" />
+      <Column field="hvPower" title={t("site.hvPow")} width="110px" />
+      <Column field="hvThreshold" title={t("site.hvTre")} width="110px" />
+      <Column field="hvRepeat" title={t("site.hvRep")} width="110px" />
+      <Column
+        field="temperatureMin"
+        title={t("site.temperatureMin")}
+        width="110px"
+      />
+      <Column
+        field="temperatureMax"
+        title={t("site.temperatureMax")}
+        width="110px"
+      />
+      <Column field="batteryMin" title={t("site.batteryMax")} width="110px" />
+      <Column field="batteryMax" title={t("site.batteryMin")} width="110px" />
+      <Column field="input1" title={t("common.input1")} width="110px" />
+      <Column field="input2" title={t("common.input2")} width="110px" />
+      <Column field="output1" title={t("common.output1")} width="110px" />
+      <Column field="output2" title={t("common.output2")} width="110px" />
     </Grid>
   );
 }
