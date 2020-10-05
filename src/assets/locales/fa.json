@@ -1,0 +1,82 @@
+{
+  "common": {
+    "ok": "تایید",
+    "cancel": "انصراف",
+    "about": "About",
+    "save": "Save",
+    "enable": "Enable",
+    "enabled": "Enabled",
+    "disable": "Disable",
+    "disabled": "Disabled",
+    "min": "Min",
+    "max": "Max",
+    "back": "Back",
+    "reload": "Reload",
+    "home": "خانه",
+    "site": "سایت",
+    "sites": "سایت ها",
+    "settings": "تنظیمات",
+    "Users": "کاربر ها",
+    "report": "گزارش",
+    "help": "کمک",
+    "name": "نام",
+    "number": "شماره",
+    "location": "مکان"
+  },
+
+  "sidePanel": {
+    "activeSites": "سابت های فعال",
+    "offlineSites": "سایت های فعال",
+    "notDefined": "تعریف نشده",
+    "searchSite": "نام سایت را وارد کنید."
+  },
+
+  "home": {
+    "muteAlarm": "سکوت",
+    "raiseAlarm": "آژیر",
+    "findLocation": "پیدا کردن مکان",
+    "addLocation": "افزودن مکان",
+    "assign": "اعمال",
+    "showHide": "نشان/مخفی",
+    "refresh": "بازیابی",
+    "filterSites": "فیلتر سایت ها",
+    "fitView": "نمایش همه ",
+    "statistics": "آمار",
+    "schedule": "برنامه ریزی"
+  },
+
+  "site": {
+    "siteId": "مشخصه سایت",
+    "power": "توان",
+    "alarmLevel": "سطح هشدار",
+    "repeat": "تکرار",
+    "phoneNumber": "شماره تلفن",
+    "dataInterval": "فاصله زمانی",
+    "input": "ورودی",
+    "output": "خروجی",
+    "group": "گروه",
+    "lastUpdate": "آخرین بروزرسانی",
+    "addSite": "افزودن سایت",
+    "addList": "افزودن لیست",
+    "remove": "حذف",
+    "exportList": "استتخراج لیست",
+    "addGroup": "افزودن گروه",
+    "editGroup": "ویرایش گروه",
+    "search": "جستجو",
+    "filter": "فیلتر"
+  },
+
+  "editSite": {
+    "serialNumber": "شماره سریال",
+    "enterName": "نام را وارد کنید",
+    "auto": "خودکار",
+    "latitude": "طول جغرافیایی",
+    "longitude": "عرض جفرافیایی",
+    "hvProtection": "محافظت ولتاژ بالا",
+    "lvProtection": "محافظت ولتاژ پایین",
+    "boxTamper": "تمپر جعبه",
+    "teperature": "دما",
+    "battery": "باتری",
+    "voltage": "ولتاژ"
+  }
+}
