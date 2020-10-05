@@ -21,7 +21,9 @@
     "help": "کمک",
     "name": "نام",
     "number": "شماره",
-    "location": "مکان"
+    "location": "مکان",
+    "latitude": "طول جغرافیایی",
+    "longitude": "عرض جفرافیایی"
   },
 
   "sidePanel": {
@@ -63,15 +65,18 @@
     "addGroup": "افزودن گروه",
     "editGroup": "ویرایش گروه",
     "search": "جستجو",
-    "filter": "فیلتر"
+    "filter": "فیلتر",
+    "name": "نام",
+    "serialNo": "شماره سریال",
+    "ipAdd": "آدرس آی پی",
+    "interval": "بروز رسانی",
+    "autoLoc": "مکان یابی خودکار"
   },
 
   "editSite": {
     "serialNumber": "شماره سریال",
     "enterName": "نام را وارد کنید",
     "auto": "خودکار",
-    "latitude": "طول جغرافیایی",
-    "longitude": "عرض جفرافیایی",
     "hvProtection": "محافظت ولتاژ بالا",
     "lvProtection": "محافظت ولتاژ پایین",
     "boxTamper": "تمپر جعبه",

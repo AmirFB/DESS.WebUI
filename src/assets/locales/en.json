@@ -45,7 +45,7 @@
     "schedule": "Schedule"
   },
 
-  "sites": {
+  "site": {
     "siteId": "Site ID",
     "power": "Power",
     "alarmLevel": "Alarm Level",
@@ -63,7 +63,12 @@
     "addGroup": "Add Group",
     "editGroup": "Edit Group",
     "search": "Search",
-    "filter": "Filter"
+    "filter": "Filter",
+    "naem": "Name",
+    "serialNo": "Serial Number",
+    "ipAdd": "Ip Address",
+    "interval": "Interval",
+    "autoLoc": "Auto Location"
   },
 
   "editSite": {
