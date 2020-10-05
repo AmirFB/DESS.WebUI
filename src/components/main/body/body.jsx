@@ -23,40 +23,34 @@ export default function Body() {
   }
 
   return (
-    <div className="body-form">
-      <div className="sidebar">
-        <Sidebar />
-      </div>
+    <div>
+      <TabStrip selected={selected} onSelect={handleSelect}>
+        <TabStripTab title={t("common.home")}>
+          <div>
+            <Home />
+          </div>
+        </TabStripTab>
 
-      <div className="tabbar">
-        <TabStrip selected={selected} onSelect={handleSelect}>
-          <TabStripTab title={t("common.home")}>
-            <div>
-              <Home />
-            </div>
-          </TabStripTab>
+        <TabStripTab title={t("common.sites")}>
+          <SiteList></SiteList>
+        </TabStripTab>
 
-          <TabStripTab title={t("common.sites")}>
-            <SiteList></SiteList>
-          </TabStripTab>
+        <TabStripTab title={t("common.settings")}>
+          <Settings />
+        </TabStripTab>
 
-          <TabStripTab title={t("common.settings")}>
-            <Settings />
-          </TabStripTab>
+        <TabStripTab title={t("common.users")}>
+          <Users />
+        </TabStripTab>
 
-          <TabStripTab title={t("common.users")}>
-            <Users />
-          </TabStripTab>
+        <TabStripTab title={t("common.report")}>
+          <Report />
+        </TabStripTab>
 
-          <TabStripTab title={t("common.report")}>
-            <Report />
-          </TabStripTab>
-
-          <TabStripTab title={t("common.about")}>
-            <About />
-          </TabStripTab>
-        </TabStrip>
-      </div>
+        <TabStripTab title={t("common.about")}>
+          <About />
+        </TabStripTab>
+      </TabStrip>
     </div>
   );
 }
