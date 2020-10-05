@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import { Provider as ReduxProvider } from "react-redux";
 import "./index.css";
@@ -7,6 +7,7 @@ import * as serviceWorker from "./serviceWorker";
 import configureStore from "./redux/configureStore";
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
+import "./i18n";
 
 const store = configureStore();
 
@@ -18,7 +19,9 @@ axios.defaults.headers.common["Authorization"] =
 
 ReactDOM.render(
   <ReduxProvider store={store}>
-    <App />
+    <Suspense fallback={<div>Loading...</div>}>
+      <App />
+    </Suspense>
   </ReduxProvider>,
   document.getElementById("root")
 );
