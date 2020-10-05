@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "name": "a",
+    "siteID": "2",
+    "serialNum": "154",
+    "phoneNum": "158",
+    "ipAddress": "192.168.1.1",
+    "useGlobalInterval": "true",
+    "interval": "true",
+    "autoLocation": "true",
+    "latitude": "35.14",
+    "longitude": "12.41",
+    "hvEnabled": "true",
+    "lvEnabled": "false",
+    "hvPower": "22",
+    "hvThreshold": "10",
+    "hvRepeat": "3",
+    "temperatureMin": "10",
+    "temperatureMax": "50",
+    "batteryMin": "10",
+    "batteryMax": "100",
+    "input1": "true",
+    "input2": "false",
+    "output1": "true",
+    "output2": "false"
+  }
+]
