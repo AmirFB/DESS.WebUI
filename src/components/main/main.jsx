@@ -10,7 +10,7 @@ export default function Main() {
     <div className="body-form">
       <SideBar />
 
-      <Body/>
+      <Body />
     </div>
   );
 }

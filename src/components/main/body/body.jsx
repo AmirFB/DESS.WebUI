@@ -25,7 +25,7 @@ export default function Body() {
     <div className="tab-bar">
       <TabStrip id="tabStrip" selected={selected} onSelect={handleSelect}>
         <TabStripTab title={t("common.home")}>
-          <Home className="map" />
+          <Home />
         </TabStripTab>
 
         <TabStripTab title={t("common.sites")}>

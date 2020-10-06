@@ -23,7 +23,7 @@ div[role="tabpanel"] {
 
 .k-animation-container {
   width: 100%;
-  height: calc(100% - 28px);
+  height: calc(100% - 5px);
 }
 
 .k-content {
@@ -45,5 +45,15 @@ div[role="tabpanel"] {
 
 .map {
   height: 100%;
+  width: 100%;
+}
+
+div[role="report"] {
+  width: 100%;
+}
+
+.report-grid {
+  display: flex;
+  flex-direction: row;
   width: 100%;
 }
