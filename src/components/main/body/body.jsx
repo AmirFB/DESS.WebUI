@@ -4,14 +4,14 @@ import { useTranslation } from "react-i18next";
 
 import "@progress/kendo-theme-material/dist/all.css";
 
-import Home from "./home/home";
-import Settings from "./settings/settings";
-import Users from "./user/userList";
-import Report from "./report/report";
-import About from "./about";
+import Home from "./home/Home";
+import Settings from "./settings/Settings";
+import Users from "./user/UserList";
+import Report from "./report/Report";
+import About from "./About";
 
 import "./body.css";
-import SiteList from "./site/siteList";
+import SiteList from "./site/SiteList";
 
 export default function Body() {
   const [selected, setSelected] = useState(0);
