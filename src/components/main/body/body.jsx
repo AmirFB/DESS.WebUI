@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import "@progress/kendo-theme-material/dist/all.css";
 
 import Home from "./home/home";
-import Sidebar from "../sideBar/sideBar";
 import Settings from "./settings/settings";
 import Users from "./user/userList";
 import Report from "./report/report";
@@ -23,7 +22,7 @@ export default function Body() {
   }
 
   return (
-    <div>
+    <div className="tab-bar">
       <TabStrip selected={selected} onSelect={handleSelect}>
         <TabStripTab title={t("common.home")}>
           <div>
