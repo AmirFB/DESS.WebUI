@@ -12,8 +12,8 @@ export default function UsersList() {
     <div>
       <div>Icons place</div>
 
-      <Grid style={{ height: "100%" }} data={[...Users]}>
-        <Column field="ID" title="ID" width="40px" />
+      <Grid data={[...Users]}>
+        <Column field="ID" title="ID" />
         <Column field="Username" title={t("users.userName")} />
         <Column field="Firstname" title={t("users.firstName")} />
         <Column field="Lastname" title={t("users.lastName")} />
