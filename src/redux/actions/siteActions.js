@@ -1,12 +1,17 @@
-import { beginApiCall, apiCallError } from "../../api/siteApi";
+import { beginApiCall, apiCallError } from "../actions/apiStatusActions";
+import * as siteApi from "../../api/siteApi";
 
-const GET_SITES_REQUEST = "GET_SITES_REQUEST";
-const GET_SITES_SUCCESS = "GET_SITES_SUCCESS";
-const GET_SITES_ERROR = "GET_SITES_ERROR";
+export const GET_SITES_REQUEST = "GET_SITES_REQUEST";
+export const GET_SITES_SUCCESS = "GET_SITES_SUCCESS";
+export const GET_SITES_ERROR = "GET_SITES_ERROR";
 
-const ADD_SITE_REQUEST = "ADD_SITE_REQUEST";
-const ADD_SITE_SUCCESS = "ADD_SITE_SUCCESS";
-const ADD_SITE_ERROR = "ADD_SITE_ERROR";
+export const ADD_SITE_REQUEST = "ADD_SITE_REQUEST";
+export const ADD_SITE_SUCCESS = "ADD_SITE_SUCCESS";
+export const ADD_SITE_ERROR = "ADD_SITE_ERROR";
+
+export const UPDATE_SITE_REQUEST = "UPDATE_SITE_REQUEST";
+export const UPDATE_SITE_SUCCESS = "UPDATE_SITE_SUCCESS";
+export const UPDATE_SITE_ERROR = "UPDATE_SITE_ERROR";
 
 // Get Sites
 
@@ -53,10 +58,6 @@ function addSiteError(error) {
     error,
   };
 }
-
-const UPDATE_SITE_REQUEST = "UPDATE_SITE_REQUEST";
-const UPDATE_SITE_SUCCESS = "UPDATE_SITE_SUCCESS";
-const UPDATE_SITE_ERROR = "UPDATE_SITE_ERROR";
 
 // Update Existing Site
 
@@ -105,7 +106,7 @@ export function saveSite(site) {
     dispatch(beginApiCall());
 
     return siteApi
-      .saveCourse(site)
+      .saveSite(site)
       .then((savedSite) => {
         site.id
           ? dispatch(addSiteSuccess(savedSite))
