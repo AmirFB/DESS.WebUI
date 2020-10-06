@@ -1,17 +1,18 @@
 .body-form {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
-.sidebar {
+.side-bar {
+  flex: 3;
+}
+
+.tab-bar {
   flex: 1;
 }
 
-.tabbar {
-  flex: 5;
-}
-
 .map {
-  height: 624px;
-  width: 1250px;
+  height: 100%;
+  width: 100%;
 }
