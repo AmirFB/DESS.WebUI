@@ -8,19 +8,29 @@
 body,
 html,
 #root,
-.k-tabstrip,
-.k-content,
-#tabstrip,
-.k-animation-container,
-.k-child-animation-container {
+#tabstrip {
   width: 100%;
   height: 100%;
 }
 
-.k-content,
+.k-tabstrip,
+.k-child-animation-container,
 div[role="tabpanel"] {
-  width: 97%;
-  height: 97%;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.k-animation-container {
+  width: 100%;
+  height: calc(100% - 28px);
+}
+
+.k-content {
+  width: calc(100% - 48px);
+}
+
+div[role="tabpanel"] {
   padding: 0;
 }
 
@@ -36,5 +46,4 @@ div[role="tabpanel"] {
 .map {
   height: 100%;
   width: 100%;
-  background-color: aquamarine;
 }
