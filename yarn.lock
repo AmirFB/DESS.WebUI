@@ -1832,6 +1832,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@microsoft/signalr@npm:^3.1.4":
+  version: 3.1.8
+  resolution: "@microsoft/signalr@npm:3.1.8"
+  dependencies:
+    eventsource: ^1.0.7
+    request: ^2.88.0
+    ws: ^6.0.0
+  checksum: e861a289a86048e5a67ec4105627bfd30a35e0f52872385340736f3245cf24a3952b6bb90ed4215f30ecbb99cb5a7ff5c567eae1b483cd2de15ed6a32b10c483
+  languageName: node
+  linkType: hard
+
 "@mrmlnc/readdir-enhanced@npm:^2.2.1":
   version: 2.2.1
   resolution: "@mrmlnc/readdir-enhanced@npm:2.2.1"
@@ -5303,6 +5314,7 @@ __metadata:
     react-thunk: ^1.0.0
     redux: ^4.0.5
     redux-immutable-state-invariant: ^2.1.0
+    redux-signalr: ^1.2.0
     redux-thunk: ^2.3.0
   languageName: unknown
   linkType: soft
@@ -12198,6 +12210,15 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"redux-signalr@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "redux-signalr@npm:1.2.0"
+  dependencies:
+    "@microsoft/signalr": ^3.1.4
+  checksum: 6736f7b8f46f26d3df3974ea9db6b678a2623610917dbd8a2a8dec292f959f1de2ae6ec93db4747735d0255a3b1d1f439d426681b8c0ef9973c9486f64bb2324
+  languageName: node
+  linkType: hard
+
 "redux-thunk@npm:^2.3.0":
   version: 2.3.0
   resolution: "redux-thunk@npm:2.3.0"
@@ -14922,7 +14943,7 @@ resolve@1.15.0:
   languageName: node
   linkType: hard
 
-"ws@npm:^6.1.2, ws@npm:^6.2.1":
+"ws@npm:^6.0.0, ws@npm:^6.1.2, ws@npm:^6.2.1":
   version: 6.2.1
   resolution: "ws@npm:6.2.1"
   dependencies:
