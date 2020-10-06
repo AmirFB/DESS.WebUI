@@ -9,7 +9,6 @@ export default function Main() {
   return (
     <div className="body-form">
       <SideBar />
-
       <Body />
     </div>
   );
