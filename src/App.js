@@ -1,11 +1,11 @@
 import React from "react";
 
-import Body from "./components/main/body/body";
+import Main from "./components/main/main";
 
 function App() {
   return (
     <div>
-      <Body />
+      <Main />
     </div>
   );
 }
