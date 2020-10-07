@@ -101,7 +101,8 @@
     "firstName": "نام",
     "lastName": "نام خنوادگی",
     "group": "گروه",
-    "pass": "رمز عبور"
+    "pass": "رمز عبور",
+    "logIn": "ورود"
   },
 
   "report": {

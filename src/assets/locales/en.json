@@ -101,7 +101,8 @@
     "firstName": "First name",
     "lastName": "Last Naem",
     "group": "Group",
-    "pass": "Password"
+    "pass": "Password",
+    "logIn": "LogIn"
   },
 
   "report": {
@@ -116,7 +117,5 @@
     "hvVoltage": "HV Voltage",
     "batteryStatus": "Battery Status",
     "signalStrength": "Signal Strength"
-  },
-
-  "login": {}
+  }
 }
