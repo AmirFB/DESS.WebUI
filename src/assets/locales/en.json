@@ -24,6 +24,10 @@
     "location": "Location",
     "latitude": "Latitude",
     "longitude": "Longitude",
+    "input1": "Input 1",
+    "input2": "Input 2",
+    "output1": "Output 1",
+    "output2": "Output 2",
     "temperature": "Temperature",
     "ipAdd": "Ip Address",
     "serialNo": "Serial Number"
@@ -69,7 +73,7 @@
     "editGroup": "Edit Group",
     "search": "Search",
     "filter": "Filter",
-    "naem": "Name",
+    "name": "Name",
     "interval": "Interval",
     "autoLoc": "Auto Location",
     "hvPow": "HV Power",
@@ -78,11 +82,7 @@
     "temperatureMin": "Temperature Min",
     "temperatureMax": "Temperature Max",
     "batteryMin": "Battery Min",
-    "batteryMax": "Battery Max",
-    "input1": "Input 1",
-    "input2": "Input 2",
-    "output1": "Output 1",
-    "output2": "Output 2"
+    "batteryMax": "Battery Max"
   },
 
   "editSite": {
@@ -117,5 +117,12 @@
     "hvVoltage": "HV Voltage",
     "batteryStatus": "Battery Status",
     "signalStrength": "Signal Strength"
+  },
+
+  "sideBar": {
+    "enterSiteName": "Enter site name",
+    "activeSites": "Active sites",
+    "offlineSites": "Offline sites",
+    "notDefined": "Not defined"
   }
 }

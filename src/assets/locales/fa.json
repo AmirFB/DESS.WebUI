@@ -117,5 +117,12 @@
     "hvVoltage": "ولتاژ HV",
     "batteryStatus": "وضعیت باطری",
     "signalStrength": "قدرت سیگنال"
+  },
+
+  "sideBar": {
+    "enterSiteName": "نام سایت را وارد کنید",
+    "activeSites": "سایت های فعال",
+    "offlineSites": "سایت های غیرفعال",
+    "notDefined": "نامعلوم"
   }
 }
