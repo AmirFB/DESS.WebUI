@@ -8,7 +8,7 @@ import configureStore from "./redux/configureStore";
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
 import "./i18n";
-import { HubConnectionBuilder } from "redux-signalr";
+//import { HubConnectionBuilder } from "redux-signalr";
 
 const store = configureStore();
 
@@ -18,26 +18,26 @@ axios.defaults.baseURL =
 axios.defaults.headers.common["Authorization"] =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwidW5pcXVlX25hbWUiOiJleHBlcnQiLCJQZXJtaXNzaW9uIjpbIklzQWxtaWdodHkiLCJDYW5TZWN1cmVTaXRlcyIsIkNhbkVkaXRTaXRlcyIsIkNhbkVkaXRVc2VyR3JvdXBzIiwiQ2FuRWRpdFVzZXJzIl0sIm5iZiI6MTYwMTc0ODQwNSwiZXhwIjoxNjAxODM0ODA1LCJpYXQiOjE2MDE3NDg0MDV9.5g7D0gk7HwZD6AJ-gMwA_ckW6Z0QJPmDvPANoIhGxTI";
 
-const signalRConnection = new HubConnectionBuilder()
-  .withUrl("/api/web/hub/", {
-    accessTokenFactory: () =>
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwidW5pcXVlX25hbWUiOiJleHBlcnQiLCJQZXJtaXNzaW9uIjpbIklzQWxtaWdodHkiLCJDYW5TZWN1cmVTaXRlcyIsIkNhbkVkaXRTaXRlcyIsIkNhbkVkaXRVc2VyR3JvdXBzIiwiQ2FuRWRpdFVzZXJzIl0sIm5iZiI6MTYwMTc0ODQwNSwiZXhwIjoxNjAxODM0ODA1LCJpYXQiOjE2MDE3NDg0MDV9.5g7D0gk7HwZD6AJ-gMwA_ckW6Z0QJPmDvPANoIhGxTI",
-  })
-  .configureLogging(signalR.LogLevel.Information)
-  .build();
+// const signalRConnection = new HubConnectionBuilder()
+//   .withUrl("/api/web/hub/", {
+//     accessTokenFactory: () =>
+//       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwidW5pcXVlX25hbWUiOiJleHBlcnQiLCJQZXJtaXNzaW9uIjpbIklzQWxtaWdodHkiLCJDYW5TZWN1cmVTaXRlcyIsIkNhbkVkaXRTaXRlcyIsIkNhbkVkaXRVc2VyR3JvdXBzIiwiQ2FuRWRpdFVzZXJzIl0sIm5iZiI6MTYwMTc0ODQwNSwiZXhwIjoxNjAxODM0ODA1LCJpYXQiOjE2MDE3NDg0MDV9.5g7D0gk7HwZD6AJ-gMwA_ckW6Z0QJPmDvPANoIhGxTI",
+//   })
+//   .configureLogging(signalR.LogLevel.Information)
+//   .build();
 
-function start() {
-  signalRConnection
-    .start()
-    .then(() => console.log("SignalR connected successfully."))
-    .catch((error) => {
-      console.log("SignalR connection failed: " + error);
-      setTimeout(start, 5000);
-    });
-}
+// function start() {
+//   signalRConnection
+//     .start()
+//     .then(() => console.log("SignalR connected successfully."))
+//     .catch((error) => {
+//       console.log("SignalR connection failed: " + error);
+//       setTimeout(start, 5000);
+//     });
+// }
 
-signalRConnection.onclose(start);
-start();
+// signalRConnection.onclose(start);
+// start();
 
 ReactDOM.render(
   <ReduxProvider store={store}>
