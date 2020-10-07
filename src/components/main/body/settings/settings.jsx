@@ -1,5 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { Input } from "@progress/kendo-react-inputs";
+import { Label } from "@progress/kendo-react-labels";
 
 export default function Settings() {
   const [t, i18n] = useTranslation();
@@ -24,37 +26,76 @@ export default function Settings() {
             </tr>
 
             <tr>
-              <td>Interval</td>
               <td>
-                <input type="text" />
+                <Label>Interval</Label>
+              </td>
+              <td>
+                <Input
+                  name="Interval"
+                  style={{ width: "100%" }}
+                  pattern={"[A-Za-z]+"}
+                  minLength={2}
+                  required={true}
+                />
               </td>
             </tr>
 
             <tr>
-              <td>Username</td>
               <td>
-                <input type="text" />
+                <Label>Username</Label>
+              </td>
+              <td>
+                <Input
+                  name="Username"
+                  style={{ width: "100%" }}
+                  pattern={"[A-Za-z]+"}
+                  minLength={2}
+                  required={true}
+                />
               </td>
             </tr>
 
             <tr>
-              <td>Change password</td>
               <td>
-                <input type="text" /> current
+                <Label>Change Password</Label>
+              </td>
+              <td>
+                <Input
+                  name="CurrentPass"
+                  style={{ width: "100%" }}
+                  pattern={"[A-Za-z]+"}
+                  minLength={2}
+                  required={true}
+                />{" "}
+                <Label>current</Label>
               </td>
             </tr>
 
             <tr>
               <td></td>
               <td>
-                <input type="text" /> new
+                <Input
+                  name="NewPass1"
+                  style={{ width: "100%" }}
+                  pattern={"[A-Za-z]+"}
+                  minLength={4}
+                  required={true}
+                />{" "}
+                <Label>new</Label>
               </td>
             </tr>
 
             <tr>
               <td></td>
               <td>
-                <input type="text" /> new
+                <Input
+                  name="NewPass2"
+                  style={{ width: "100%" }}
+                  pattern={"[A-Za-z]+"}
+                  minLength={4}
+                  required={true}
+                />{" "}
+                <Label>new</Label>
               </td>
             </tr>
           </tbody>

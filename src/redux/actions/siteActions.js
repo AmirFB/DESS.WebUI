@@ -88,7 +88,7 @@ export function getSites() {
     dispatch(beginApiCall());
 
     return siteApi
-      .getSites()
+      .getAll()
       .then((response) => {
         dispatch(getSitesSuccess(response.data));
       })

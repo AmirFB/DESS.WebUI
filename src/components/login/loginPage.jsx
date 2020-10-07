@@ -2,8 +2,8 @@ import React from "react";
 
 import "./login.css";
 
-import Login from "./login";
-import Intro from "./intro";
+import Login from "./Login";
+import Intro from "./Intro";
 
 export default function LoginPage() {
   return (
@@ -12,7 +12,7 @@ export default function LoginPage() {
         <Intro />
         <Login />
       </div>
-      <footer>
+      <footer style={{ backgroundColor: "gainsboro", height: "100%" }}>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;about &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;© 2020 EHP Corp.
       </footer>
