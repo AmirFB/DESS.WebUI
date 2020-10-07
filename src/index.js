@@ -33,6 +33,10 @@ const signalRConnection = new HubConnectionBuilder()
   })
   .build();
 
+signalRConnection.on("UpdateStatus", (data) => {
+  console.log(data);
+});
+
 function start() {
   console.log("SignalR connection started.");
   signalRConnection
