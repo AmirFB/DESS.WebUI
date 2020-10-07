@@ -2057,7 +2057,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@progress/kendo-react-labels@npm:3.17.0":
+"@progress/kendo-react-labels@npm:3.17.0, @progress/kendo-react-labels@npm:^3.17.0":
   version: 3.17.0
   resolution: "@progress/kendo-react-labels@npm:3.17.0"
   dependencies:
@@ -5291,6 +5291,7 @@ __metadata:
     "@progress/kendo-react-grid": ^3.17.0
     "@progress/kendo-react-inputs": ^3.17.0
     "@progress/kendo-react-intl": ^3.17.0
+    "@progress/kendo-react-labels": ^3.17.0
     "@progress/kendo-react-layout": ^3.17.0
     "@progress/kendo-react-popup": ^3.17.0
     "@progress/kendo-react-progressbars": ^3.17.0
