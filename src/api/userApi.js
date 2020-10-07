@@ -14,7 +14,7 @@ export function save(user) {
   return user.id ? axios.post(url + "register", user) : axios.put(url, user);
 }
 
-export function deleteUser(id) {
+export function remove(id) {
   return axios.delete(url + id);
 }
 
