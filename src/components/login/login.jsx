@@ -1,5 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { Input } from "@progress/kendo-react-inputs";
+import { Button } from "@progress/kendo-react-buttons";
 
 import "./login.css";
 
@@ -12,19 +14,33 @@ export default function Login() {
       <br />
       security tool
       <form action="" style={{ marginTop: 30 }}>
-        <div className="label-highlight">{t("users.userName")}</div>
         <div>
-          <input type="text" className="input-highlight" />
+          <Input
+            name="Username"
+            label={t("users.userName")}
+            style={{ width: "200px" }}
+            pattern={"[A-Za-z]+"}
+            minLength={5}
+            required={true}
+          />
         </div>
 
-        <div style={{ marginTop: 4 }}>
-          <div className="label-highlight">{t("users.pass")}</div>
+        <div style={{ marginTop: 15 }}>
           <div>
-            <input type="password" className="input-highlight" />
+            <Input
+              name="Password"
+              label={t("users.pass")}
+              style={{ width: "200px" }}
+              pattern={"[A-Za-z]+"}
+              minLength={5}
+              required={true}
+            />
           </div>
         </div>
 
-        <button className="login-button">Log in</button>
+        <Button primary className="login-button">
+          {t("users.logIn")}
+        </Button>
       </form>
     </div>
   );
