@@ -1,0 +1,31 @@
+import axios from "axios";
+
+const url = "users/";
+
+export function getAll() {
+  return axios.get(url);
+}
+
+export function get(id) {
+  return axios.get(url + id);
+}
+
+export function save(user) {
+  return user.id ? axios.post(url + "register", user) : axios.put(url, user);
+}
+
+export function deleteUser(id) {
+  return axios.delete(url + id);
+}
+
+export function authenticate(user) {
+  return axios.post(url + "authenticate", user);
+}
+
+export function getGroups() {
+  return axios.get(url + "groups");
+}
+
+export function getPermissions() {
+  return axios.get("permissions");
+}
