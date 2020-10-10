@@ -6,7 +6,7 @@ import {
 
 const INITIAL_STATE = {
   loading: false,
-  hasError: 55,
+  hasError: false,
   error: null,
   sites: [],
 };
@@ -32,7 +32,8 @@ export default function siteRecuder(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         hasError: true,
-        error: action.sites,
+        sites: state.sites,
+        error: action.error,
       };
 
     default:

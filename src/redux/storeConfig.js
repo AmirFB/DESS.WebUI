@@ -14,7 +14,7 @@ const signalR = signalMiddleware({
 export default function storeConfig(initialState) {
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  console.log(window.localStorage.getItem("token"));
+
   return createStore(
     rootReducer,
     initialState,
