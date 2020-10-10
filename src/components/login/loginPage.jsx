@@ -2,8 +2,8 @@ import React from "react";
 
 import "./login.css";
 
-import Login from "./Login";
-import Intro from "./Intro";
+import Login from "./login";
+import Intro from "./intro";
 
 export default function LoginPage() {
   return (
