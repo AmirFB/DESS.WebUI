@@ -2004,6 +2004,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@progress/kendo-react-form@npm:^3.17.0":
+  version: 3.17.0
+  resolution: "@progress/kendo-react-form@npm:3.17.0"
+  dependencies:
+    "@progress/kendo-react-common": 3.17.0
+    prop-types: ^15.6.0
+  peerDependencies:
+    react: ^16.8.2
+    react-dom: ^16.8.2
+  checksum: da756fbd7dae51bc78d1dbff999065c81319fcdebc702ae6b85d9c00eb05ebb38cc47ed3fd7e8da3812525c376238f215de0237c811832c0f5deabebb1d3c8a8
+  languageName: node
+  linkType: hard
+
 "@progress/kendo-react-grid@npm:^3.17.0":
   version: 3.17.0
   resolution: "@progress/kendo-react-grid@npm:3.17.0"
@@ -5288,6 +5301,7 @@ __metadata:
     "@progress/kendo-react-dateinputs": ^3.17.0
     "@progress/kendo-react-dialogs": ^3.17.0
     "@progress/kendo-react-dropdowns": ^3.17.0
+    "@progress/kendo-react-form": ^3.17.0
     "@progress/kendo-react-grid": ^3.17.0
     "@progress/kendo-react-inputs": ^3.17.0
     "@progress/kendo-react-intl": ^3.17.0
