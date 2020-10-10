@@ -1,5 +1,6 @@
 {
   "common": {
+    "getFailed": "Connection failed.",
     "ok": "OK",
     "cancel": "Cancel",
     "about": "About",
@@ -30,7 +31,7 @@
     "output2": "Output 2",
     "temperature": "Temperature",
     "ipAdd": "Ip Address",
-    "serialNo": "Serial Number"
+    "loading": "Loading ..."
   },
 
   "editSite": {
@@ -95,6 +96,7 @@
     "dataInterval": "Data Interval",
     "input": "Input",
     "output": "Output",
+    "getSitesFailed": "Loading sites from server failed.",
     "group": "Group",
     "lastUpdate": "Last Update",
     "addSite": "Add Site",
@@ -114,7 +116,8 @@
     "temperatureMin": "Temperature Min",
     "temperatureMax": "Temperature Max",
     "batteryMin": "Battery Min",
-    "batteryMax": "Battery Max"
+    "batteryMax": "Battery Max",
+    "serialNo": "Serial Number"
   },
 
   "users": {

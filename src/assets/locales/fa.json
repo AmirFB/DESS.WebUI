@@ -1,5 +1,6 @@
 {
   "common": {
+    "getFailed": "مشکل در برقراری ارتباط",
     "ok": "تایید",
     "cancel": "انصراف",
     "about": "درباره",
@@ -30,7 +31,7 @@
     "output2": "خروجی 2",
     "teperature": "دما",
     "ipAdd": "آدرس آی پی",
-    "serialNo": "شماره سریال"
+    "loading": "در حال بارگذاری ..."
   },
 
   "editSite": {
@@ -95,6 +96,7 @@
     "dataInterval": "فاصله زمانی",
     "input": "ورودی",
     "output": "خروجی",
+    "getSitesFailed": "بارگذاری لیست سایت ها از سرور با مشکل مواجه شد.",
     "group": "گروه",
     "lastUpdate": "آخرین بروزرسانی",
     "addSite": "افزودن سایت",
@@ -114,7 +116,8 @@
     "temperatureMin": "حداقل دما",
     "temperatureMax": "حداکثر دما",
     "batteryMin": "حداقل باطری",
-    "batteryMax": "حداکثر باطری"
+    "batteryMax": "حداکثر باطری",
+    "serialNo": "شماره سریال"
   },
 
   "users": {
