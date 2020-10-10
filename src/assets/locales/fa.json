@@ -33,11 +33,15 @@
     "serialNo": "شماره سریال"
   },
 
-  "sidePanel": {
-    "activeSites": "سابت های فعال",
-    "offlineSites": "سایت های فعال",
-    "notDefined": "تعریف نشده",
-    "searchSite": "نام سایت را وارد کنید."
+  "editSite": {
+    "serialNumber": "شماره سریال",
+    "enterName": "نام را وارد کنید",
+    "auto": "خودکار",
+    "hvProtection": "محافظت ولتاژ بالا",
+    "lvProtection": "محافظت ولتاژ پایین",
+    "boxTamper": "تمپر جعبه",
+    "battery": "باتری",
+    "voltage": "ولتاژ"
   },
 
   "home": {
@@ -52,6 +56,34 @@
     "fitView": "نمایش همه ",
     "statistics": "آمار",
     "schedule": "برنامه ریزی"
+  },
+
+  "report": {
+    "applied": "اعمال شده",
+    "hvAlarm": "HV",
+    "lvAlarm": "LV",
+    "tamperAlarm": "دستکاری",
+    "mainPowerFault": "تغذیه اصلی",
+    "hvPowerFault": "تغذیه HV",
+    "hvChargeFault": "شارژ HV",
+    "hvDichargeFault": "تخلیه HV",
+    "hvVoltage": "ولتاژ HV",
+    "batteryStatus": "وضعیت باطری",
+    "signalStrength": "قدرت سیگنال"
+  },
+
+  "sideBar": {
+    "enterSiteName": "نام سایت را وارد کنید",
+    "activeSites": "سایت های فعال",
+    "offlineSites": "سایت های غیرفعال",
+    "notDefined": "نامعلوم"
+  },
+
+  "sidePanel": {
+    "activeSites": "سابت های فعال",
+    "offlineSites": "سایت های فعال",
+    "notDefined": "تعریف نشده",
+    "searchSite": "نام سایت را وارد کنید."
   },
 
   "site": {
@@ -75,54 +107,25 @@
     "filter": "فیلتر",
     "name": "نام",
     "interval": "بروز رسانی",
-    "autoLoc": "مکان یابی خودکار",
-    "hvPow": "توان HV",
-    "hvTre": "آستانه HV",
-    "hvRep": "تکرار HV",
+    "autoLocation": "مکان یابی خودکار",
+    "hvPower": "توان",
+    "hvTreshold": "آستانه",
+    "hvRepeat": "تکرار",
     "temperatureMin": "حداقل دما",
     "temperatureMax": "حداکثر دما",
     "batteryMin": "حداقل باطری",
     "batteryMax": "حداکثر باطری"
   },
 
-  "editSite": {
-    "serialNumber": "شماره سریال",
-    "enterName": "نام را وارد کنید",
-    "auto": "خودکار",
-    "hvProtection": "محافظت ولتاژ بالا",
-    "lvProtection": "محافظت ولتاژ پایین",
-    "boxTamper": "تمپر جعبه",
-    "battery": "باتری",
-    "voltage": "ولتاژ"
-  },
-
   "users": {
-    "userName": "نام کاربری",
     "firstName": "نام",
-    "lastName": "نام خنوادگی",
     "group": "گروه",
-    "pass": "رمز عبور",
-    "logIn": "ورود"
-  },
-
-  "report": {
-    "applied": "اعمال شده",
-    "hvAlarm": "HV",
-    "lvAlarm": "LV",
-    "tamperAlarm": "دستکاری",
-    "mainPowerFault": "تغذیه اصلی",
-    "hvPowerFault": "تغذیه HV",
-    "hvChargeFault": "شارژ HV",
-    "hvDichargeFault": "تخلیه HV",
-    "hvVoltage": "ولتاژ HV",
-    "batteryStatus": "وضعیت باطری",
-    "signalStrength": "قدرت سیگنال"
-  },
-
-  "sideBar": {
-    "enterSiteName": "نام سایت را وارد کنید",
-    "activeSites": "سایت های فعال",
-    "offlineSites": "سایت های غیرفعال",
-    "notDefined": "نامعلوم"
+    "lastName": "نام خانوادگی",
+    "login": "ورود",
+    "password": "رمز عبور",
+    "passwordNull": "لطفا رمز عبور را وارد کنید.",
+    "username": "نام کاربری",
+    "usernameNull": "لطفا نام کاربری را وارد کنید.",
+    "usernameWrong": "نام کاربری فقط می تواند شامل این کاراکتر ها باشد. A-Z, a-z, 0-9, _"
   }
 }

@@ -1,47 +1,60 @@
 import React from "react";
+import ValidationInput from "../common/validationInput";
+
 import { useTranslation } from "react-i18next";
-import { Input } from "@progress/kendo-react-inputs";
 import { Button } from "@progress/kendo-react-buttons";
+import { Form, Field, FormElement } from "@progress/kendo-react-form";
 
 import "./login.css";
 
 export default function Login() {
   const [t, i18n] = useTranslation();
+  const handleSubmit = (dataItem) => {
+    alert(JSON.stringify(dataItem, null, 2));
+  };
+
+  const usernameRegex = new RegExp("^[a-zA-Z0-9_]*$");
+  const usernameValidator = (value) =>
+    !value
+      ? t("users.usernameNull")
+      : !usernameRegex.exec(value)
+      ? t("users.usernameWrong")
+      : "";
+
+  const passwordValidator = (value) => (!value ? t("users.passwordNull") : "");
 
   return (
-    <div className="login-form">
-      Log in to system to use all about <b style={{ color: "blue" }}>DESS</b>
-      <br />
-      security tool
-      <form action="" style={{ marginTop: 30 }}>
-        <div>
-          <Input
-            name="Username"
-            label={t("users.userName")}
-            style={{ width: "200px" }}
-            pattern={"[A-Za-z]+"}
-            minLength={5}
-            required={true}
+    <Form
+      className="login-form"
+      onSubmit={handleSubmit}
+      render={(formRenderProps) => (
+        <FormElement className="login-form">
+          <Field
+            component={ValidationInput}
+            label={t("users.username")}
+            name="username"
+            style={{ marginBottom: 10, width: "200px" }}
+            minLength={4}
+            required
+            validator={usernameValidator}
           />
-        </div>
 
-        <div style={{ marginTop: 15 }}>
-          <div>
-            <Input
-              name="Password"
-              label={t("users.pass")}
-              style={{ width: "200px" }}
-              pattern={"[A-Za-z]+"}
-              minLength={5}
-              required={true}
-            />
-          </div>
-        </div>
+          <Field
+            component={ValidationInput}
+            type="password"
+            label={t("users.password")}
+            name="password"
+            style={{ marginTop: 10, width: "200px" }}
+            minLength={4}
+            required
+            validator={passwordValidator}
+          />
 
-        <Button primary className="login-button">
-          {t("users.logIn")}
-        </Button>
-      </form>
-    </div>
+          <Button primary className="login-button">
+            {t("users.login")}
+          </Button>
+        </FormElement>
+      )}
+    />
   );
 }

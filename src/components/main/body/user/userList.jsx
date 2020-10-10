@@ -1,7 +1,6 @@
 import React from "react";
 import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
 import { useTranslation } from "react-i18next";
-
 import "@progress/kendo-theme-material/dist/all.css";
 import Users from "./users.json";
 import "./user.css";

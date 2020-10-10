@@ -33,11 +33,15 @@
     "serialNo": "Serial Number"
   },
 
-  "sidePanel": {
-    "activeSites": "Active Sites",
-    "offlineSites": "Offline Sites",
-    "notDefined": "Not Defined",
-    "searchSite": "Type site name here."
+  "editSite": {
+    "serialNumber": "Serial Num.",
+    "enterName": "Enter Name",
+    "auto": "Auto",
+    "hvProtection": "HV Protection",
+    "lvProtection": "LV Protection",
+    "boxTamper": "Box Tamper",
+    "battery": "Battery",
+    "voltage": "Voltage"
   },
 
   "home": {
@@ -52,6 +56,34 @@
     "fitView": "FitView",
     "statistics": "Statistics",
     "schedule": "Schedule"
+  },
+
+  "report": {
+    "applied": "Applied",
+    "hvAlarm": "HV Alarm",
+    "lvAlarm": "LV Alarm",
+    "tamperAlarm": "Tamper Alarm",
+    "mainPowerFault": "Main Power Fault",
+    "hvPowerFault": "HV Power Fault",
+    "hvChargeFault": "HV Charge Fault",
+    "hvDichargeFault": "HV Discharge Fault",
+    "hvVoltage": "HV Voltage",
+    "batteryStatus": "Battery Status",
+    "signalStrength": "Signal Strength"
+  },
+
+  "sideBar": {
+    "enterSiteName": "Enter site name",
+    "activeSites": "Active sites",
+    "offlineSites": "Offline sites",
+    "notDefined": "Not defined"
+  },
+
+  "sidePanel": {
+    "activeSites": "Active Sites",
+    "offlineSites": "Offline Sites",
+    "notDefined": "Not Defined",
+    "searchSite": "Type site name here."
   },
 
   "site": {
@@ -75,54 +107,25 @@
     "filter": "Filter",
     "name": "Name",
     "interval": "Interval",
-    "autoLoc": "Auto Location",
-    "hvPow": "HV Power",
-    "hvTre": "HV Treshold",
-    "hvRep": "HV Repeat",
+    "autoLocation": "Auto Location",
+    "hvPower": "HV Power",
+    "hvTreshold": "HV Treshold",
+    "hvRepeat": "HV Repeat",
     "temperatureMin": "Temperature Min",
     "temperatureMax": "Temperature Max",
     "batteryMin": "Battery Min",
     "batteryMax": "Battery Max"
   },
 
-  "editSite": {
-    "serialNumber": "Serial Num.",
-    "enterName": "Enter Name",
-    "auto": "Auto",
-    "hvProtection": "HV Protection",
-    "lvProtection": "LV Protection",
-    "boxTamper": "Box Tamper",
-    "battery": "Battery",
-    "voltage": "Voltage"
-  },
-
   "users": {
-    "userName": "Username",
     "firstName": "First name",
-    "lastName": "Last Naem",
     "group": "Group",
-    "pass": "Password",
-    "logIn": "LogIn"
-  },
-
-  "report": {
-    "applied": "Applied",
-    "hvAlarm": "HV Alarm",
-    "lvAlarm": "LV Alarm",
-    "tamperAlarm": "Tamper Alarm",
-    "mainPowerFault": "Main Power Fault",
-    "hvPowerFault": "HV Power Fault",
-    "hvChargeFault": "HV Charge Fault",
-    "hvDichargeFault": "HV Discharge Fault",
-    "hvVoltage": "HV Voltage",
-    "batteryStatus": "Battery Status",
-    "signalStrength": "Signal Strength"
-  },
-
-  "sideBar": {
-    "enterSiteName": "Enter site name",
-    "activeSites": "Active sites",
-    "offlineSites": "Offline sites",
-    "notDefined": "Not defined"
+    "lastName": "Last Name",
+    "login": "Login",
+    "password": "Password",
+    "passwordNull": "Please enter password.",
+    "username": "Username",
+    "usernameNull": "Please enter username.",
+    "usernameWrong": "Username should only contain A-Z, a-z, 0-9 and _ characters."
   }
 }

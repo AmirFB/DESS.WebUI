@@ -1,7 +1,7 @@
 import React from "react";
 
-import Main from "./components/main/Main";
-import Login from "./components/login/LoginPage";
+import Main from "./components/main/main";
+import Login from "./components/login/loginPage";
 
 function App() {
   return <Login />;
