@@ -17,6 +17,7 @@
     "@progress/kendo-react-intl": "^3.17.0",
     "@progress/kendo-react-labels": "^3.17.0",
     "@progress/kendo-react-layout": "^3.17.0",
+    "@progress/kendo-react-notification": "^3.17.0",
     "@progress/kendo-react-popup": "^3.17.0",
     "@progress/kendo-react-progressbars": "^3.17.0",
     "@progress/kendo-theme-material": "^3.19.2",

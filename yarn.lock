@@ -2101,6 +2101,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@progress/kendo-react-notification@npm:^3.17.0":
+  version: 3.17.0
+  resolution: "@progress/kendo-react-notification@npm:3.17.0"
+  dependencies:
+    prop-types: ^15.6.0
+  peerDependencies:
+    react: ^16.8.2
+    react-dom: ^16.8.2
+  checksum: 1d48301a817a482f124d78f572b9702b989c1e24d85a384b2939fcb00433386bb5aa48205cdffecea955932e726134f9a3968fb692a3c434608a9ebdb45f9878
+  languageName: node
+  linkType: hard
+
 "@progress/kendo-react-popup@npm:3.17.0, @progress/kendo-react-popup@npm:^3.17.0":
   version: 3.17.0
   resolution: "@progress/kendo-react-popup@npm:3.17.0"
@@ -5307,6 +5319,7 @@ __metadata:
     "@progress/kendo-react-intl": ^3.17.0
     "@progress/kendo-react-labels": ^3.17.0
     "@progress/kendo-react-layout": ^3.17.0
+    "@progress/kendo-react-notification": ^3.17.0
     "@progress/kendo-react-popup": ^3.17.0
     "@progress/kendo-react-progressbars": ^3.17.0
     "@progress/kendo-theme-material": ^3.19.2
