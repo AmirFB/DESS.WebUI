@@ -1,4 +1,4 @@
-import { BEGIN_API_CALL, API_CALL_ERROR } from "../actions/actionTypes";
+import { BEGIN_API_CALL, API_CALL_ERROR } from "../actions/apiStatusActions";
 import { isSuccess } from "../helpers/helpers";
 
 const initialState = { apiCallsInProgress: 0 };
