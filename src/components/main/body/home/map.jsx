@@ -10,6 +10,7 @@ var myIcon = L.icon({
   iconSize: [25, 41],
   iconAnchor: [12.5, 4],
   popupAnchor: [0, -41],
+  className: "blinking",
 });
 
 export default function MapForm() {
