@@ -93,10 +93,10 @@ function authenticateUserRequest(user) {
   };
 }
 
-function authenticateUserSuccess(user) {
+function authenticateUserSuccess(data) {
   return {
     type: AUTHENTICATE_USER_SUCCESS,
-    user,
+    ...data,
   };
 }
 
@@ -131,7 +131,7 @@ export function saveUser(user) {
     dispatch(beginApiCall());
 
     return userApi
-      .saveUser(user)
+      .save(user)
       .then((savedUser) => {
         user.id
           ? dispatch(registerUserSuccess(savedUser))
@@ -155,7 +155,7 @@ export function authenticateUser(user) {
     return userApi
       .authenticate(user)
       .then((response) => {
-        dispatch(authenticateUserSuccess(response.data));
+        dispatch(authenticateUserSuccess({ ...response.data }));
       })
       .catch((error) => {
         dispatch(authenticateUserError(error));
