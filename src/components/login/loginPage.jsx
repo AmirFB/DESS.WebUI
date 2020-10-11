@@ -2,7 +2,7 @@ import React from "react";
 
 import "./login.css";
 
-import Login from "./login";
+import Login from "./loginForm";
 import Intro from "./intro";
 
 export default function LoginPage() {

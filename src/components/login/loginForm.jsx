@@ -7,7 +7,7 @@ import { Form, Field, FormElement } from "@progress/kendo-react-form";
 
 import "./login.css";
 
-export default function Login() {
+export default function LoginForm() {
   const [t, i18n] = useTranslation();
   const handleSubmit = (dataItem) => {
     alert(JSON.stringify(dataItem, null, 2));
