@@ -2,15 +2,15 @@ import React from "react";
 
 import "./login.css";
 
-import Login from "./loginForm";
+import LoginForm from "./loginForm";
 import Intro from "./intro";
 
-export default function LoginPage() {
+export default function Login() {
   return (
     <div>
       <div className="login">
         <Intro />
-        <Login />
+        <LoginForm />
       </div>
       <footer style={{ backgroundColor: "gainsboro", height: "100%" }}>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
