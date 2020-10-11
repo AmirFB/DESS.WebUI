@@ -1,17 +1,19 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ValidationInput from "../common/validationInput";
 
 import { useTranslation } from "react-i18next";
 import { Button } from "@progress/kendo-react-buttons";
 import { Form, Field, FormElement } from "@progress/kendo-react-form";
+import { connect } from "react-redux";
+import { generatePasswordHash } from "../../helpers/cryptography";
+
+import * as userActions from "../../redux/actions/userActions";
 
 import "./login.css";
 
-export default function LoginForm() {
+function LoginForm({ siteReducer, authenticateUser, ...props }) {
   const [t, i18n] = useTranslation();
-  const handleSubmit = (dataItem) => {
-    alert(JSON.stringify(dataItem, null, 2));
-  };
 
   const usernameRegex = new RegExp("^[a-zA-Z0-9_]*$");
   const usernameValidator = (value) =>
@@ -22,6 +24,13 @@ export default function LoginForm() {
       : "";
 
   const passwordValidator = (value) => (!value ? t("users.passwordNull") : "");
+
+  const handleSubmit = (data) => {
+    authenticateUser({
+      ...data,
+      password: generatePasswordHash(data.password),
+    });
+  };
 
   return (
     <Form
@@ -58,3 +67,19 @@ export default function LoginForm() {
     />
   );
 }
+
+LoginForm.propTypes = {
+  userReducer: PropTypes.object.isRequired,
+};
+
+function mapStateToProps(state) {
+  return {
+    userReducer: state.userReducer,
+  };
+}
+
+const mapDispatchToProps = {
+  authenticateUser: userActions.authenticateUser,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
