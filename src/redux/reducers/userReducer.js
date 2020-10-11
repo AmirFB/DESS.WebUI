@@ -2,24 +2,24 @@ import {
   GET_USERS_REQUEST,
   GET_USERS_SUCCESS,
   GET_USERS_ERROR,
+  AUTHENTICATE_USER_REQUEST,
+  AUTHENTICATE_USER_SUCCESS,
+  AUTHENTICATE_USER_ERROR,
 } from "../actions/userActions";
 import { isRequest, isSuccess, isError } from "../helpers/helpers";
 
+import axios from "axios";
+
 const INITIAL_STATE = {
   loading: false,
-  hasError: 0,
+  hasError: false,
   error: null,
-  users: [],
+  loggedIn: false,
   currentUser: null,
+  users: [],
 };
 
 export default function userRecuder(state = INITIAL_STATE, action) {
-  if (isRequest(type))
-    return {
-      ...state,
-      loading: true,
-    };
-
   switch (action.type) {
     case GET_USERS_REQUEST:
       return {
@@ -49,7 +49,29 @@ export default function userRecuder(state = INITIAL_STATE, action) {
         ...state,
         loading: true,
         hasError: false,
+        loggedIn: false,
         currentUser: action.currentUser,
+      };
+
+    case AUTHENTICATE_USER_SUCCESS:
+      window.localStorage.setItem("token", action.token);
+      axios.defaults.headers.common["Authorization"] = "Bearer " + action.token;
+
+      return {
+        ...state,
+        loading: false,
+        hasError: false,
+        loggedIn: true,
+        currentUser: action.currentUser,
+      };
+
+    case AUTHENTICATE_USER_ERROR:
+      return {
+        ...state,
+        loading: false,
+        hasError: true,
+        loggedIn: false,
+        currentUser: null,
       };
 
     default:
