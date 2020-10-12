@@ -10,6 +10,7 @@ import {
   NotificationGroup,
 } from "@progress/kendo-react-notification";
 import { Zoom } from "@progress/kendo-react-animation";
+import Loading from "../../../common/loading";
 
 import * as siteActions from "../../../../redux/actions/siteActions";
 
@@ -35,11 +36,7 @@ function SiteList({ siteReducer, getSites, ...props }) {
     <>
       <h1>{t("common.sites")}</h1>
       {siteReducer.loading ? (
-        <div className="k-loading-mask">
-          <span className="k-loading-text">t("common.loading")</span>
-          <div className="k-loading-image"></div>
-          <div className="k-loading-color"></div>
-        </div>
+        <Loading />
       ) : siteReducer.hasError && siteReducer.sites.length === 0 ? (
         <h3>{t("common.getFailed")}</h3>
       ) : (
@@ -82,7 +79,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  getSites: siteActions.getSites,
+  getSites: siteActions.getAll,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SiteList);
