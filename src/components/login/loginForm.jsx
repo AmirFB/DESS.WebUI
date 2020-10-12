@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import ValidationInput from "../common/validationInput";
 
@@ -7,6 +7,7 @@ import { Button } from "@progress/kendo-react-buttons";
 import { Form, Field, FormElement } from "@progress/kendo-react-form";
 import { connect } from "react-redux";
 import { generatePasswordHash } from "../../helpers/cryptography";
+import { Error } from "@progress/kendo-react-labels";
 
 import * as userActions from "../../redux/actions/userActions";
 
@@ -14,6 +15,8 @@ import "./login.css";
 
 function LoginForm({ siteReducer, authenticateUser, ...props }) {
   const [t, i18n] = useTranslation();
+  const [failed, setFailed] = useState();
+  const [errorMessage, setErrorMessage] = useState();
 
   const usernameRegex = new RegExp("^[a-zA-Z0-9_]*$");
   const usernameValidator = (value) =>
@@ -26,9 +29,13 @@ function LoginForm({ siteReducer, authenticateUser, ...props }) {
   const passwordValidator = (value) => (!value ? t("users.passwordNull") : "");
 
   const handleSubmit = (data) => {
+    setFailed(false);
     authenticateUser({
       ...data,
       password: generatePasswordHash(data.password),
+    }).catch(error => {
+      setFailed(true);
+      setErrorMessage(error === 400 ? t("users.worngUsernamePassword") : t("common.connectionFailed"));
     });
   };
 
@@ -58,6 +65,8 @@ function LoginForm({ siteReducer, authenticateUser, ...props }) {
             required
             validator={passwordValidator}
           />
+
+      {failed && <Error>{errorMessage}</Error>}
 
           <Button primary className="login-button">
             {t("users.login")}
