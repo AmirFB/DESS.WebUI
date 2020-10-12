@@ -3,6 +3,7 @@
     "getFailed": "Connection failed.",
     "ok": "OK",
     "cancel": "Cancel",
+    "connectionFailed": "Server Connection Error",
     "about": "About",
     "save": "Save",
     "enable": "Enable",
@@ -129,6 +130,7 @@
     "passwordNull": "Please enter password.",
     "username": "Username",
     "usernameNull": "Please enter username.",
-    "usernameWrong": "Username should only contain A-Z, a-z, 0-9 and _ characters."
+    "usernameWrong": "Username should only contain A-Z, a-z, 0-9 and _ characters.",
+    "worngUsernamePassword": "Wrong Username or Password"
   }
 }
