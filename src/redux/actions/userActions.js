@@ -160,7 +160,7 @@ export function authenticateUser(user) {
       .catch((error) => {
         dispatch(authenticateUserError(error));
         dispatch(apiCallError());
-        throw error;
+        throw error.request.status;
       });
   };
 }
