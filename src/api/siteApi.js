@@ -10,7 +10,7 @@ export function get(id) {
   return axios.get(url + id);
 }
 
-export function saveSite(site) {
+export function save(site) {
   return site.id ? axios.put(url, site) : axios.post(url, site);
 }
 

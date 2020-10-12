@@ -82,7 +82,7 @@ function updateSiteError(error) {
   };
 }
 
-export function getSites() {
+export function getAll() {
   return function (dispatch) {
     dispatch(getSitesRequest());
     dispatch(beginApiCall());
@@ -100,13 +100,13 @@ export function getSites() {
   };
 }
 
-export function saveSite(site) {
+export function save(site) {
   return function (dispatch, getState) {
     site.id ? dispatch(addSiteRequest()) : dispatch(updateSiteRequest());
     dispatch(beginApiCall());
 
     return siteApi
-      .saveSite(site)
+      .save(site)
       .then((savedSite) => {
         site.id
           ? dispatch(addSiteSuccess(savedSite))

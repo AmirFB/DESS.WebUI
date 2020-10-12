@@ -107,7 +107,7 @@ function authenticateUserError(error) {
   };
 }
 
-export function getUsers() {
+export function getAll() {
   return function (dispatch) {
     dispatch(getUsersRequest());
     dispatch(beginApiCall());
@@ -125,7 +125,7 @@ export function getUsers() {
   };
 }
 
-export function saveUser(user) {
+export function save(user) {
   return function (dispatch, getState) {
     user.id ? dispatch(registerUserRequest()) : dispatch(updateUserRequest());
     dispatch(beginApiCall());
@@ -147,7 +147,7 @@ export function saveUser(user) {
   };
 }
 
-export function authenticateUser(user) {
+export function authenticate(user) {
   return function (dispatch) {
     dispatch(authenticateUserRequest());
     dispatch(beginApiCall());

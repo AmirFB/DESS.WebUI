@@ -79,7 +79,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  authenticateUser: userActions.authenticateUser,
+  authenticateUser: userActions.authenticate,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
