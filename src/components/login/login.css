@@ -31,6 +31,7 @@
 .intro-form {
   background-color: dodgerblue;
   width: 30%;
+  height: 100%;
   margin-left: 8%;
   padding: 5px;
   float: left;
@@ -68,6 +69,6 @@
 
 .intro-bottom {
   display: inline-block;
-  margin: 2%;
-  margin-left: 5%;
+  margin: 10px;
+  margin-left: 15px;
 }

@@ -1,3 +1,11 @@
+#app {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -10,4 +18,18 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+#top-bar {
+  background-color: #ccc;
+  direction: rtl;
+  z-index: 100;
+  width: 100%;
+  height: auto;
+}
+
+.language-button {
+  width: 16px;
+  margin: 8px 8px 4px 4px;
+  cursor: pointer;
 }
