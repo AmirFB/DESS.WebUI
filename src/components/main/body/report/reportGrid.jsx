@@ -9,7 +9,7 @@ export default function ReportGrid(props) {
   console.log(props.log);
 
   return (
-    <Grid data={props.log} id="report-grid">
+    <Grid className="list-grid" data={props.log} id="report-grid">
       <Column field="id" title="ID" />
       <Column field="applied" title={t("report.applied")} width="100px" />
       <Column field="ipAddress" title={t("common.ipAdd")} width="130px" />

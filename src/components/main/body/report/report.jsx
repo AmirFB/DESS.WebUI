@@ -30,7 +30,7 @@ function Report({ siteReducer, getAllLog, ...props }) {
   }, [props.log]);
 
   return (
-    <>
+    <div className="list-div">
       <h2>Icons place</h2>
       {siteReducer.loading ? (
         <Loading />
@@ -60,7 +60,7 @@ function Report({ siteReducer, getAllLog, ...props }) {
           )}
         </Zoom>
       </NotificationGroup>
-    </>
+    </div>
   );
 }
 
