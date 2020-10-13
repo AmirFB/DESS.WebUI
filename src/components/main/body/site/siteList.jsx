@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import SiteGrid from "./siteGrid";
 
 import { connect } from "react-redux";
-import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Notification,
