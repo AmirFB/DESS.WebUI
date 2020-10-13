@@ -14,13 +14,11 @@ import "./index.css";
 import "./i18n";
 
 const token = null;
-// "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwidW5pcXVlX25hbWUiOiJleHBlcnQiLCJQZXJtaXNzaW9uIjpbIklzQWxtaWdodHkiLCJDYW5TZWN1cmVTaXRlcyIsIkNhbkVkaXRTaXRlcyIsIkNhbkVkaXRVc2VyR3JvdXBzIiwiQ2FuRWRpdFVzZXJzIl0sIm5iZiI6MTYwMjQyNDM1MSwiZXhwIjoxNjAyNTEwNzUxLCJpYXQiOjE2MDI0MjQzNTF9.gOi4_gdteBGSpyzyPyb1PjZTt_msY230d8p3vNA1CiY";
-
 window.localStorage.setItem("token", token);
+console.log(window.location);
 
 axios.defaults.baseURL =
-  // "http://" + window.location.hostname + ":5000/api/web/";
-  "http://192.168.0.10:5000/api/web/";
+  "http://" + window.location.hostname + ":5000/api/web/";
 axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 
 startSignalR();
