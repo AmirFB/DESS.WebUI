@@ -9,8 +9,11 @@ import { connect } from "react-redux";
 import "./index.css";
 
 function App({ userReducer, authenticateUser, ...props }) {
+  const bodyClass =
+    window.localStorage.getItem("lang") == "fa" ? "body-fa" : "body-en";
+
   return (
-    <div id="app">
+    <div id="app" className={bodyClass}>
       <TopBar />
       {userReducer.loggedIn ? <Main /> : <Login />}
     </div>

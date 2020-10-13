@@ -12,10 +12,10 @@ import * as serviceWorker from "./serviceWorker";
 import "leaflet/dist/leaflet.css";
 import "./index.css";
 import "./i18n";
+import "helvatica-neue-lt/index.css";
 
 const token = null;
 window.localStorage.setItem("token", token);
-console.log(window.location);
 
 axios.defaults.baseURL =
   "http://" + window.location.hostname + ":5000/api/web/";

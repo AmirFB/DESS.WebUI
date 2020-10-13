@@ -7,19 +7,20 @@
 }
 
 body {
-  margin: 0;
-  font-family: "IRAN Sans", "B Nazanin", Metric, system-ui, -apple-system,
-    sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-div,
-span {
-  font-family: "IRAN Sans", "B Nazanin", Metric, system-ui, -apple-system,
-    sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+.body-en {
+  font-family: "Helvetica Neue", Metric, system-ui, -apple-system, sans-serif,
+    BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", sans-serif, "IRAN Sans", "B Nazanin";
+}
+
+.body-fa {
+  font-family: "IRAN Sans", "B Nazanin", "Helvetica Neue", Metric, system-ui,
+    -apple-system, sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", sans-serif;
 }
 
 code {
@@ -39,4 +40,45 @@ code {
   width: 16px;
   margin: 8px 8px 4px 4px;
   cursor: pointer;
+}
+
+.grid-column,
+th,
+td {
+  text-align: center;
+}
+
+.list-div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.list-top-bar {
+  flex-grow: 0;
+  height: 40px;
+}
+
+.list-grid {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.k-grid th,
+.k-grid td {
+  margin: 1px;
+  padding: 1px;
+  text-align: center;
+}
+
+.k-tabstrip,
+.k-panelbar,
+.k-grid {
+  font: inherit;
+}
+
+.action-button {
+  margin: 5;
 }
