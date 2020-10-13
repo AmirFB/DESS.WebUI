@@ -1,9 +1,17 @@
+#login-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
 .login {
+  flex: 20;
   background-color: gainsboro;
   margin: 0px;
   display: flex;
   flex-direction: row;
-  height: 90%;
+  height: 100%;
 }
 
 /* Login form */
@@ -14,7 +22,7 @@
   text-align: left;
   padding-top: 8%;
   padding-left: 5%;
-  flex: 1;
+  flex: 2;
 }
 
 .login-button {
@@ -30,45 +38,32 @@
 
 .intro-form {
   background-color: dodgerblue;
-  width: 30%;
-  height: 100%;
-  margin-left: 8%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding: 5px;
   float: left;
-  margin-left: 5%;
   padding-top: 2%;
 }
 
-.name {
-  font-size: 2.2rem;
+.intro-top {
+  display: inline-block;
+  flex: 1;
+  color: white;
   text-align: left;
-  color: white;
-  margin-left: 20px;
-}
-.name2 {
-  font-size: 0.55rem;
-  color: white;
-  margin-top: -5px;
   margin-left: 20px;
 }
 
 .intro-middle {
-  margin-top: 20%;
+  flex: 1;
   font-size: 0.75rem;
   color: white;
   margin-left: 8%;
 }
 
-.intro-url {
-  margin-top: 12%;
-  margin-bottom: 45%;
-  font-size: 0.9rem;
-  color: aliceblue;
-  margin-left: 20px;
-}
-
 .intro-bottom {
   display: inline-block;
+  flex: 1;
   margin: 10px;
   margin-left: 15px;
 }
