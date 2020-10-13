@@ -5333,6 +5333,7 @@ __metadata:
     kendo-ui-react: ^0.14.2
     leaflet: ^1.7.1
     node-forge: ^0.10.0
+    persianfonts: ^1.0.0
     prop-types: ^15.7.2
     react: ^16.13.1
     react-dom: ^16.13.1
@@ -10613,6 +10614,13 @@ fsevents@~2.1.2:
   version: 2.1.0
   resolution: "performance-now@npm:2.1.0"
   checksum: bb4ebed0b03d6c3ad3ae4eddd1182c895d385cff9096af441c19c130aaae3ea70229438ebc3297dfc52c86022f6becf177a810050823d01bf5280779cd2de624
+  languageName: node
+  linkType: hard
+
+"persianfonts@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "persianfonts@npm:1.0.0"
+  checksum: ed0b839429240b1e5678fe7382a10cb5ac0d08ae34b220380d95934e83bc5221772989871acbf8c163c9998bb8d4f7a809e464d6721e3cf619a5d7e79789d8d7
   languageName: node
   linkType: hard
 
