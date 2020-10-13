@@ -20,13 +20,13 @@ export default function SiteGrid(props) {
       <Column field="interval" title={t("site.interval")} width="50" />
       <Column
         title={t("common.location")}
-        width="135"
+        width="160"
         cell={(props) => (
           <td>
             <span className="location-span">
               {parseFloat(props.dataItem.latitude).toFixed(4)}
             </span>
-            &nbsp;|&nbsp;{" "}
+            &nbsp;,&nbsp;{" "}
             <span className="location-span">
               {parseFloat(props.dataItem.longitude).toFixed(4)}
             </span>
@@ -45,6 +45,7 @@ export default function SiteGrid(props) {
       />
       <Column
         title={t("site.input")}
+        width="100"
         cell={(props) => (
           <td>
             <span className="io-span">
@@ -59,6 +60,7 @@ export default function SiteGrid(props) {
       />
       <Column
         title={t("site.output")}
+        width="100"
         cell={(props) => (
           <td>
             <span className="io-span">
@@ -75,8 +77,10 @@ export default function SiteGrid(props) {
       <Column
         title={t("common.actions")}
         width="100"
+        locked
+        locked
         cell={(props) => (
-          <td>
+          <td className={props.className} style={props.style}>
             <Button
               className="action-button"
               primary
