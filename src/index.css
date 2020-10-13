@@ -21,7 +21,7 @@ code {
 }
 
 #top-bar {
-  background-color: #ccc;
+  background-color: gainsboro;
   direction: rtl;
   z-index: 100;
   width: 100%;

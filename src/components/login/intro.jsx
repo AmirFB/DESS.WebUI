@@ -5,19 +5,10 @@ import "./login.css";
 export default function Intro() {
   return (
     <div className="intro-form">
-      <div style={{ display: "inline-block" }}>
-        <img
-          src="https://image.flaticon.com/icons/svg/28/28660.svg"
-          alt="Top"
-          width={50}
-          height={30}
-        />
-        <div className="info">
-          <div className="name">
-            <b>DESS</b>
-          </div>
-          <div className="name2">Distributed Enterprise Security System</div>
-        </div>
+      <div className="intro-top">
+        <b>DESS</b>
+        <br />
+        Distributed Enterprise Security System
       </div>
 
       <div className="intro-middle">
@@ -26,9 +17,9 @@ export default function Intro() {
         <em>What's the Meaning of DESS</em>
         <br />
         <em>How Electric-Fence Works</em>
+        <br />
+        <a href="https://www.emenhesarpouya.com">www.emenhesarpouya.com</a>
       </div>
-
-      <div className="intro-url">www.emenhesarpouya.com</div>
 
       <div>
         <div className="intro-bottom">
@@ -43,7 +34,7 @@ export default function Intro() {
             style={{
               fontSize: 10,
               marginTop: -4,
-              marginLeft: 14,
+              marginLeft: -6,
               color: "#fff",
             }}
           >
