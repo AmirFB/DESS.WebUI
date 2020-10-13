@@ -33,7 +33,7 @@ function SiteList({ siteReducer, getSites, ...props }) {
   }, [props.sites]);
 
   return (
-    <>
+    <div className="list-div">
       <h1>{t("common.sites")}</h1>
       {siteReducer.loading ? (
         <Loading />
@@ -63,7 +63,7 @@ function SiteList({ siteReducer, getSites, ...props }) {
           )}
         </Zoom>
       </NotificationGroup>
-    </>
+    </div>
   );
 }
 
