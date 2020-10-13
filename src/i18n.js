@@ -21,7 +21,9 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: "fa",
+    fallbackLng: window.localStorage.getItem("lang")
+      ? window.localStorage.getItem("lang")
+      : "en",
     debug: true,
     detection: {
       order: ["queryString", "cookie"],

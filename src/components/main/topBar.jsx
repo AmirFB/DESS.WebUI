@@ -9,7 +9,7 @@ export default function TopBar() {
   const [t, i18n] = useTranslation();
   const changeLanguage = (language) => {
     i18n.changeLanguage(language);
-    console.log(language);
+    window.localStorage.setItem("lang", language);
   };
 
   return (
