@@ -1,5 +1,6 @@
 {
   "common": {
+    "actions": "Actions",
     "getFailed": "Connection failed.",
     "ok": "OK",
     "cancel": "Cancel",
@@ -89,7 +90,7 @@
   },
 
   "site": {
-    "siteId": "Site ID",
+    "siteId": "ID",
     "power": "Power",
     "alarmLevel": "Alarm Level",
     "repeat": "Repeat",
@@ -118,7 +119,7 @@
     "temperatureMax": "Temperature Max",
     "batteryMin": "Battery Min",
     "batteryMax": "Battery Max",
-    "serialNo": "Serial Number"
+    "serialNo": "Serial"
   },
 
   "users": {

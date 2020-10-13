@@ -1,5 +1,6 @@
 {
   "common": {
+    "actions": "عملیات",
     "getFailed": "مشکل در برقراری ارتباط",
     "ok": "تایید",
     "cancel": "انصراف",
@@ -89,7 +90,7 @@
   },
 
   "site": {
-    "siteId": "مشخصه سایت",
+    "siteId": "مشخصه",
     "power": "توان",
     "alarmLevel": "سطح هشدار",
     "repeat": "تکرار",
@@ -109,7 +110,7 @@
     "search": "جستجو",
     "filter": "فیلتر",
     "name": "نام",
-    "interval": "بروز رسانی",
+    "interval": "فاصله",
     "autoLocation": "مکان یابی خودکار",
     "hvPower": "توان",
     "hvTreshold": "آستانه",
@@ -118,7 +119,7 @@
     "temperatureMax": "حداکثر دما",
     "batteryMin": "حداقل باطری",
     "batteryMax": "حداکثر باطری",
-    "serialNo": "شماره سریال"
+    "serialNo": "سریال"
   },
 
   "users": {
