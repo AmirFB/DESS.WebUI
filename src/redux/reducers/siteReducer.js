@@ -2,6 +2,9 @@ import {
   GET_SITES_REQUEST,
   GET_SITES_SUCCESS,
   GET_SITES_ERROR,
+  GET_ALL_LOG_REQUEST,
+  GET_ALL_LOG_SUCCESS,
+  GET_ALL_LOG_ERROR,
 } from "../actions/siteActions";
 
 const INITIAL_STATE = {
@@ -33,6 +36,29 @@ export default function siteRecuder(state = INITIAL_STATE, action) {
         loading: false,
         hasError: true,
         sites: state.sites,
+        error: action.error,
+      };
+
+    case GET_ALL_LOG_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case GET_ALL_LOG_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        hasError: false,
+        log: action.log,
+      };
+
+    case GET_ALL_LOG_ERROR:
+      return {
+        ...state,
+        loading: false,
+        hasError: true,
+        log: state.log,
         error: action.error,
       };
 
