@@ -5,6 +5,10 @@ export const GET_SITES_REQUEST = "GET_SITES_REQUEST";
 export const GET_SITES_SUCCESS = "GET_SITES_SUCCESS";
 export const GET_SITES_ERROR = "GET_SITES_ERROR";
 
+export const GET_ALL_LOG_REQUEST = "GET_ALL_LOG_REQUEST";
+export const GET_ALL_LOG_SUCCESS = "GET_ALL_LOG_SUCCESS";
+export const GET_ALL_LOG_ERROR = "GET_ALL_LOG_ERROR";
+
 export const ADD_SITE_REQUEST = "ADD_SITE_REQUEST";
 export const ADD_SITE_SUCCESS = "ADD_SITE_SUCCESS";
 export const ADD_SITE_ERROR = "ADD_SITE_ERROR";
@@ -32,6 +36,27 @@ function getSitesSuccess(sites) {
 function getSitesError(error) {
   return {
     type: GET_SITES_ERROR,
+    error,
+  };
+}
+
+function getAllLogRequest(logs) {
+  return {
+    type: GET_ALL_LOG_REQUEST,
+    logs,
+  };
+}
+
+function getLogSuccess(log) {
+  return {
+    type: GET_ALL_LOG_SUCCESS,
+    log,
+  };
+}
+
+function getLogError(error) {
+  return {
+    type: GET_ALL_LOG_ERROR,
     error,
   };
 }
@@ -94,6 +119,26 @@ export function getAll() {
       })
       .catch((error) => {
         dispatch(getSitesError(error));
+        dispatch(apiCallError());
+        throw error;
+      });
+  };
+}
+
+export function getAllLog() {
+  return function (dispatch) {
+    dispatch(getAllLogRequest());
+    dispatch(beginApiCall());
+
+    return siteApi
+      .getAllLog()
+      .then((response) => {
+        dispatch(getLogSuccess(response.data));
+        console.log("resopnse data");
+        console.log(response.data);
+      })
+      .catch((error) => {
+        dispatch(getLogError(error));
         dispatch(apiCallError());
         throw error;
       });
