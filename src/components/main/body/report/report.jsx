@@ -9,9 +9,9 @@ export default function Report() {
   const [t, i18n] = useTranslation();
 
   return (
-    <div id="report-div">
-      <div id="report-top-bar">Hello World!</div>
-      <Grid data={[...Reports]} id="report-grid">
+    <div className="list-div">
+      <div className="list-top-bar">Hello World!</div>
+      <Grid className="list-grid" data={[...Reports]}>
         <Column field="id" title="ID" />
         <Column field="applied" title={t("report.applied")} width="100px" />
         <Column field="ipAddress" title={t("common.ipAdd")} width="130px" />
