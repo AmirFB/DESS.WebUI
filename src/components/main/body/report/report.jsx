@@ -55,7 +55,7 @@ function Report({ siteReducer, getAllLog, ...props }) {
               closable={true}
               onClose={() => this.setGetFailed(false)}
             >
-              <span>{t("site.getSitesFailed")}</span>
+              <span>{t("site.getReportsFailed")}</span>
             </Notification>
           )}
         </Zoom>

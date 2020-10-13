@@ -55,7 +55,7 @@ function UserList({ userReducer, getUsers, ...props }) {
               closable={true}
               onClose={() => this.setGetFailed(false)}
             >
-              <span>{t("site.getSitesFailed")}</span>
+              <span>{t("user.getUsersFailed")}</span>
             </Notification>
           )}
         </Zoom>
