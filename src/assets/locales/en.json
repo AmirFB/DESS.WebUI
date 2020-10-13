@@ -98,6 +98,7 @@
     "input": "Input",
     "output": "Output",
     "getSitesFailed": "Loading sites from server failed.",
+    "getReportsFailed": "Loading reports from server failed.",
     "group": "Group",
     "lastUpdate": "Last Update",
     "addSite": "Add Site",
@@ -123,6 +124,7 @@
 
   "users": {
     "firstName": "First name",
+    "getUserssFailed": "Loading users from server failed.",
     "group": "Group",
     "lastName": "Last Name",
     "login": "Login",
