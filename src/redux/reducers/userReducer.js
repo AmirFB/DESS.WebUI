@@ -5,10 +5,8 @@ import {
   AUTHENTICATE_USER_REQUEST,
   AUTHENTICATE_USER_SUCCESS,
   AUTHENTICATE_USER_ERROR,
+  LOGOUT_USER,
 } from "../actions/userActions";
-import { isRequest, isSuccess, isError } from "../helpers/helpers";
-
-import axios from "axios";
 
 const INITIAL_STATE = {
   loading: false,
@@ -54,9 +52,6 @@ export default function userRecuder(state = INITIAL_STATE, action) {
       };
 
     case AUTHENTICATE_USER_SUCCESS:
-      window.localStorage.setItem("token", action.token);
-      axios.defaults.headers.common["Authorization"] = "Bearer " + action.token;
-
       return {
         ...state,
         loading: false,
@@ -70,6 +65,13 @@ export default function userRecuder(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         hasError: true,
+        loggedIn: false,
+        currentUser: null,
+      };
+
+    case LOGOUT_USER:
+      return {
+        ...state,
         loggedIn: false,
         currentUser: null,
       };

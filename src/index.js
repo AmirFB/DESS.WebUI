@@ -14,12 +14,8 @@ import "./index.css";
 import "./i18n";
 import "helvatica-neue-lt/index.css";
 
-const token = null;
-window.localStorage.setItem("token", token);
-
 axios.defaults.baseURL =
   "http://" + window.location.hostname + ":5000/api/web/";
-axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 
 startSignalR();
 
