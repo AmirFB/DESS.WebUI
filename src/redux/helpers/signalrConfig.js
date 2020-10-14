@@ -7,7 +7,7 @@ import {
 } from "redux-signalr";
 
 function getToken() {
-  return window.localStorage.getItem("token");
+  return JSON.parse(window.localStorage.getItem("user")).token;
 }
 
 export const connection = new HubConnectionBuilder()
