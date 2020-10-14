@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import L from "leaflet";
+import MarkerIcon from "../../../../assets/images/marker.png";
+import PropTypes from "prop-types";
+
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import { connect } from "react-redux";
 
 import "../body.css";
-
-import MarkerIcon from "../../../../assets/images/marker.png";
 
 const myIcon = L.icon({
   iconUrl: MarkerIcon,
@@ -14,7 +16,7 @@ const myIcon = L.icon({
   className: "blinking",
 });
 
-export default function MapForm() {
+function MapForm({ siteReducer, ...props }) {
   const [zoom, setZoom] = useState({
     lat: 33.0388794,
     lng: 53.6507113,
@@ -23,6 +25,8 @@ export default function MapForm() {
 
   const position = [zoom.lat, zoom.lng];
   const position2 = [34.32455, 50];
+  console.log("Sites:");
+  console.log(siteReducer.sites);
 
   return (
     <Map className="map" center={position} zoom={zoom.zoom}>
@@ -30,7 +34,18 @@ export default function MapForm() {
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={position} icon={myIcon}>
+      {siteReducer.sites.map((site, index) => (
+        <Marker
+          position={{ lat: site.latitute, lng: site.longitude }}
+          icon={myIcon}
+        >
+          {" "}
+          <Popup>
+            A pretty CSS3 popup. <br /> Easily customizable.
+          </Popup>
+        </Marker>
+      ))}
+      {/* <Marker position={position} icon={myIcon}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
@@ -46,7 +61,21 @@ export default function MapForm() {
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
-      </Marker>
+      </Marker> */}
     </Map>
   );
 }
+
+MapForm.propTypes = {
+  siteReducer: PropTypes.object.isRequired,
+};
+
+function mapStateToProps(state) {
+  return {
+    siteReducer: state.siteReducer,
+  };
+}
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapForm);
