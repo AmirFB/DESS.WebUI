@@ -158,12 +158,15 @@ export function save(user) {
 
 export function initialAuthentication() {
   return function (dispatch) {
-    const user = JSON.parse(window.localStorage.getItem("user"));
+    try {
+      const user = JSON.parse(window.localStorage.getItem("user"));
+      console.log(user);
 
-    if (user) {
-      axios.defaults.headers.common["Authorization"] = "Bearer " + user.token;
-      dispatch(authenticateUserSuccess(user));
-    }
+      if (user && user.token && user.username) {
+        axios.defaults.headers.common["Authorization"] = "Bearer " + user.token;
+        dispatch(authenticateUserSuccess(user));
+      }
+    } catch {}
   };
 }
 
@@ -190,7 +193,7 @@ export function authenticate(user) {
 
 export function logout() {
   return function (dispatch) {
-    window.localStorage.setItem("user", "");
+    window.localStorage.removeItem("user");
     dispatch(logoutUser());
   };
 }
