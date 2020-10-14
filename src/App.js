@@ -16,7 +16,6 @@ function App({ userReducer, initialAuthentication, ...props }) {
     window.localStorage.getItem("lang") == "fa" ? "body-fa" : "body-en";
 
   useEffect(() => {
-    console.log("Now!");
     if (!userReducer.loggedIn) initialAuthentication();
   });
 
