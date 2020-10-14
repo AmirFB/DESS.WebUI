@@ -12,7 +12,6 @@ import Users from "./user/userList";
 import Report from "./report/report";
 import About from "./about";
 import SiteList from "./site/siteList";
-import siteList from "./site/siteList";
 
 export default function Body() {
   const [selected, setSelected] = useState(0);
