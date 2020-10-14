@@ -147,6 +147,16 @@ export function save(user) {
   };
 }
 
+export function initialAuthentication() {
+  return function (dispatch) {
+    const user = JSON.parse(window.localStorage.getItem("user"));
+
+    if (user) {
+      dispatch(authenticateUserSuccess(user));
+    }
+  };
+}
+
 export function authenticate(user) {
   return function (dispatch) {
     dispatch(authenticateUserRequest());
@@ -155,7 +165,9 @@ export function authenticate(user) {
     return userApi
       .authenticate(user)
       .then((response) => {
-        dispatch(authenticateUserSuccess({ ...response.data }));
+        const data = { username: user.username, ...response.data };
+        window.localStorage.setItem("user", JSON.stringify(data));
+        dispatch(authenticateUserSuccess(data));
       })
       .catch((error) => {
         dispatch(authenticateUserError(error));
