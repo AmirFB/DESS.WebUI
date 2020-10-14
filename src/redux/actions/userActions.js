@@ -1,4 +1,7 @@
+import axios from "axios";
+
 import { beginApiCall, apiCallError } from "../actions/apiStatusActions";
+
 import * as userApi from "../../api/userApi";
 
 export const GET_USERS_REQUEST = "GET_USERS_REQUEST";
@@ -16,6 +19,8 @@ export const UPDATE_USER_ERROR = "UPDATE_USER_ERROR";
 export const AUTHENTICATE_USER_REQUEST = "AUTHENTICATE_USER_REQUEST";
 export const AUTHENTICATE_USER_SUCCESS = "AUTHENTICATE_USER_SUCCESS";
 export const AUTHENTICATE_USER_ERROR = "AUTHENTICATE_USER_ERROR";
+
+export const LOGOUT_USER = "LOGOUT_USER";
 
 // Get Users
 
@@ -96,7 +101,7 @@ function authenticateUserRequest(user) {
 function authenticateUserSuccess(data) {
   return {
     type: AUTHENTICATE_USER_SUCCESS,
-    ...data,
+    user: { ...data },
   };
 }
 
@@ -105,6 +110,10 @@ function authenticateUserError(error) {
     type: AUTHENTICATE_USER_ERROR,
     error,
   };
+}
+
+function logoutUser() {
+  return { type: LOGOUT_USER };
 }
 
 export function getAll() {
@@ -152,6 +161,7 @@ export function initialAuthentication() {
     const user = JSON.parse(window.localStorage.getItem("user"));
 
     if (user) {
+      axios.defaults.headers.common["Authorization"] = "Bearer " + user.token;
       dispatch(authenticateUserSuccess(user));
     }
   };
@@ -167,6 +177,7 @@ export function authenticate(user) {
       .then((response) => {
         const data = { username: user.username, ...response.data };
         window.localStorage.setItem("user", JSON.stringify(data));
+        axios.defaults.headers.common["Authorization"] = "Bearer " + data.token;
         dispatch(authenticateUserSuccess(data));
       })
       .catch((error) => {
@@ -174,5 +185,12 @@ export function authenticate(user) {
         dispatch(apiCallError());
         throw error.request.status;
       });
+  };
+}
+
+export function logout() {
+  return function (dispatch) {
+    window.localStorage.setItem("user", "");
+    dispatch(logoutUser());
   };
 }
