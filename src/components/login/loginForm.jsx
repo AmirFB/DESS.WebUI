@@ -33,9 +33,13 @@ function LoginForm({ siteReducer, authenticateUser, ...props }) {
     authenticateUser({
       ...data,
       password: generatePasswordHash(data.password),
-    }).catch(error => {
+    }).catch((error) => {
       setFailed(true);
-      setErrorMessage(error === 400 ? t("users.worngUsernamePassword") : t("common.connectionFailed"));
+      setErrorMessage(
+        error === 400
+          ? t("users.worngUsernamePassword")
+          : t("common.connectionFailed")
+      );
     });
   };
 
@@ -66,7 +70,7 @@ function LoginForm({ siteReducer, authenticateUser, ...props }) {
             validator={passwordValidator}
           />
 
-      {failed && <Error>{errorMessage}</Error>}
+          {failed && <Error>{errorMessage}</Error>}
 
           <Button primary className="login-button">
             {t("users.login")}
