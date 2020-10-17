@@ -1,0 +1,39 @@
+.normal-icon {
+  animation: normal-fade 5s infinite alternate;
+}
+
+@keyframes normal-fade {
+  from {
+    opacity: 0.7;
+  }
+}
+
+.warning-icon {
+  animation: warning-fade 1s infinite alternate;
+}
+
+@keyframes warning-fade {
+  from {
+    opacity: 0.5;
+  }
+}
+
+.fault-icon {
+  animation: fault-fade 0.2s infinite alternate;
+}
+
+@keyframes fault-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.null-icon {
+  animation: null-fade 2s infinite alternate;
+}
+
+@keyframes null-fade {
+  from {
+    opacity: 0;
+  }
+}
