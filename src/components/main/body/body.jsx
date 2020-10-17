@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TabStrip, TabStripTab } from "@progress/kendo-react-layout";
 import { useTranslation } from "react-i18next";
-import { Route, BrowserRouter, Redirect } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 
 import "@progress/kendo-theme-material/dist/all.css";
 import "./body.css";
