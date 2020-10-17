@@ -31,7 +31,7 @@
     "input2": "ورودی 2",
     "output1": "خروجی 1",
     "output2": "خروجی 2",
-    "teperature": "دما",
+    "temperature": "دما",
     "ipAdd": "آدرس آی پی",
     "loading": "در حال بارگذاری ..."
   },
@@ -72,6 +72,7 @@
     "hvDichargeFault": "تخلیه HV",
     "hvVoltage": "ولتاژ HV",
     "batteryStatus": "وضعیت باطری",
+    "batteryLevel": "باطری",
     "signalStrength": "قدرت سیگنال"
   },
 

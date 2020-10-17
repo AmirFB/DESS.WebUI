@@ -12,7 +12,7 @@ export default function ReportGrid(props) {
       <Column field="id" title="ID" />
       <Column field="applied" title={t("report.applied")} width="100px" />
       <Column field="ipAddress" title={t("common.ipAdd")} width="130px" />
-      <Column field="serialNo" title={t("common.serialNo")} width="100px" />
+      <Column field="serialNo" title={t("site.serialNo")} width="100px" />
       <Column field="hvAlarm" title={t("report.hvAlarm")} width="70" />
       <Column field="lvAlarm" title={t("report.lvAlarm")} width="70" />
       <Column
@@ -37,7 +37,7 @@ export default function ReportGrid(props) {
       />
       <Column
         field="hvDischargeFault"
-        title={t("report.hvDischargeFault")}
+        title={t("report.hvDichargeFault")}
         width="100px"
       />
       <Column field="hvVoltage" title={t("report.hvVoltage")} width="100px" />
@@ -64,7 +64,7 @@ export default function ReportGrid(props) {
       <Column field="longitude" title={t("common.longitude")} width="100px" />
       <Column
         field="signalStrenght"
-        title={t("report.signalStrenght")}
+        title={t("report.signalStrength")}
         width="100px"
       />
     </Grid>

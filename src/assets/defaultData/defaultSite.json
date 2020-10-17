@@ -1,0 +1,20 @@
+{
+  "useGlobalInterval": true,
+  "interval": 20,
+  "autoLocation": true,
+  "hvEnabled": true,
+  "lvEnabled": true,
+  "hvPower": 70,
+  "hvThreshold": 3000,
+  "hvRepeat": 2,
+  "temperatureMin": 5,
+  "temperatureMax": 50,
+  "batteryMin": 11.5,
+  "batteryMax": 13.7,
+  "ios": [
+    { "name": "input1", "type": 0, "enabled": false },
+    { "name": "input2", "type": 0, "enabled": false },
+    { "name": "output1", "type": 0, "enabled": false },
+    { "name": "output2", "type": 0, "enabled": false }
+  ]
+}

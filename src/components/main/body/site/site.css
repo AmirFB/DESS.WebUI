@@ -12,3 +12,21 @@
 .io-span {
   display: inline-block;
 }
+
+.site-config {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.config-column {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  margin-top: 24px;
+}

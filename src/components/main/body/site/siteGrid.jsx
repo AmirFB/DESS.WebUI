@@ -4,11 +4,20 @@ import PropType from "prop-types";
 import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
 import { useTranslation } from "react-i18next";
 import { Button } from "@progress/kendo-react-buttons";
+import { useHistory } from "react-router-dom";
 
 import "./site.css";
 
 export default function SiteGrid(props) {
   const [t, i18n] = useTranslation();
+  const history = useHistory();
+
+  function handleEdit(siteData) {
+    history.push({
+      pathname: "/siteList/siteEdit/" + siteData,
+      state: { id: siteData },
+    });
+  }
 
   return (
     <Grid className="list-grid" data={props.sites} resizable>
@@ -87,7 +96,15 @@ export default function SiteGrid(props) {
               look="flat"
               icon="delete"
             />
-            <Button className="action-button" primary look="flat" icon="edit" />
+            <Button
+              className="action-button"
+              primary
+              look="flat"
+              icon="edit"
+              onClick={() => {
+                handleEdit(props.dataItem.id);
+              }}
+            />
           </td>
         )}
       />

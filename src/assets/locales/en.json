@@ -72,6 +72,7 @@
     "hvDichargeFault": "HV Discharge Fault",
     "hvVoltage": "HV Voltage",
     "batteryStatus": "Battery Status",
+    "batteryLevel": "Battery Level",
     "signalStrength": "Signal Strength"
   },
 
