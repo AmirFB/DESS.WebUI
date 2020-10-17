@@ -1,22 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import L from "leaflet";
 import MarkerIcon from "../../../../assets/images/marker.png";
-import PropTypes from "prop-types";
 
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
-import { connect } from "react-redux";
+import { statusType } from "../../../../types/siteTypes";
 
 import "../body.css";
+import "./map.css";
 
-const myIcon = L.icon({
+const normalIcon = L.icon({
   iconUrl: MarkerIcon,
   iconSize: [25, 41],
-  iconAnchor: [12.5, 4],
+  iconAnchor: [12.5, 41],
   popupAnchor: [0, -41],
-  className: "blinking",
+  className: "normal-icon",
 });
 
-function MapForm({ siteReducer, ...props }) {
+const warningIcon = L.icon({
+  iconUrl: MarkerIcon,
+  iconSize: [25, 41],
+  iconAnchor: [12.5, 41],
+  popupAnchor: [0, -41],
+  className: "warning-icon",
+});
+
+const faultIcon = L.icon({
+  iconUrl: MarkerIcon,
+  iconSize: [25, 41],
+  iconAnchor: [12.5, 41],
+  popupAnchor: [0, -41],
+  className: "fault-icon",
+});
+
+const nullIcon = L.icon({
+  iconUrl: MarkerIcon,
+  iconSize: [25, 41],
+  iconAnchor: [12.5, 41],
+  popupAnchor: [0, -41],
+  className: "null-icon",
+});
+
+export default function MapForm({ sites, ...props }) {
   const [zoom, setZoom] = useState({
     lat: 33.0388794,
     lng: 53.6507113,
@@ -24,9 +48,6 @@ function MapForm({ siteReducer, ...props }) {
   });
 
   const position = [zoom.lat, zoom.lng];
-  const position2 = [34.32455, 50];
-  console.log("Sites:");
-  console.log(siteReducer.sites);
 
   return (
     <Map className="map" center={position} zoom={zoom.zoom}>
@@ -34,48 +55,23 @@ function MapForm({ siteReducer, ...props }) {
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {siteReducer.sites.map((site, index) => (
+      {sites.map((site, index) => (
         <Marker
-          position={{ lat: site.latitute, lng: site.longitude }}
-          icon={myIcon}
+          key={site.id}
+          position={{ lat: site.latitude, lng: site.longitude }}
+          icon={
+            site.status === undefined || site.status.state === undefined
+              ? nullIcon
+              : site.status.state === statusType.Clear
+              ? normalIcon
+              : site.status.state === statusType.Warning
+              ? warningIcon
+              : faultIcon
+          }
         >
-          {" "}
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
+          <Popup>An Icon.</Popup>
         </Marker>
       ))}
-      {/* <Marker position={position} icon={myIcon}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-
-      <Marker position={position2} icon={myIcon}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-
-      <Marker position={[32, 54]} icon={myIcon}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker> */}
     </Map>
   );
 }
-
-MapForm.propTypes = {
-  siteReducer: PropTypes.object.isRequired,
-};
-
-function mapStateToProps(state) {
-  return {
-    siteReducer: state.siteReducer,
-  };
-}
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(MapForm);
