@@ -6,7 +6,6 @@ import "@progress/kendo-theme-material/dist/all.css";
 
 export default function ReportGrid(props) {
   const [t, i18n] = useTranslation();
-  console.log(props.log);
 
   return (
     <Grid className="list-grid" data={props.log} id="report-grid">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import SiteGrid from "./siteGrid";
+import Loading from "../../../common/loading";
 
 import { connect } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -9,7 +10,6 @@ import {
   NotificationGroup,
 } from "@progress/kendo-react-notification";
 import { Zoom } from "@progress/kendo-react-animation";
-import Loading from "../../../common/loading";
 
 import * as siteActions from "../../../../redux/actions/siteActions";
 
@@ -20,15 +20,16 @@ function SiteList({ siteReducer, getSites, ...props }) {
   const [getFailed, setGetFailed] = useState(false);
 
   useEffect(() => {
-    getSites().catch((error) => {
-      setGetFailed(true);
+    if (siteReducer.sites.length === 0)
+      getSites().catch((error) => {
+        setGetFailed(true);
 
-      if (!getFailed) {
-        setTimeout(() => {
-          setGetFailed(false);
-        }, 10000);
-      }
-    });
+        if (!getFailed) {
+          setTimeout(() => {
+            setGetFailed(false);
+          }, 10000);
+        }
+      });
   }, [props.sites]);
 
   return (

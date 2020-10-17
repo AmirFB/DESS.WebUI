@@ -17,6 +17,8 @@ export const UPDATE_SITE_REQUEST = "UPDATE_SITE_REQUEST";
 export const UPDATE_SITE_SUCCESS = "UPDATE_SITE_SUCCESS";
 export const UPDATE_SITE_ERROR = "UPDATE_SITE_ERROR";
 
+export const UPDATE_STATUS = "UPDATE_STATUS";
+
 // Get Sites
 
 function getSitesRequest(sites) {
@@ -134,8 +136,6 @@ export function getAllLog() {
       .getAllLog()
       .then((response) => {
         dispatch(getLogSuccess(response.data));
-        console.log("resopnse data");
-        console.log(response.data);
       })
       .catch((error) => {
         dispatch(getLogError(error));
