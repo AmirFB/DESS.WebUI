@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import SiteGrid from "./siteGrid";
-import SiteConfig from "./siteConfig";
 
 import { connect } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -12,7 +11,7 @@ import {
 import { Zoom } from "@progress/kendo-react-animation";
 import Loading from "../../../common/loading";
 import { Button } from "@progress/kendo-react-buttons";
-import { Route, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import * as siteActions from "../../../../redux/actions/siteActions";
 
@@ -45,7 +44,6 @@ function SiteList({ siteReducer, getSites, ...props }) {
       {redirect ? (
         <>
           <Redirect push to="/siteList/siteEdit" />
-          <Route path="/siteList/siteEdit" component={SiteConfig} />
         </>
       ) : (
         <>

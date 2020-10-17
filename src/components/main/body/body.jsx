@@ -3,15 +3,16 @@ import { TabStrip, TabStripTab } from "@progress/kendo-react-layout";
 import { useTranslation } from "react-i18next";
 import { Route, Redirect } from "react-router-dom";
 
-import "@progress/kendo-theme-material/dist/all.css";
-import "./body.css";
-
 import Home from "./home/home";
 import Settings from "./settings/settings";
 import Users from "./user/userList";
 import Report from "./report/report";
 import About from "./about";
 import SiteList from "./site/siteList";
+import SiteConfig from "./site/siteConfig";
+
+import "@progress/kendo-theme-material/dist/all.css";
+import "./body.css";
 
 export default function Body() {
   const [selected, setSelected] = useState(0);
@@ -32,7 +33,8 @@ export default function Body() {
 
         <TabStripTab title={t("common.sites")}>
           <Redirect push to="/siteList" />
-          <Route path="/siteList" component={SiteList} />
+          <Route exact path="/siteList" component={SiteList} />
+          <Route path="/siteList/siteEdit" component={SiteConfig} />
         </TabStripTab>
 
         <TabStripTab title={t("common.settings")}>
