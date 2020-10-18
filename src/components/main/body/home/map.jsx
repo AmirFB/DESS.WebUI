@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import L from "leaflet";
-import MarkerIcon from "../../../../assets/images/marker.png";
+import greenMarker from "../../../../assets/images/markers/greenMarker.svg";
+import blueMarker from "../../../../assets/images/markers/blueMarker.svg";
+import grayMarker from "../../../../assets/images/markers/grayMarker.svg";
+import whiteMarker from "../../../../assets/images/markers/whiteMarker.svg";
+import yellowMarker from "../../../../assets/images/markers/yellowMarker.svg";
+import redMarker from "../../../../assets/images/markers/redMarker.svg";
+import blackMarker from "../../../../assets/images/markers/blackMarker.svg";
 
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import { statusType } from "../../../../types/siteTypes";
@@ -9,34 +15,34 @@ import "../body.css";
 import "./map.css";
 
 const normalIcon = L.icon({
-  iconUrl: MarkerIcon,
-  iconSize: [25, 41],
-  iconAnchor: [12.5, 41],
-  popupAnchor: [0, -41],
+  iconUrl: greenMarker,
+  iconSize: [20, 30],
+  iconAnchor: [10, 25],
+  popupAnchor: [0, -25],
   className: "normal-icon",
 });
 
 const warningIcon = L.icon({
-  iconUrl: MarkerIcon,
-  iconSize: [25, 41],
-  iconAnchor: [12.5, 41],
-  popupAnchor: [0, -41],
+  iconUrl: yellowMarker,
+  iconSize: [20, 30],
+  iconAnchor: [10, 25],
+  popupAnchor: [0, -25],
   className: "warning-icon",
 });
 
 const faultIcon = L.icon({
-  iconUrl: MarkerIcon,
-  iconSize: [25, 41],
-  iconAnchor: [12.5, 41],
-  popupAnchor: [0, -41],
+  iconUrl: redMarker,
+  iconSize: [20, 30],
+  iconAnchor: [10, 25],
+  popupAnchor: [0, -25],
   className: "fault-icon",
 });
 
 const nullIcon = L.icon({
-  iconUrl: MarkerIcon,
-  iconSize: [25, 41],
-  iconAnchor: [12.5, 41],
-  popupAnchor: [0, -41],
+  iconUrl: blackMarker,
+  iconSize: [20, 30],
+  iconAnchor: [10, 25],
+  popupAnchor: [0, -25],
   className: "null-icon",
 });
 
@@ -71,7 +77,7 @@ export default function MapForm({ sites, ...props }) {
               : faultIcon
           }
         >
-          <Popup>An Icon.</Popup>
+          <Popup>{site.name}</Popup>
         </Marker>
       ))}
     </Map>
