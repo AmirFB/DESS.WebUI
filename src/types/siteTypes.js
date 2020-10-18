@@ -2,6 +2,7 @@ export const statusType = {
   Clear: 0,
   Warning: 1,
   Fault: 2,
+  Null: 3,
 };
 
 export const ioType = {

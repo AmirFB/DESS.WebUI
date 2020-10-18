@@ -17,6 +17,8 @@ const INITIAL_STATE = {
 };
 
 function getStatusState(site, status) {
+  if (!status) return statusType.Null;
+
   if (
     status.hvAlarm ||
     status.lvAlarm ||
