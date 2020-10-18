@@ -4,7 +4,6 @@ import axios from "axios";
 import App from "./App";
 import storeConfig from "./redux/storeConfig";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import SiteConfig from "./components/main/body/site/siteConfig";
 
 import { Provider as ReduxProvider } from "react-redux";
 import { startConnection as startSignalR } from "./redux/helpers/signalrConfig";
