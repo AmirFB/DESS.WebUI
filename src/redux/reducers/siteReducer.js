@@ -31,8 +31,10 @@ function getStatusState(site, status) {
     return statusType.Fault;
 
   if (
-    status.temperature > site.maxTemperature ||
-    status.temperature < site.maxTemperature ||
+    // status.temperature > site.maxTemperature ||
+    // status.temperature < site.minTemperature ||
+    status.temperature > 40 ||
+    status.temperature < 10 ||
     status.batteryStatus === batteryStatusType.Fault ||
     status.batteryStatus === batteryStatusType.Low
   )
@@ -95,11 +97,16 @@ export default function siteRecuder(state = INITIAL_STATE, action) {
     case UPDATE_STATUS:
       sites = [...state.sites];
       const index = sites.findIndex((s) => s.id === action.status.siteId);
-      let site = sites[index];
-      action.status.state = getStatusState(site, action.status);
-      site.status = action.status;
-      sites[index] = site;
-      return { ...state, status: action.status };
+      const site = {
+        ...sites[index],
+        status: {
+          ...action.status,
+          state: getStatusState(sites[index], action.status),
+        },
+      };
+      sites.splice(index, 1);
+      sites.splice(index, 0, site);
+      return { ...state, sites: sites };
 
     default:
       return state;
