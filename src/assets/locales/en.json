@@ -1,4 +1,16 @@
 {
+  "catalog": {
+    "fault": "Fault",
+    "hvCharge": "HV Charge",
+    "hvDischarge": "HV Discharge",
+    "hvPower": "HV Power",
+    "mainPower": "Main Power",
+    "ok": "OK",
+    "power": "Power",
+    "tamper": "Tamper",
+    "voltage": "Voltage"
+  },
+
   "common": {
     "actions": "Actions",
     "getFailed": "Connection failed.",

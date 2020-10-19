@@ -1,4 +1,16 @@
 {
+  "catalog": {
+    "fault": "خطا",
+    "hvCharge": "شارژ HV",
+    "hvDischarge": "تخلیه HV",
+    "hvPower": "تغذیه HV",
+    "mainPower": "تغذیه اصلی",
+    "ok": "سالم",
+    "power": "توان",
+    "tamper": "جعبه",
+    "voltage": "ولتاژ"
+  },
+
   "common": {
     "actions": "عملیات",
     "getFailed": "مشکل در برقراری ارتباط",
