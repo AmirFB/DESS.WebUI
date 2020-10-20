@@ -11,7 +11,7 @@ export function get(id) {
 }
 
 export function save(site) {
-  return site.id ? axios.put(url, site) : axios.post(url, site);
+  return site.id ? axios.put(url + site.id, site) : axios.post(url, site);
 }
 
 export function remove(id) {
