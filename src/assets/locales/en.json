@@ -55,8 +55,12 @@
     "hvProtection": "HV Protection",
     "lvProtection": "LV Protection",
     "boxTamper": "Box Tamper",
-    "battery": "Battery",
-    "voltage": "Voltage"
+    "batteryWarning": "Battery Warning",
+    "power": "Power (%)",
+    "tamper": "Tamper",
+    "voltage": "Voltage",
+    "threshold": "Threshold (V)",
+    "temperatureWarning": "Temperature Warning"
   },
 
   "home": {
@@ -103,8 +107,8 @@
   },
 
   "site": {
+    "basicInformation": "Basic Information",
     "siteId": "ID",
-    "power": "Power",
     "alarmLevel": "Alarm Level",
     "repeat": "Repeat",
     "phoneNumber": "Phone Number",
@@ -117,6 +121,7 @@
     "lastUpdate": "Last Update",
     "addSite": "Add Site",
     "addList": "Add List",
+    "operationalParameters": "Operational Parameters",
     "remove": "Remove",
     "exportList": "Export List",
     "addGroup": "Add Group",
@@ -126,9 +131,6 @@
     "name": "Name",
     "interval": "Interval",
     "autoLocation": "Auto Location",
-    "hvPower": "HV Power",
-    "hvThreshold": "HV Threshold",
-    "hvRepeat": "HV Repeat",
     "temperatureMin": "Temperature Min",
     "temperatureMax": "Temperature Max",
     "batteryMin": "Battery Min",

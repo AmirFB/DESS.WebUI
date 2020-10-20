@@ -55,8 +55,12 @@
     "hvProtection": "محافظت ولتاژ بالا",
     "lvProtection": "محافظت ولتاژ پایین",
     "boxTamper": "تمپر جعبه",
-    "battery": "باتری",
-    "voltage": "ولتاژ"
+    "batteryWarning": "هشدار باتری",
+    "power": "توان (%)",
+    "tamper": "جعبه",
+    "voltage": "ولتاژ",
+    "threshold": "آستانه (V)",
+    "temperatureWarning": "هشدار دما"
   },
 
   "home": {
@@ -103,8 +107,8 @@
   },
 
   "site": {
+    "basicInformation": "اطلاعات پایه",
     "siteId": "مشخصه",
-    "power": "توان",
     "alarmLevel": "سطح هشدار",
     "repeat": "تکرار",
     "phoneNumber": "شماره تلفن",
@@ -117,6 +121,7 @@
     "lastUpdate": "آخرین بروزرسانی",
     "addSite": "افزودن سایت",
     "addList": "افزودن لیست",
+    "operationalParameters": "پارامتر های عملیاتی",
     "remove": "حذف",
     "exportList": "استتخراج لیست",
     "addGroup": "افزودن گروه",
@@ -126,9 +131,6 @@
     "name": "نام",
     "interval": "فاصله",
     "autoLocation": "مکان یابی خودکار",
-    "hvPower": "توان",
-    "hvThreshold": "آستانه",
-    "hvRepeat": "تکرار",
     "temperatureMin": "حداقل دما",
     "temperatureMax": "حداکثر دما",
     "batteryMin": "حداقل باطری",
