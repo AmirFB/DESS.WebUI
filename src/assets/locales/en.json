@@ -115,7 +115,7 @@
     "interval": "Interval",
     "autoLocation": "Auto Location",
     "hvPower": "HV Power",
-    "hvTreshold": "HV Treshold",
+    "hvThreshold": "HV Threshold",
     "hvRepeat": "HV Repeat",
     "temperatureMin": "Temperature Min",
     "temperatureMax": "Temperature Max",
