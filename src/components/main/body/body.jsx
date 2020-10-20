@@ -37,10 +37,10 @@ export default function Body() {
           <Route path="/siteList/siteEdit" component={SiteConfig} />
         </TabStripTab>
 
-        <TabStripTab title={t("common.settings")}>
+        {/* <TabStripTab title={t("common.settings")}>
           <Redirect push to="/settings" />
           <Route path="/settings" component={Settings} />
-        </TabStripTab>
+        </TabStripTab> */}
 
         <TabStripTab title={t("common.users")}>
           <Redirect push to="/users" />
