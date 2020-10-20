@@ -1,19 +1,26 @@
 {
+  "name": "",
+  "serialNo": "",
+  "phoneNumber": "",
   "useGlobalInterval": true,
   "interval": 20,
   "autoLocation": true,
   "hvEnabled": true,
   "lvEnabled": true,
+  "tamperEnabled": true,
   "hvPower": 70,
   "hvThreshold": 3000,
   "hvRepeat": 2,
+  "temperatureWarning": true,
   "temperatureMin": 5,
   "temperatureMax": 50,
+  "batteryWarning": true,
   "batteryMin": 11.5,
-  "batteryMax": 13.7,
-  "ios": [
+  "inputs": [
     { "name": "input1", "type": 0, "enabled": false },
-    { "name": "input2", "type": 0, "enabled": false },
+    { "name": "input2", "type": 0, "enabled": false }
+  ],
+  "outputs": [
     { "name": "output1", "type": 0, "enabled": false },
     { "name": "output2", "type": 0, "enabled": false }
   ]
