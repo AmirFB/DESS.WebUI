@@ -1,310 +1,310 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormLabel from "@material-ui/core/FormLabel";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Divider from "@material-ui/core/Divider";
 
 import { useTranslation } from "react-i18next";
-import { Input, Switch } from "@progress/kendo-react-inputs";
-import { Form, Field, FormElement } from "@progress/kendo-react-form";
+import { connect } from "react-redux";
+import { Switch } from "@progress/kendo-react-inputs";
+import { makeStyles } from "@material-ui/core/styles";
 
 import * as siteActions from "../../../../redux/actions/siteActions";
 
+import defaultSite from "../../../../assets/defaultData/defaultSite.json";
+
 import "./site.css";
-const MyCustomSwitch = (props) => {
-  const {
-    validationMessage,
-    touched,
-    visited,
-    modified,
-    valid,
-    value,
-    onChange,
-    ...others
-  } = props;
 
-  const onValueChange = React.useCallback(() => {
-    // onChange callback expects argument with 'value' property
-    onChange({ value: !value });
-  }, [onChange, value]);
-
-  return (
-    <Switch
-      className="switch"
-      onChange={onValueChange}
-      checked={value}
-      id={others.id}
-    />
-  );
-};
+const useStyles = makeStyles((theme) => ({
+  row: {},
+  title: {
+    fontSize: "18px",
+  },
+  component: {
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    whiteSpace: "nowrap",
+    marginBottom: theme.spacing(1),
+    width: theme.spacing(3),
+  },
+  divider: {
+    margin: theme.spacing(2, 0),
+  },
+}));
 
 function SiteConfig({ siteReducer, saveSite, ...props }) {
   const [t, i18n] = useTranslation();
+  const [site, setSite] = useState({ ...defaultSite });
+  const [locatonDisabled, setLocatonDisabled] = useState(true);
+  const classes = useStyles();
 
-  const id = props.location.state.id;
-  const site = siteReducer.sites.find((s) => s.id === id);
+  useEffect(() => {
+    if (props.location.state)
+      setSite(siteReducer.sites.find((s) => s.id === props.location.state.id));
+    else setSite({ ...defaultSite });
+  }, [siteReducer]);
 
-  const handleSubmit = (data) => {
-    console.log(data);
-    saveSite(data);
+  const handleSubmit = (data) => saveSite(data);
+
+  const handleChange = (e) => {
+    const { name, value, checked } = e.target;
+    setSite((prevSite) => ({ ...prevSite, [name]: value ? value : checked }));
+
+    if (name === "autoLocation") setLocatonDisabled(e.target.checked);
   };
 
   return (
-    <Form
-      className="site-config"
-      onSubmit={handleSubmit}
-      initialValues={site}
-      render={(formRenderProps) => (
-        <FormElement>
-          <fieldset className="k-form-fieldset">
-            <legend className={"k-form-legend"}>Basic Information</legend>
-
-            <fieldset className="k-form-fieldset config-column">
-              <Field
-                name={"name"}
-                label={t("common.name")}
-                component={Input}
-                style={{ width: "150px", margin: "0px 15px" }}
-              />
-              <Field
-                name={"siteId"}
-                label={t("site.siteId")}
-                component={Input}
-                style={{ width: "150px", margin: "0px 15px" }}
-              />
-              <Field
-                name={"serialNo"}
-                label={t("site.serialNo")}
-                component={Input}
-                style={{ width: "150px", margin: "0px 15px" }}
-              />
-              <Field
-                name={"phoneNumber"}
-                label={t("site.phoneNumber")}
-                component={Input}
-                style={{ width: "150px", margin: "0px 15px" }}
-              />
-            </fieldset>
-            <fieldset className="k-form-fieldset config-column">
-              <div>
-                <legend>Location</legend>
-                <Field
-                  name="autoLocation"
-                  label={t("editSite.auto")}
-                  component={Switch}
-                  className="switch"
+    <div style={{ width: "900px", margin: "auto" }}>
+      <Grid container direction="column" justify="flex-start">
+        <Grid
+          className={classes.row}
+          container
+          direction="row"
+          justify="flex-start"
+        >
+          <Grid item>
+            <FormLabel className={classes.title}>
+              {t("site.basicInformation")}
+            </FormLabel>
+          </Grid>
+        </Grid>
+        <Grid
+          className={classes.row}
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="stretch"
+          spacing={5}
+        >
+          <Grid item xs={3}>
+            <TextField
+              name="name"
+              value={site.name}
+              label={t("common.name")}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={3}>
+            <TextField
+              name={"siteId"}
+              value={site.siteId}
+              label={t("site.siteId")}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={3}>
+            <TextField
+              name={"serialNo"}
+              value={site.serialNo}
+              label={t("site.serialNo")}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={3}>
+            <TextField
+              name={"phoneNumber"}
+              value={site.phoneNumber}
+              label={t("site.phoneNumber")}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={3}>
+            <FormControlLabel
+              label={t("site.autoLocation")}
+              control={
+                <Checkbox
+                  name={"autoLocation"}
+                  checked={site.autoLocation}
+                  onChange={handleChange}
                 />
-              </div>
-
-              <Field
-                name={"latitude"}
-                label={t("common.latitude")}
-                component={Input}
-                style={{ width: "150px", margin: "0px 15px" }}
-              />
-
-              <Field
-                name={"longitude"}
-                label={t("common.longitude")}
-                component={Input}
-                style={{ width: "150px", margin: "0px 15px" }}
-              />
-            </fieldset>
-          </fieldset>
-
-          <fieldset className="k-form-fieldset">
-            <legend className={"k-form-legend"}>Operational Parmeters</legend>
-
-            <fieldset className="k-form-fieldset">
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <legend>HV Protection</legend>
-                <Field
+              }
+            />
+          </Grid>
+          <Grid item xs={3}>
+            <TextField
+              name={"latitude"}
+              value={site.latitude}
+              label={t("common.latitude")}
+              onChange={handleChange}
+              disabled={locatonDisabled}
+            />
+          </Grid>
+          <Grid item xs={3}>
+            <TextField
+              name={"longitude"}
+              value={site.longitude}
+              label={t("common.longitude")}
+              onChange={handleChange}
+              disabled={locatonDisabled}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Divider className={classes.divider} />
+      <Grid container direction="column" justify="flex-start">
+        <Grid
+          className={classes.row}
+          container
+          direction="row"
+          justify="flex-start"
+        >
+          <Grid item>
+            <FormLabel className={classes.title}>
+              {t("site.operationalParameters")}
+            </FormLabel>
+          </Grid>
+        </Grid>
+        <Grid
+          className={classes.row}
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="stretch"
+          spacing={5}
+        >
+          <Grid item xs={3}>
+            <FormControlLabel
+              label={t("editSite.hvProtection")}
+              control={
+                <Checkbox
                   name={"hvEnabled"}
-                  label={t("editSite.hvProtection")}
-                  component={MyCustomSwitch}
-                  className="switch"
+                  checked={site.hvEnabled}
+                  onChange={handleChange}
                 />
-              </div>
-
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <legend>LV Protection</legend>
-                <Field
+              }
+            />
+          </Grid>
+          <Grid item xs={3}>
+            <FormControlLabel
+              label={t("editSite.lvProtection")}
+              control={
+                <Checkbox
                   name={"lvEnabled"}
-                  label={t("editSite.lvProtection")}
-                  component={MyCustomSwitch}
-                  className="switch"
+                  checked={site.lvEnabled}
+                  onChange={handleChange}
                 />
-              </div>
-
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <legend>Box Tamper</legend>
-                <Field
-                  name={"boxTamper"}
-                  label={t("editSite.boxTamper")}
-                  component={Switch}
-                  className="switch"
+              }
+            />
+          </Grid>
+          <Grid item xs={3}>
+            <FormControlLabel
+              label={t("editSite.tamper")}
+              control={
+                <Checkbox
+                  name={"tamperEnabled"}
+                  checked={site.tamperEnabled}
+                  onChange={handleChange}
                 />
-              </div>
-            </fieldset>
-
-            <fieldset className="k-form-fieldset config-column">
-              <Field
-                name={"hvPower"}
-                label={t("site.power")}
-                component={Input}
-                style={{ width: "150px", margin: "0px 15px" }}
-              />
-              <Field
-                name={"hvThreshold"}
-                label={t("site.hvThreshold")}
-                component={Input}
-                style={{ width: "150px", margin: "0px 15px" }}
-              />
-              <Field
-                name={"hvRepeat"}
-                label={t("site.repeat")}
-                component={Input}
-                style={{ width: "150px", margin: "0px 15px" }}
-              />
-              <Field
-                name={"interval"}
-                label={t("site.interval")}
-                component={Input}
-                style={{ width: "150px", margin: "0px 15px" }}
-              />
-            </fieldset>
-          </fieldset>
-
-          <fieldset className="k-form-fieldset config-column">
-            <div>
-              <legend>Temperature</legend>
-              <Field
-                name={"tamper"}
-                label={t("common.temperature")}
-                component={Switch}
-                onLabel={"I"}
-                offLabel={"O"}
-                className="switch"
-              />
-            </div>
-            <Field
+              }
+            />
+          </Grid>
+        </Grid>
+        <Grid
+          className={classes.row}
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="stretch"
+          spacing={5}
+          style={{ marginTop: "5px" }}
+        >
+          <Grid item xs={3}>
+            <TextField
+              name={"hvPower"}
+              value={site.hvPower}
+              label={t("editSite.power")}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={3}>
+            <TextField
+              name={"hvThreshold"}
+              value={site.hvThreshold}
+              label={t("editSite.threshold")}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={3}>
+            <TextField
+              name={"hvRepeat"}
+              value={site.hvRepeat}
+              label={t("site.repeat")}
+              onChange={handleChange}
+            />
+          </Grid>
+        </Grid>
+        <Grid
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="stretch"
+          spacing={5}
+          style={{ marginTop: "10px" }}
+        >
+          <Grid item xs={3}>
+            <FormControlLabel
+              label={t("editSite.temperatureWarning")}
+              control={
+                <Checkbox
+                  name={"temperatureWarning"}
+                  checked={site.temperatureWarning}
+                  onChange={handleChange}
+                />
+              }
+            />
+          </Grid>
+          <Grid item xs={3}>
+            <TextField
               name={"temperatureMin"}
+              value={site.temperatureMin}
               label={t("common.min")}
-              component={Input}
-              style={{ width: "150px", margin: "0px 15px" }}
+              onChange={handleChange}
             />
-            <Field
+          </Grid>
+          <Grid item xs={3}>
+            <TextField
               name={"temperatureMax"}
+              value={site.temperatureMax}
               label={t("common.max")}
-              component={Input}
-              style={{ width: "150px", margin: "0px 15px" }}
+              onChange={handleChange}
             />
-          </fieldset>
-
-          <fieldset className="k-form-fieldset config-column">
-            <div>
-              <legend>Battery</legend>
-              <Field
-                name={"battery"}
-                label={t("editSite.battery")}
-                component={Switch}
-                className="switch"
-              />
-            </div>
-            <Field
+          </Grid>
+        </Grid>
+        <Grid
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="stretch"
+          spacing={5}
+          style={{ marginTop: "10px" }}
+        >
+          <Grid item xs={3}>
+            <FormControlLabel
+              label={t("editSite.batteryWarning")}
+              control={
+                <Checkbox
+                  name={"batteryWarning"}
+                  checked={site.batteryWarning}
+                  onChange={handleChange}
+                />
+              }
+            />
+          </Grid>
+          <Grid item xs={3}>
+            <TextField
               name={"batteryMin"}
+              value={site.batteryMin}
               label={t("common.min")}
-              component={Input}
-              style={{ width: "150px", margin: "0px 15px" }}
+              onChange={handleChange}
             />
-            <Field
-              name={"batteryMax"}
-              label={t("common.max")}
-              component={Input}
-              style={{ width: "150px", margin: "0px 15px" }}
-            />
-          </fieldset>
-
-          <fieldset className="k-form-fieldset">
-            <legend className={"k-form-legend"}>IOs</legend>
-            <div style={{ display: "flex", flexDirection: "coloumn" }}>
-              <Field
-                name={"input1"}
-                label="name"
-                component={Input}
-                style={{ width: "150px", margin: "0px 15px" }}
-              />
-              <Field
-                name={"ios[0].enabled"}
-                component={MyCustomSwitch}
-                className="switch"
-              />
-              <Field
-                name={"ios[0].type"}
-                component={MyCustomSwitch}
-                className="switch"
-              />
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "coloumn" }}>
-              <Field
-                name={"input2"}
-                label="name"
-                component={Input}
-                style={{ width: "150px", margin: "0px 15px" }}
-              />
-              <Field
-                name={"ios[1].enabled"}
-                component={MyCustomSwitch}
-                className="switch"
-              />
-              <Field
-                name={"ios[1].type"}
-                component={MyCustomSwitch}
-                className="switch"
-              />
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "coloumn" }}>
-              <Field
-                name={"output1"}
-                label="name"
-                component={Input}
-                style={{ width: "150px", margin: "0px 15px" }}
-              />
-              <Field
-                name={"ios[2].enabled"}
-                component={MyCustomSwitch}
-                className="switch"
-              />
-              <Field
-                name={"ios[2].type"}
-                component={MyCustomSwitch}
-                className="switch"
-              />
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "coloumn" }}>
-              <Field
-                name={"otput2"}
-                label="name"
-                component={Input}
-                style={{ width: "150px", margin: "0px 15px" }}
-              />
-              <Field
-                name={"ios[3].enabled"}
-                component={MyCustomSwitch}
-                className="switch"
-              />
-              <Field
-                name={"ios[3].type"}
-                component={MyCustomSwitch}
-                className="switch"
-              />
-            </div>
-          </fieldset>
-          <button>submit</button>
-        </FormElement>
-      )}
-    />
+          </Grid>
+        </Grid>
+      </Grid>
+    </div>
   );
 }
 
