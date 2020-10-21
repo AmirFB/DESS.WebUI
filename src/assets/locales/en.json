@@ -49,15 +49,23 @@
   },
 
   "editSite": {
+    "autoReset": "Auto Reset (min)",
     "serialNumber": "Serial Num.",
     "enterName": "Enter Name",
     "auto": "Auto",
     "hvProtection": "HV Protection",
+    "input1": "Input1",
+    "input2": "Input2",
+    "ios": "Input/Output",
+    "output1": "Output1",
+    "output2": "Output2",
     "lvProtection": "LV Protection",
     "boxTamper": "Box Tamper",
     "batteryWarning": "Battery Warning",
+    "timer": "Timer (min)",
     "power": "Power (%)",
     "tamper": "Tamper",
+    "type": "Type",
     "voltage": "Voltage",
     "threshold": "Threshold (V)",
     "temperatureWarning": "Temperature Warning"
