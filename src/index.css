@@ -28,12 +28,6 @@ code {
     monospace;
 }
 
-#top-bar {
-  background-color: gainsboro;
-  flex: 1;
-  direction: rtl;
-}
-
 #logout-button {
   vertical-align: super;
   font-size: 8px;

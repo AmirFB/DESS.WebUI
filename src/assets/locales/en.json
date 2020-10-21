@@ -139,7 +139,7 @@
   },
 
   "users": {
-    "firstName": "First name",
+    "firstName": "First Name",
     "getUserssFailed": "Loading users from server failed.",
     "group": "Group",
     "lastName": "Last Name",
