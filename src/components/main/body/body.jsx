@@ -10,6 +10,7 @@ import Report from "./report/report";
 import About from "./about";
 import SiteList from "./site/siteList";
 import SiteConfig from "./site/siteConfig";
+import Profile from "./profile/profile";
 
 import "@progress/kendo-theme-material/dist/all.css";
 import "./body.css";
@@ -41,6 +42,11 @@ export default function Body() {
           <Redirect push to="/settings" />
           <Route path="/settings" component={Settings} />
         </TabStripTab> */}
+
+        <TabStripTab title="profile">
+          <Redirect push to="/profile" />
+          <Route path="/profile" component={Profile} />
+        </TabStripTab>
 
         <TabStripTab title={t("common.users")}>
           <Redirect push to="/users" />
