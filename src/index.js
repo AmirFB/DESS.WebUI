@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import axios from "axios";
 import App from "./App";
 import storeConfig from "./redux/storeConfig";
-import { BrowserRouter as Router, Route } from "react-router-dom";
 
+import { BrowserRouter as Router } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
 import { startConnection as startSignalR } from "./redux/helpers/signalrConfig";
 
@@ -23,9 +23,7 @@ startSignalR();
 ReactDOM.render(
   <Router>
     <ReduxProvider store={storeConfig()}>
-      <Suspense fallback={<div>Loading...</div>}>
-        <App />
-      </Suspense>
+      <App />
     </ReduxProvider>
   </Router>,
   document.getElementById("root")

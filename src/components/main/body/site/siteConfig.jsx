@@ -6,10 +6,11 @@ import Checkbox from "@material-ui/core/Checkbox";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Divider from "@material-ui/core/Divider";
+import yellow from "@material-ui/core/colors/yellow";
+import amber from "@material-ui/core/colors/amber";
 
 import { useTranslation } from "react-i18next";
 import { connect } from "react-redux";
-import { Switch } from "@progress/kendo-react-inputs";
 import { makeStyles } from "@material-ui/core/styles";
 
 import * as siteActions from "../../../../redux/actions/siteActions";
@@ -18,30 +19,50 @@ import defaultSite from "../../../../assets/defaultData/defaultSite.json";
 
 import "./site.css";
 
-const useStyles = makeStyles((theme) => ({
-  row: {},
-  title: {
-    fontSize: "18px",
-  },
-  component: {
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    whiteSpace: "nowrap",
-    marginBottom: theme.spacing(1),
-    width: theme.spacing(3),
-  },
-  divider: {
-    margin: theme.spacing(2, 0),
-  },
-}));
+const useStyles = makeStyles((theme) => {
+  return {
+    row: {},
+    title: {
+      fontSize: "18px",
+    },
+    component: {
+      padding: theme.spacing(1),
+      textAlign: "center",
+      whiteSpace: "nowrap",
+      marginBottom: theme.spacing(1),
+      width: theme.spacing(3),
+    },
+    fault: {
+      color: theme.palette.error.main,
+      "&$checked": {
+        color: theme.palette.error.main,
+      },
+    },
+    primary: {
+      color: theme.palette.primary.main,
+      "&$checked": {
+        color: theme.palette.primary.main,
+      },
+    },
+    warning: {
+      color: theme.palette.warning.war,
+      "&$checked": {
+        color: theme.palette.warning.main,
+      },
+    },
+    checked: {},
+    divider: {
+      margin: theme.spacing(2, 0),
+    },
+  };
+});
 
 function SiteConfig({ siteReducer, saveSite, ...props }) {
   const [t, i18n] = useTranslation();
   const [site, setSite] = useState({ ...defaultSite });
   const [locatonDisabled, setLocatonDisabled] = useState(true);
   const classes = useStyles();
-
+  console.log(classes);
   useEffect(() => {
     if (props.location.state)
       setSite(siteReducer.sites.find((s) => s.id === props.location.state.id));
@@ -117,6 +138,10 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
               label={t("site.autoLocation")}
               control={
                 <Checkbox
+                  classes={{
+                    root: classes.primary,
+                    checked: classes.checked,
+                  }}
                   name={"autoLocation"}
                   checked={site.autoLocation}
                   onChange={handleChange}
@@ -171,6 +196,10 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
               label={t("editSite.hvProtection")}
               control={
                 <Checkbox
+                  classes={{
+                    root: classes.fault,
+                    checked: classes.checked,
+                  }}
                   name={"hvEnabled"}
                   checked={site.hvEnabled}
                   onChange={handleChange}
@@ -183,6 +212,10 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
               label={t("editSite.lvProtection")}
               control={
                 <Checkbox
+                  classes={{
+                    root: classes.fault,
+                    checked: classes.checked,
+                  }}
                   name={"lvEnabled"}
                   checked={site.lvEnabled}
                   onChange={handleChange}
@@ -195,6 +228,10 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
               label={t("editSite.tamper")}
               control={
                 <Checkbox
+                  classes={{
+                    root: classes.fault,
+                    checked: classes.checked,
+                  }}
                   name={"tamperEnabled"}
                   checked={site.tamperEnabled}
                   onChange={handleChange}
@@ -247,9 +284,14 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
         >
           <Grid item xs={3}>
             <FormControlLabel
+              className={classes.component}
               label={t("editSite.temperatureWarning")}
               control={
                 <Checkbox
+                  classes={{
+                    root: classes.warning,
+                    checked: classes.checked,
+                  }}
                   name={"temperatureWarning"}
                   checked={site.temperatureWarning}
                   onChange={handleChange}
@@ -287,6 +329,10 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
               label={t("editSite.batteryWarning")}
               control={
                 <Checkbox
+                  classes={{
+                    root: classes.warning,
+                    checked: classes.checked,
+                  }}
                   name={"batteryWarning"}
                   checked={site.batteryWarning}
                   onChange={handleChange}
@@ -299,6 +345,23 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
               name={"batteryMin"}
               value={site.batteryMin}
               label={t("common.min")}
+              onChange={handleChange}
+            />
+          </Grid>
+        </Grid>
+        <Grid
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="stretch"
+          spacing={5}
+          style={{ marginTop: "10px" }}
+        >
+          <Grid item xs={3}>
+            <TextField
+              name={"intrval"}
+              value={site.intrval}
+              label={t("site.interval")}
               onChange={handleChange}
             />
           </Grid>

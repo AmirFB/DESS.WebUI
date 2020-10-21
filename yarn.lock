@@ -5552,6 +5552,7 @@ __metadata:
   dependencies:
     "@material-ui/core": ^4.11.0
     "@material-ui/icons": ^4.9.1
+    "@material-ui/styles": ^4.10.0
     "@progress/kendo-data-query": ^1.5.4
     "@progress/kendo-drawing": ^1.9.2
     "@progress/kendo-react-animation": ^3.17.0
