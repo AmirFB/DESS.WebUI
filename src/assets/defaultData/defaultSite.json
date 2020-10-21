@@ -2,6 +2,10 @@
   "name": "",
   "serialNo": "",
   "phoneNumber": "",
+  "siteId": "",
+  "serial": "",
+  "latitude": "",
+  "longitude": "",
   "useGlobalInterval": true,
   "interval": 20,
   "autoLocation": true,
@@ -16,12 +20,20 @@
   "temperatureMax": 50,
   "batteryWarning": true,
   "batteryMin": 11.5,
-  "inputs": [
-    { "name": "input1", "type": 0, "enabled": false },
-    { "name": "input2", "type": 0, "enabled": false }
-  ],
-  "outputs": [
-    { "name": "output1", "type": 0, "enabled": false },
-    { "name": "output2", "type": 0, "enabled": false }
-  ]
+  "input1": { "name": "input1", "type": 0, "timer": 0, "enabled": false },
+  "input2": { "name": "input2", "type": 0, "timer": 0, "enabled": false },
+  "output1": {
+    "name": "output1",
+    "type": 0,
+    "enabled": false,
+    "autoReset": 0,
+    "triggers": [0]
+  },
+  "output2": {
+    "name": "output2",
+    "type": 0,
+    "enabled": false,
+    "autoReset": 0,
+    "triggers": [0]
+  }
 }
