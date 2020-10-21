@@ -5,6 +5,8 @@ import SiteCatalogBody from "./SiteCatalogBody";
 import { connect } from "react-redux";
 import { PanelBar, PanelBarItem } from "@progress/kendo-react-layout";
 import { withTranslation } from "react-i18next";
+import { withStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
 
 import "./sideBar.css";
 
@@ -14,6 +16,14 @@ import signal2 from "../../../assets/images/signal/signal2.svg";
 import signal3 from "../../../assets/images/signal/signal3.svg";
 import signal4 from "../../../assets/images/signal/signal4.svg";
 import signal5 from "../../../assets/images/signal/signal5.svg";
+
+const classes = (theme) => ({
+  side: {
+    width: "260px",
+    padding: "5",
+    backgroundColor: theme.palette.primary.light,
+  },
+});
 
 class SideBar extends React.Component {
   state = { activeIndexes: [], inactiveIndexes: [], timerKey: null };
@@ -41,6 +51,7 @@ class SideBar extends React.Component {
   render() {
     const { t } = this.props;
     const sites = this.props.siteReducer.sites;
+    const { classes } = this.props;
 
     function getIcon(site) {
       switch (site.status.signalStrength) {
@@ -60,7 +71,7 @@ class SideBar extends React.Component {
     }
 
     return (
-      <PanelBar className="side-bar">
+      <PanelBar className={classes.side}>
         <PanelBarItem title={t("sideBar.activeSites")} expanded>
           {this.state.activeIndexes.map((index) => {
             const site = sites[index];
@@ -117,4 +128,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(withTranslation()(SideBar));
+export default connect(mapStateToProps)(
+  withTranslation()(withStyles(classes)(SideBar))
+);
