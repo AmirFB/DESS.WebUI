@@ -17,9 +17,21 @@ export const batteryStatusType = {
   Fault: 3,
 };
 
-export const triggerType = {
-  Fault: 0,
-  Input1: 1,
-  Input2: 2,
-  Power: 3,
-};
+export const triggerTypes = [
+  {
+    title: "Fault",
+    value: 0,
+  },
+  {
+    title: "Input1",
+    value: 1,
+  },
+  {
+    title: "Input2",
+    value: 2,
+  },
+  {
+    title: "Power",
+    value: 3,
+  },
+];

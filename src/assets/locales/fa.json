@@ -49,15 +49,23 @@
   },
 
   "editSite": {
+    "autoReset": "ریست خودکار (دقیقه)",
     "serialNumber": "شماره سریال",
     "enterName": "نام را وارد کنید",
     "auto": "خودکار",
     "hvProtection": "محافظت ولتاژ بالا",
+    "input1": "ورودی 1",
+    "input2": "ورودی 2",
+    "ios": "ورودی/خروجی",
+    "output1": "خروجی 1",
+    "output2": "خروجی 2",
     "lvProtection": "محافظت ولتاژ پایین",
     "boxTamper": "تمپر جعبه",
     "batteryWarning": "هشدار باتری",
+    "timer": "زمان سنج (دقیقه)",
     "power": "توان (%)",
     "tamper": "جعبه",
+    "type": "نوع",
     "voltage": "ولتاژ",
     "threshold": "آستانه (V)",
     "temperatureWarning": "هشدار دما"
