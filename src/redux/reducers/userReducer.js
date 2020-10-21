@@ -2,6 +2,7 @@ import {
   GET_USERS_REQUEST,
   GET_USERS_SUCCESS,
   GET_USERS_ERROR,
+  GET_USER_SUCCESS,
   AUTHENTICATE_USER_REQUEST,
   AUTHENTICATE_USER_SUCCESS,
   AUTHENTICATE_USER_ERROR,
@@ -40,6 +41,12 @@ export default function userRecuder(state = INITIAL_STATE, action) {
         hasError: true,
         users: action.users,
         error: action.error,
+      };
+
+    case GET_USER_SUCCESS:
+      return {
+        ...state,
+        currentUser: action.user,
       };
 
     case AUTHENTICATE_USER_REQUEST:

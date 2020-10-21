@@ -8,6 +8,10 @@ export const GET_USERS_REQUEST = "GET_USERS_REQUEST";
 export const GET_USERS_SUCCESS = "GET_USERS_SUCCESS";
 export const GET_USERS_ERROR = "GET_USERS_ERROR";
 
+export const GET_USER_REQUEST = "GET_USER_REQUEST";
+export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
+export const GET_USER_ERROR = "GET_USER_ERROR";
+
 export const REGISTER_USER_REQUEST = "REGISTER_USER_REQUEST";
 export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
 export const REGISTER_USER_ERROR = "REGISTER_USER_ERROR";
@@ -41,6 +45,29 @@ function getUsersSuccess(users) {
 function getUsersError(error) {
   return {
     type: GET_USERS_ERROR,
+    error,
+  };
+}
+
+// Get User
+
+function getUserRequest(user) {
+  return {
+    type: GET_USER_REQUEST,
+    user,
+  };
+}
+
+function getUserSuccess(user) {
+  return {
+    type: GET_USER_SUCCESS,
+    user,
+  };
+}
+
+function getUserError(error) {
+  return {
+    type: GET_USER_ERROR,
     error,
   };
 }
@@ -101,7 +128,7 @@ function authenticateUserRequest(user) {
 function authenticateUserSuccess(data) {
   return {
     type: AUTHENTICATE_USER_SUCCESS,
-    user: { ...data },
+    currentUser: { ...data },
   };
 }
 
@@ -128,6 +155,24 @@ export function getAll() {
       })
       .catch((error) => {
         dispatch(getUsersError(error));
+        dispatch(apiCallError());
+        throw error;
+      });
+  };
+}
+
+export function get(id) {
+  return function (dispatch) {
+    dispatch(getUserRequest());
+    dispatch(beginApiCall());
+
+    return userApi
+      .get(id)
+      .then((response) => {
+        dispatch(getUserSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(getUserError(error));
         dispatch(apiCallError());
         throw error;
       });
