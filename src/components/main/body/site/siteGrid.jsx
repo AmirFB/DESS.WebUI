@@ -58,11 +58,11 @@ export default function SiteGrid(props) {
         cell={(props) => (
           <td>
             <span className="io-span">
-              {props.dataItem.ios[0].enabled ? "On" : "Off"}
+              {props.dataItem.inputs[0].enabled ? "On" : "Off"}
             </span>
             &nbsp;|&nbsp;{" "}
             <span className="io-span">
-              {props.dataItem.ios[1].enabled ? "On" : "Off"}
+              {props.dataItem.inputs[1].enabled ? "On" : "Off"}
             </span>
           </td>
         )}
@@ -73,11 +73,11 @@ export default function SiteGrid(props) {
         cell={(props) => (
           <td>
             <span className="io-span">
-              {props.dataItem.ios[2].enabled ? "On" : "Off"}
+              {props.dataItem.outputs[0].enabled ? "On" : "Off"}
             </span>
             &nbsp;|&nbsp;{" "}
             <span className="io-span">
-              {props.dataItem.ios[3].enabled ? "On" : "Off"}
+              {props.dataItem.outputs[1].enabled ? "On" : "Off"}
             </span>
           </td>
         )}
