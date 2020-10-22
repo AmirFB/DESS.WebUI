@@ -43,7 +43,7 @@ export default function Body() {
           <Route path="/settings" component={Settings} />
         </TabStripTab> */}
 
-        <TabStripTab title="profile">
+        <TabStripTab title={t("common.profile")}>
           <Redirect push to="/profile" />
           <Route path="/profile" component={Profile} />
         </TabStripTab>
