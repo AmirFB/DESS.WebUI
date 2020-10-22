@@ -205,11 +205,22 @@ export function initialAuthentication() {
   return function (dispatch) {
     try {
       const user = JSON.parse(window.localStorage.getItem("user"));
+      console.log(user);
+      dispatch(authenticateUserRequest(user));
 
       if (user && user.token && user.username) {
         axios.defaults.headers.common["Authorization"] = "Bearer " + user.token;
-        dispatch(authenticateUserSuccess(user));
-      }
+        userApi
+          .head()
+          .then((response) => {
+            console.log(response);
+            dispatch(authenticateUserSuccess(user));
+          })
+          .catch((e) => {
+            window.localStorage.removeItem("user");
+            dispatch(authenticateUserError(e));
+          });
+      } else dispatch(authenticateUserError(user));
     } catch {}
   };
 }

@@ -6,6 +6,10 @@ export function getAll() {
   return axios.get(url);
 }
 
+export function head() {
+  return axios.head(url);
+}
+
 export function get(id) {
   return axios.get(url + id);
 }
