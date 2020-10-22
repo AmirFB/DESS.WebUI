@@ -49,8 +49,15 @@ function App({ userReducer, initialAuthentication, ...props }) {
     window.localStorage.getItem("lang") == "fa" ? "body-fa" : "body-en";
 
   useEffect(() => {
-    if (!userReducer.loggedIn) initialAuthentication();
-  });
+    if (!userReducer.loggedIn && window.localStorage.getItem("user")) {
+      initialAuthentication();
+      console.log("Do it!");
+    }
+
+    console.log(window.localStorage.getItem("user"));
+    console.log(userReducer);
+    console.log(!userReducer.loggedIn && window.localStorage.getItem("user"));
+  }, [userReducer.currentUser]);
 
   return (
     <ThemeProvider theme={theme}>
