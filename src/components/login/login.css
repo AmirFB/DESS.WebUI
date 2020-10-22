@@ -25,26 +25,7 @@
   flex: 2;
 }
 
-.login-button {
-  border-radius: 16px;
-  width: 120px;
-  height: 28px;
-  color: black;
-  background-color: white;
-  margin-top: 30px;
-}
-
 /* Intro form */
-
-.intro-form {
-  background-color: dodgerblue;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  padding: 5px;
-  float: left;
-  padding-top: 2%;
-}
 
 .intro-top {
   display: inline-block;

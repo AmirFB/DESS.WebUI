@@ -1,73 +1,68 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropType from "prop-types";
-import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
+import { DataGrid } from "@material-ui/data-grid";
+
 import { useTranslation } from "react-i18next";
-import "@progress/kendo-theme-material/dist/all.css";
 
 export default function ReportGrid(props) {
   const [t, i18n] = useTranslation();
+  const [rows, setRows] = useState([]);
+  const columns = [
+    { field: "applied", headerName: t("report.applied"), width: 100 },
+    { field: "ipAddress", headerName: t("common.ipAdd"), width: 130 },
+    { field: "serialNo", headerName: t("site.serialNo"), width: 90 },
+    { field: "hvAlarm", headerName: t("report.hvAlarm"), width: 93 },
+    { field: "lvAlarm", headerName: t("report.lvAlarm"), width: 90 },
+    { field: "tamperAlarm", headerName: t("report.tamperAlarm"), width: 121 },
+    {
+      field: "mainPowerFault",
+      headerName: t("report.mainPowerFault"),
+      width: 146,
+    },
+    { field: "hvPowerFault", headerName: t("report.hvPowerFault"), width: 133 },
+    {
+      field: "hvChargeFault",
+      headerName: t("report.hvChargeFault"),
+      width: 139,
+    },
+    {
+      field: "hvDischargeFault",
+      headerName: t("report.hvDichargeFault"),
+      width: 157,
+    },
+    { field: "temperature", headerName: t("common.temperature"), width: 113 },
+    {
+      field: "batteryStatus",
+      headerName: t("report.batteryStatus"),
+      width: 123,
+    },
+    { field: "batteryLevel", headerName: t("report.batteryLevel"), width: 116 },
+    { field: "input1", headerName: t("common.input1"), width: 90 },
+    { field: "input2", headerName: t("common.input2"), width: 90 },
+    { field: "output1", headerName: t("common.output1"), width: 90 },
+    { field: "output2", headerName: t("common.output2"), width: 90 },
+    { field: "latitude", headerName: t("common.latitude"), width: 110 },
+    { field: "longitude", headerName: t("common.longitude"), width: 120 },
+    {
+      field: "signalStrength",
+      headerName: t("report.signalStrength"),
+      width: 130,
+    },
+  ];
+
+  useEffect(() => {
+    setRows(props.log);
+  }, [props.log]);
 
   return (
-    <Grid className="list-grid" data={props.log} id="report-grid">
-      <Column field="id" title="ID" />
-      <Column field="applied" title={t("report.applied")} width="100px" />
-      <Column field="ipAddress" title={t("common.ipAdd")} width="130px" />
-      <Column field="serialNo" title={t("site.serialNo")} width="100px" />
-      <Column field="hvAlarm" title={t("report.hvAlarm")} width="70" />
-      <Column field="lvAlarm" title={t("report.lvAlarm")} width="70" />
-      <Column
-        field="tamperAlarm"
-        title={t("report.tamperAlarm")}
-        width="100px"
+    <div style={{ height: "99%", width: "99%" }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={7}
+        hideFooterSelectedRowCount
       />
-      <Column
-        field="mainPowerFault"
-        title={t("report.mainPowerFault")}
-        width="100px"
-      />
-      <Column
-        field="hvPowerFault"
-        title={t("report.hvPowerFault")}
-        width="100px"
-      />
-      <Column
-        field="hvChargeFault"
-        title={t("report.hvChargeFault")}
-        width="100px"
-      />
-      <Column
-        field="hvDischargeFault"
-        title={t("report.hvDichargeFault")}
-        width="100px"
-      />
-      <Column field="hvVoltage" title={t("report.hvVoltage")} width="100px" />
-      <Column
-        field="temperature"
-        title={t("common.temperature")}
-        width="100px"
-      />
-      <Column
-        field="batteryStatus"
-        title={t("report.batteryStatus")}
-        width="100px"
-      />
-      <Column
-        field="batteryLevel"
-        title={t("report.batteryLevel")}
-        width="100px"
-      />
-      <Column field="input1" title={t("common.input1")} width="100px" />
-      <Column field="input2" title={t("common.input2")} width="100px" />
-      <Column field="output1" title={t("common.output1")} width="100px" />
-      <Column field="output2" title={t("common.output2")} width="100px" />
-      <Column field="latitude" title={t("common.latitude")} width="100px" />
-      <Column field="longitude" title={t("common.longitude")} width="100px" />
-      <Column
-        field="signalStrenght"
-        title={t("report.signalStrength")}
-        width="100px"
-      />
-    </Grid>
+    </div>
   );
 }
 
