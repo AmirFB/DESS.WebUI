@@ -1884,6 +1884,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@material-ui/data-grid@npm:^4.0.0-alpha.7":
+  version: 4.0.0-alpha.7
+  resolution: "@material-ui/data-grid@npm:4.0.0-alpha.7"
+  dependencies:
+    prop-types: ^15.7.2
+    tslib: ^2.0.0
+  peerDependencies:
+    "@material-ui/core": ^4.9.12
+    react: ^16.8.0
+  checksum: d66151e0f5541814469012d50eb0cc84902173a5526e1e423297567f668d72ce51c9bd980c17fc6b5dada24183f742b1ccfcccbe959554b4aba5fcde0f15abbb
+  languageName: node
+  linkType: hard
+
 "@material-ui/icons@npm:^4.9.1":
   version: 4.9.1
   resolution: "@material-ui/icons@npm:4.9.1"
@@ -5560,8 +5573,10 @@ __metadata:
   resolution: "dess.webui@workspace:."
   dependencies:
     "@material-ui/core": ^4.11.0
+    "@material-ui/data-grid": ^4.0.0-alpha.7
     "@material-ui/icons": ^4.9.1
     "@material-ui/styles": ^4.10.0
+    "@material-ui/utils": ^4.10.2
     "@progress/kendo-data-query": ^1.5.4
     "@progress/kendo-drawing": ^1.9.2
     "@progress/kendo-react-animation": ^3.17.0
@@ -14665,6 +14680,13 @@ resolve@1.15.0:
   version: 1.13.0
   resolution: "tslib@npm:1.13.0"
   checksum: 5dc3bdaea3b67c76ef4a14c28fcb2171da7bcf292fd9c59a260098729626b1ce766c52b588f08e324ed9a0c52ea8a93a815920f980d75981abc9d850fbf310fb
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^2.0.0":
+  version: 2.0.3
+  resolution: "tslib@npm:2.0.3"
+  checksum: 447bfca5deaa157806c3f77eaba74d05dd0b38b014e47ce79d98b5c77ce7d91b00a687ba13ca1b5a74d35ca1098ac7a072c0a97fad06f0266612f2a03a6c8e8f
   languageName: node
   linkType: hard
 

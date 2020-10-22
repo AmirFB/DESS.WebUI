@@ -34,20 +34,11 @@ export default function Intro() {
         <em>What's the Meaning of DESS</em>
         <br />
         <em>How Electric-Fence Works</em>
-        <br />
-        <a href="https://www.emenhesarpouya.com">www.emenhesarpouya.com</a>
       </div>
 
       <div>
         <img
-          style={{ margin: "2px 15px" }}
-          src="https://emenhesarpouya.com/wp-content/uploads/2019/12/Unt-itled-1.jpg"
-          alt="Emen Hesar"
-          width={75}
-          height={50}
-        />
-        <img
-          style={{ margin: "2px 15px" }}
+          style={{ margin: "0px 0px 15px 15px" }}
           src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Irancell_Logo.gif"
           alt="Irancell"
           width={55}
