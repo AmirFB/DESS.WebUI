@@ -2,6 +2,9 @@ import {
   GET_SITES_REQUEST,
   GET_SITES_SUCCESS,
   GET_SITES_ERROR,
+  UPDATE_SITE_REQUEST,
+  UPDATE_SITE_SUCCESS,
+  UPDATE_SITE_ERROR,
   GET_ALL_LOG_REQUEST,
   GET_ALL_LOG_SUCCESS,
   GET_ALL_LOG_ERROR,
@@ -68,6 +71,27 @@ export default function siteRecuder(state = INITIAL_STATE, action) {
         loading: false,
         hasError: true,
         sites: state.sites,
+        error: action.error,
+      };
+
+    case UPDATE_SITE_REQUEST:
+      return {
+        ...state,
+        saving: true,
+      };
+
+    case UPDATE_SITE_SUCCESS:
+      return {
+        ...state,
+        saving: false,
+        saveSuccessfull: true,
+      };
+
+    case UPDATE_SITE_ERROR:
+      return {
+        ...state,
+        saving: false,
+        saveSuccessfull: false,
         error: action.error,
       };
 

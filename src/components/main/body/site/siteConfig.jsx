@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes, { number } from "prop-types";
+import { useHistory } from "react-router-dom";
+
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -68,6 +70,7 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
   const [site, setSite] = useState({ ...defaultSite });
   const [locatonDisabled, setLocatonDisabled] = useState(true);
   const classes = useStyles();
+  const history = useHistory();
 
   useEffect(() => {
     if (props.location.state) {
@@ -80,6 +83,8 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
         input2: data.inputs[1],
         output1: data.outputs[0],
         output2: data.outputs[1],
+        latitude: parseFloat(data.latitude),
+        longitude: parseFloat(data.longitude),
       };
       delete data.inputs;
       delete data.outputs;
@@ -88,6 +93,14 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
     } else setSite({ ...defaultSite });
     setLocatonDisabled(defaultSite.autoLocation);
   }, [siteReducer]);
+
+  useEffect(() => {
+    console.log("OKOK");
+    if (siteReducer.saveSuccessfull)
+      history.push({
+        pathname: "/siteList/",
+      });
+  }, [siteReducer.saveSuccessfull]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -108,12 +121,28 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
     saveSite(data);
   };
 
-  const handleChange = (e) => {
-    const { name, value, checked } = e.target;
-    const num = parseInt(value);
+  const handleTextChange = (e) => {
+    const { name, value } = e.target;
     setSite((prevSite) => ({
       ...prevSite,
-      [name]: value ? (!isNaN(num) ? num : value) : checked,
+      [name]: value,
+    }));
+  };
+
+  const handleNumberChange = (e) => {
+    const { name, value } = e.target;
+    const num = parseFloat(value);
+    setSite((prevSite) => ({
+      ...prevSite,
+      [name]: num,
+    }));
+  };
+
+  const handleBoolChange = (e) => {
+    const { name, checked } = e.target;
+    setSite((prevSite) => ({
+      ...prevSite,
+      [name]: checked,
     }));
 
     if (name === "autoLocation") setLocatonDisabled(e.target.checked);
@@ -209,7 +238,8 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                 name="name"
                 value={site.name}
                 label={t("common.name")}
-                onChange={handleChange}
+                onChange={handleTextChange}
+                required
               />
             </Grid>
             <Grid item xs={3}>
@@ -217,7 +247,8 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                 name={"siteId"}
                 value={site.siteId}
                 label={t("site.siteId")}
-                onChange={handleChange}
+                onChange={handleTextChange}
+                required
               />
             </Grid>
             <Grid item xs={3}>
@@ -225,7 +256,8 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                 name={"serialNo"}
                 value={site.serialNo}
                 label={t("site.serialNo")}
-                onChange={handleChange}
+                onChange={handleTextChange}
+                required
               />
             </Grid>
             <Grid item xs={3}>
@@ -233,7 +265,9 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                 name={"phoneNumber"}
                 value={site.phoneNumber}
                 label={t("site.phoneNumber")}
-                onChange={handleChange}
+                onChange={handleTextChange}
+                type={"tel"}
+                pattern={"[0-9]{11}"}
               />
             </Grid>
             <Grid item xs={3}>
@@ -247,7 +281,7 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                     }}
                     name={"autoLocation"}
                     checked={site.autoLocation}
-                    onChange={handleChange}
+                    onChange={handleBoolChange}
                   />
                 }
               />
@@ -257,8 +291,9 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                 name={"latitude"}
                 value={site.latitude}
                 label={t("common.latitude")}
-                onChange={handleChange}
+                onChange={handleNumberChange}
                 disabled={locatonDisabled}
+                type="number"
               />
             </Grid>
             <Grid item xs={3}>
@@ -266,8 +301,9 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                 name={"longitude"}
                 value={site.longitude}
                 label={t("common.longitude")}
-                onChange={handleChange}
+                onChange={handleNumberChange}
                 disabled={locatonDisabled}
+                type="number"
               />
             </Grid>
           </Grid>
@@ -306,7 +342,7 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                     }}
                     name={"hvEnabled"}
                     checked={site.hvEnabled}
-                    onChange={handleChange}
+                    onChange={handleBoolChange}
                   />
                 }
               />
@@ -322,7 +358,7 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                     }}
                     name={"lvEnabled"}
                     checked={site.lvEnabled}
-                    onChange={handleChange}
+                    onChange={handleBoolChange}
                   />
                 }
               />
@@ -338,7 +374,7 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                     }}
                     name={"tamperEnabled"}
                     checked={site.tamperEnabled}
-                    onChange={handleChange}
+                    onChange={handleBoolChange}
                   />
                 }
               />
@@ -357,7 +393,7 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                 name={"hvPower"}
                 value={site.hvPower}
                 label={t("editSite.power")}
-                onChange={handleChange}
+                onChange={handleNumberChange}
                 type="number"
               />
             </Grid>
@@ -366,7 +402,7 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                 name={"hvThreshold"}
                 value={site.hvThreshold}
                 label={t("editSite.threshold")}
-                onChange={handleChange}
+                onChange={handleNumberChange}
                 type="Number"
               />
             </Grid>
@@ -375,7 +411,7 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                 name={"hvRepeat"}
                 value={site.hvRepeat}
                 label={t("site.repeat")}
-                onChange={handleChange}
+                onChange={handleNumberChange}
                 type="number"
               />
             </Grid>
@@ -400,7 +436,7 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                     }}
                     name={"temperatureWarning"}
                     checked={site.temperatureWarning}
-                    onChange={handleChange}
+                    onChange={handleBoolChange}
                   />
                 }
               />
@@ -410,7 +446,7 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                 name={"temperatureMin"}
                 value={site.temperatureMin}
                 label={t("common.min")}
-                onChange={handleChange}
+                onChange={handleNumberChange}
                 type="number"
               />
             </Grid>
@@ -419,7 +455,7 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                 name={"temperatureMax"}
                 value={site.temperatureMax}
                 label={t("common.max")}
-                onChange={handleChange}
+                onChange={handleNumberChange}
                 type="number"
               />
             </Grid>
@@ -443,7 +479,7 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                     }}
                     name={"batteryWarning"}
                     checked={site.batteryWarning}
-                    onChange={handleChange}
+                    onChange={handleBoolChange}
                   />
                 }
               />
@@ -453,7 +489,7 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                 name={"batteryMin"}
                 value={site.batteryMin}
                 label={t("common.min")}
-                onChange={handleChange}
+                onChange={handleNumberChange}
                 type="number"
               />
             </Grid>
@@ -471,7 +507,7 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
                 name={"interval"}
                 value={site.interval}
                 label={t("site.interval")}
-                onChange={handleChange}
+                onChange={handleNumberChange}
                 type="number"
               />
             </Grid>
@@ -788,6 +824,18 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
         <Grid item xs>
           <Button type="submit" variant="contained" color="primary">
             {t("common.save")}
+          </Button>
+
+          <Button
+            variant="contained"
+            style={{ margin: "0px 30px" }}
+            onClick={() => {
+              history.push({
+                pathname: "/siteList/",
+              });
+            }}
+          >
+            {t("common.cancel")}
           </Button>
         </Grid>
       </Container>
