@@ -3,7 +3,6 @@
   "serialNo": "",
   "phoneNumber": "",
   "siteId": "",
-  "serial": "",
   "latitude": "",
   "longitude": "",
   "useGlobalInterval": true,
@@ -34,6 +33,6 @@
     "type": 0,
     "enabled": false,
     "autoReset": 0,
-    "triggers": [0]
+    "triggers": [3]
   }
 }
