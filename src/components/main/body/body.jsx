@@ -43,11 +43,6 @@ export default function Body() {
           <Route path="/settings" component={Settings} />
         </TabStripTab> */}
 
-        <TabStripTab title={t("common.profile")}>
-          <Redirect push to="/profile" />
-          <Route path="/profile" component={Profile} />
-        </TabStripTab>
-
         <TabStripTab title={t("common.users")}>
           <Redirect push to="/users" />
           <Route path="/users" component={Users} />
@@ -58,10 +53,15 @@ export default function Body() {
           <Route path="/report" component={Report} />
         </TabStripTab>
 
-        <TabStripTab title={t("common.about")}>
+        <TabStripTab title={t("common.profile")}>
+          <Redirect push to="/profile" />
+          <Route path="/profile" component={Profile} />
+        </TabStripTab>
+
+        {/* <TabStripTab title={t("common.about")}>
           <Redirect push to="/about" />
           <Route path="/about" component={About} />
-        </TabStripTab>
+        </TabStripTab>*/}
       </TabStrip>
     </div>
   );

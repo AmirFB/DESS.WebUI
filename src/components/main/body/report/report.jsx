@@ -31,7 +31,6 @@ function Report({ siteReducer, getAllLog, ...props }) {
 
   return (
     <div className="list-div">
-      <h2>Icons place</h2>
       {siteReducer.loading ? (
         <Loading />
       ) : siteReducer.hasError && siteReducer.log.length === 0 ? (

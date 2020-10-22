@@ -22,7 +22,6 @@ function Profile({ userReducer, getUser, ...props }) {
   useEffect(() => {
     if (!user.firstName) {
       getUser(userReducer.currentUser.id).then(() => {
-        console.log(userReducer.currentUser);
         setUser(userReducer.currentUser);
       });
     }
@@ -31,7 +30,6 @@ function Profile({ userReducer, getUser, ...props }) {
   const handleChange = (e) => {
     const { value, name } = e.target;
     setUser({ ...user, [name]: value });
-    console.log(user);
   };
 
   return (

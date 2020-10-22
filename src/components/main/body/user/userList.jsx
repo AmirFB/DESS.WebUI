@@ -31,7 +31,6 @@ function UserList({ userReducer, getUsers, ...props }) {
 
   return (
     <>
-      <h2>Icons place</h2>
       {userReducer.loading ? (
         <Loading />
       ) : userReducer.hasError && userReducer.users.length === 0 ? (

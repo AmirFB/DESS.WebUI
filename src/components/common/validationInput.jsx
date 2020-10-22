@@ -1,5 +1,6 @@
 import React from "react";
 import { Input } from "@progress/kendo-react-inputs";
+import TextField from "@material-ui/core/TextField";
 import { Error } from "@progress/kendo-react-labels";
 
 export default function ValidationInpu(props) {
@@ -7,7 +8,7 @@ export default function ValidationInpu(props) {
 
   return (
     <>
-      <Input {...others} />
+      <TextField {...others} />
       {visited && validationMessage && (
         <Error multi-line>{validationMessage}</Error>
       )}
