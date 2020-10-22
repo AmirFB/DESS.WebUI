@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 import * as userActions from "../../../../redux/actions/userActions";
 
 function Profile({ userReducer, getUser, ...props }) {
@@ -81,8 +82,10 @@ function Profile({ userReducer, getUser, ...props }) {
           />
         </Grid>
       </Grid>
-      <Grid item style={{ margin: "50px 10px" }}>
-        <button>Save</button>
+      <Grid item style={{ margin: "60px 0px" }}>
+        <Button variant="contained" color="primary">
+          Save
+        </Button>
       </Grid>
     </Grid>
   );
