@@ -39,6 +39,7 @@
     "location": "Location",
     "latitude": "Latitude",
     "longitude": "Longitude",
+    "profile": "Profile",
     "input1": "Input 1",
     "input2": "Input 2",
     "output1": "Output 1",
