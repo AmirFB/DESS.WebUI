@@ -39,7 +39,7 @@ class SideBar extends React.Component {
       inactiveIndexes = [];
 
     this.props.siteReducer.sites.map((site, index) => {
-      if (Date.now() < site.status.date + site.interval * 2000)
+      if (site.status && Date.now() < site.status.date + site.interval * 2000)
         activeIndexes.push(index);
       else inactiveIndexes.push(index);
 

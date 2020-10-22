@@ -67,6 +67,7 @@ export default function MapForm({ sites, ...props }) {
           position={{ lat: site.latitude, lng: site.longitude }}
           icon={
             site.status === undefined ||
+            site.status === null ||
             site.status.state === undefined ||
             site.status.state == statusType.Null
               ? nullIcon

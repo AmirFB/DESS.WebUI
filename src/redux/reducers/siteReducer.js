@@ -58,7 +58,10 @@ export default function siteRecuder(state = INITIAL_STATE, action) {
 
     case GET_SITES_SUCCESS:
       sites = [...action.sites];
-      sites.map((s) => (s.status.state = getStatusState(s, s.status)));
+      sites.map((s) => {
+        if (s.status) s.status.state = getStatusState(s, s.status);
+        else s.status = {};
+      });
       return {
         ...state,
         loading: false,
