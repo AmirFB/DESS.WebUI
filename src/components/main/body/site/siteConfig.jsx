@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-function SiteConfig({ siteReducer, saveSite, ...props }) {
+function SiteConfig({ siteReducer, saveSite, saveSiteDone, ...props }) {
   const [t, i18n] = useTranslation();
   const [site, setSite] = useState({ ...defaultSite });
   const [locatonDisabled, setLocatonDisabled] = useState(true);
@@ -95,12 +95,13 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
   }, [siteReducer]);
 
   useEffect(() => {
-    console.log("OKOK");
-    if (siteReducer.saveSuccessfull)
+    if (siteReducer.saveSuccessfull && siteReducer.saving) {
       history.push({
         pathname: "/siteList/",
       });
-  }, [siteReducer.saveSuccessfull]);
+      saveSiteDone();
+    }
+  }, [siteReducer]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -116,7 +117,6 @@ function SiteConfig({ siteReducer, saveSite, ...props }) {
     delete data.input2;
     delete data.output1;
     delete data.output2;
-    console.log(data);
 
     saveSite(data);
   };
@@ -856,6 +856,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   saveSite: siteActions.save,
+  saveSiteDone: siteActions.saveDone,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SiteConfig);

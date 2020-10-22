@@ -16,6 +16,7 @@ export const ADD_SITE_ERROR = "ADD_SITE_ERROR";
 export const UPDATE_SITE_REQUEST = "UPDATE_SITE_REQUEST";
 export const UPDATE_SITE_SUCCESS = "UPDATE_SITE_SUCCESS";
 export const UPDATE_SITE_ERROR = "UPDATE_SITE_ERROR";
+export const SAVE_SITE_DONE = "SAVE_SITE_DONE";
 
 export const UPDATE_STATUS = "UPDATE_STATUS";
 
@@ -88,17 +89,15 @@ function addSiteError(error) {
 
 // Update Existing Site
 
-function updateSiteRequest(site) {
+function updateSiteRequest() {
   return {
     type: UPDATE_SITE_REQUEST,
-    site,
   };
 }
 
-function updateSiteSuccess(site) {
+function updateSiteSuccess() {
   return {
     type: UPDATE_SITE_SUCCESS,
-    site,
   };
 }
 
@@ -106,6 +105,12 @@ function updateSiteError(error) {
   return {
     type: UPDATE_SITE_ERROR,
     error,
+  };
+}
+
+function saveSiteDone() {
+  return {
+    type: SAVE_SITE_DONE,
   };
 }
 
@@ -147,22 +152,28 @@ export function getAllLog() {
 
 export function save(site) {
   return function (dispatch, getState) {
-    site.id ? dispatch(addSiteRequest()) : dispatch(updateSiteRequest());
+    site.id ? dispatch(updateSiteRequest()) : dispatch(addSiteRequest());
     dispatch(beginApiCall());
 
     return siteApi
       .save(site)
       .then((savedSite) => {
         site.id
-          ? dispatch(addSiteSuccess(savedSite))
-          : dispatch(updateSiteSuccess(savedSite));
+          ? dispatch(updateSiteSuccess(savedSite))
+          : dispatch(addSiteSuccess(savedSite));
       })
       .catch((error) => {
         site.id
-          ? dispatch(addSiteError(error))
-          : dispatch(updateSiteError(error));
+          ? dispatch(updateSiteError(error))
+          : dispatch(addSiteError(error));
         dispatch(apiCallError(error));
         throw error;
       });
+  };
+}
+
+export function saveDone() {
+  return function (dispatch) {
+    dispatch(saveSiteDone());
   };
 }
