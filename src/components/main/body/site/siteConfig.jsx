@@ -168,8 +168,6 @@ function SiteConfig({
 
   const handleInput2Change = (e) => {
     const { name, value, checked } = e.target;
-
-    console.log(site.input2.name);
     setSite((prevSite) => ({
       ...prevSite,
       input2: {

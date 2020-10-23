@@ -181,20 +181,20 @@ export function get(id) {
 
 export function save(user) {
   return function (dispatch, getState) {
-    user.id ? dispatch(registerUserRequest()) : dispatch(updateUserRequest());
+    user.id ? dispatch(updateUserRequest()) : dispatch(registerUserRequest());
     dispatch(beginApiCall());
 
     return userApi
       .save(user)
       .then((savedUser) => {
         user.id
-          ? dispatch(registerUserSuccess(savedUser))
-          : dispatch(updateUserSuccess(savedUser));
+          ? dispatch(updateUserSuccess(savedUser))
+          : dispatch(registerUserSuccess(savedUser));
       })
       .catch((error) => {
         user.id
-          ? dispatch(registerUserError(error))
-          : dispatch(updateUserError(error));
+          ? dispatch(updateUserError(error))
+          : dispatch(registerUserError(error));
         dispatch(apiCallError(error));
         throw error;
       });
@@ -205,7 +205,6 @@ export function initialAuthentication() {
   return function (dispatch) {
     try {
       const user = JSON.parse(window.localStorage.getItem("user"));
-      console.log(user);
       dispatch(authenticateUserRequest(user));
 
       if (user && user.token && user.username) {
@@ -213,7 +212,6 @@ export function initialAuthentication() {
         userApi
           .head()
           .then((response) => {
-            console.log(response);
             dispatch(authenticateUserSuccess(user));
           })
           .catch((e) => {

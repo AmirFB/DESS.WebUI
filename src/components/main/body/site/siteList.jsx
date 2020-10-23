@@ -11,8 +11,8 @@ import {
   NotificationGroup,
 } from "@progress/kendo-react-notification";
 import { Zoom } from "@progress/kendo-react-animation";
-import { Button } from "@progress/kendo-react-buttons";
-import { Redirect } from "react-router-dom";
+import IconButton from "@material-ui/core/IconButton";
+import AddBoxIcon from "@material-ui/icons/AddBox";
 
 import * as siteActions from "../../../../redux/actions/siteActions";
 
@@ -46,10 +46,15 @@ function SiteList({ siteReducer, userReducer, getSites, ...props }) {
   }
 
   return (
-    <div className="list-div">
-      <Button onClick={handleAddSite} primary>
-        {t("site.addSite")}
-      </Button>
+    <div>
+      <IconButton
+        aria-label="addSite"
+        color="primary"
+        size="large"
+        onClick={handleAddSite}
+      >
+        <AddBoxIcon fontSize="inherit" />
+      </IconButton>
       {siteReducer.loading ? (
         <Loading />
       ) : siteReducer.hasError && siteReducer.sites.length === 0 ? (
