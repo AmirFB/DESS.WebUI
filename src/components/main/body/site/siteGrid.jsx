@@ -11,7 +11,6 @@ import "./site.css";
 export default function SiteGrid(props) {
   const [t, i18n] = useTranslation();
   const history = useHistory();
-
   function handleEdit(siteData) {
     history.push({
       pathname: "/siteList/siteEdit/" + siteData,
@@ -83,31 +82,33 @@ export default function SiteGrid(props) {
         )}
       />
 
-      <Column
-        title={t("common.actions")}
-        width="100"
-        locked
-        locked
-        cell={(props) => (
-          <td className={props.className} style={props.style}>
-            <Button
-              className="action-button"
-              primary
-              look="flat"
-              icon="delete"
-            />
-            <Button
-              className="action-button"
-              primary
-              look="flat"
-              icon="edit"
-              onClick={() => {
-                handleEdit(props.dataItem.id);
-              }}
-            />
-          </td>
-        )}
-      />
+      {props.permission && (
+        <Column
+          title={t("common.actions")}
+          width="100"
+          locked
+          locked
+          cell={(props) => (
+            <td className={props.className} style={props.style}>
+              <Button
+                className="action-button"
+                primary
+                look="flat"
+                icon="delete"
+              />
+              <Button
+                className="action-button"
+                primary
+                look="flat"
+                icon="edit"
+                onClick={() => {
+                  handleEdit(props.dataItem.id);
+                }}
+              />
+            </td>
+          )}
+        />
+      )}
     </Grid>
   );
 }
