@@ -73,6 +73,7 @@ function LoginForm({ siteReducer, authenticateUser, ...props }) {
           <TextField
             name="password"
             label={t("users.password")}
+            type="password"
             style={{ margin: "10px 0px" }}
             onChange={handleChange}
             error={error}

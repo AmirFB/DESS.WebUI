@@ -65,7 +65,13 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-function SiteConfig({ siteReducer, saveSite, saveSiteDone, ...props }) {
+function SiteConfig({
+  siteReducer,
+  saveSite,
+  saveSiteDone,
+  getSites,
+  ...props
+}) {
   const [t, i18n] = useTranslation();
   const [site, setSite] = useState({ ...defaultSite });
   const [locatonDisabled, setLocatonDisabled] = useState(true);
@@ -100,6 +106,7 @@ function SiteConfig({ siteReducer, saveSite, saveSiteDone, ...props }) {
         pathname: "/siteList/",
       });
       saveSiteDone();
+      getSites();
     }
   }, [siteReducer]);
 
@@ -154,24 +161,20 @@ function SiteConfig({ siteReducer, saveSite, saveSiteDone, ...props }) {
       ...prevSite,
       input1: {
         ...prevSite.input1,
-        [name]:
-          value !== undefined && value !== null && value !== ""
-            ? value
-            : checked,
+        [name]: name !== "enabled" ? value : checked,
       },
     }));
   };
 
   const handleInput2Change = (e) => {
     const { name, value, checked } = e.target;
+
+    console.log(site.input2.name);
     setSite((prevSite) => ({
       ...prevSite,
       input2: {
         ...prevSite.input2,
-        [name]:
-          value !== undefined && value !== null && value !== ""
-            ? value
-            : checked,
+        [name]: name !== "enabled" ? value : checked,
       },
     }));
   };
@@ -182,10 +185,7 @@ function SiteConfig({ siteReducer, saveSite, saveSiteDone, ...props }) {
       ...prevSite,
       output1: {
         ...prevSite.output1,
-        [name]:
-          value !== undefined && value !== null && value !== ""
-            ? value
-            : checked,
+        [name]: name !== "enabled" ? value : checked,
       },
     }));
   };
@@ -196,10 +196,7 @@ function SiteConfig({ siteReducer, saveSite, saveSiteDone, ...props }) {
       ...prevSite,
       output2: {
         ...prevSite.output2,
-        [name]:
-          value !== undefined && value !== null && value !== ""
-            ? value
-            : checked,
+        [name]: name !== "enabled" ? value : checked,
       },
     }));
   };
@@ -681,7 +678,7 @@ function SiteConfig({ siteReducer, saveSite, saveSiteDone, ...props }) {
                   name="name"
                   value={site.output1.name}
                   label={t("common.name")}
-                  onChange={handleInput1Change}
+                  onChange={handleOutput1Change}
                 />
               </Grid>
               <Grid item xs={2}>
@@ -690,7 +687,7 @@ function SiteConfig({ siteReducer, saveSite, saveSiteDone, ...props }) {
                   type="number"
                   value={site.output1.autoReset}
                   label={t("editSite.autoReset")}
-                  onChange={handleInput1Change}
+                  onChange={handleOutput1Change}
                 />
               </Grid>
               <Grid item xs={3}>
@@ -770,7 +767,7 @@ function SiteConfig({ siteReducer, saveSite, saveSiteDone, ...props }) {
                   name="name"
                   value={site.output2.name}
                   label={t("common.name")}
-                  onChange={handleInput2Change}
+                  onChange={handleOutput2Change}
                 />
               </Grid>
               <Grid item xs={2}>
@@ -779,7 +776,7 @@ function SiteConfig({ siteReducer, saveSite, saveSiteDone, ...props }) {
                   type="number"
                   value={site.output2.autoReset}
                   label={t("editSite.autoReset")}
-                  onChange={handleInput2Change}
+                  onChange={handleOutput2Change}
                 />
               </Grid>
               <Grid item xs={3}>
@@ -846,6 +843,7 @@ function SiteConfig({ siteReducer, saveSite, saveSiteDone, ...props }) {
 SiteConfig.propTypes = {
   siteReducer: PropTypes.object.isRequired,
   saveSite: PropTypes.func.isRequired,
+  getSites: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -857,6 +855,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   saveSite: siteActions.save,
   saveSiteDone: siteActions.saveDone,
+  getSites: siteActions.getAll,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SiteConfig);
