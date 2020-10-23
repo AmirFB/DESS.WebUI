@@ -9,7 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import * as userActions from "../../../../redux/actions/userActions";
 
-function Profile({ userReducer, getUser, ...props }) {
+function Profile({ userReducer, getUser, saveUser, ...props }) {
   const [t, i18n] = useTranslation();
   const [user, setUser] = useState({
     ...userReducer.currentUser,
@@ -22,7 +22,10 @@ function Profile({ userReducer, getUser, ...props }) {
   useEffect(() => {
     if (!user.firstName) {
       getUser(userReducer.currentUser.id).then(() => {
-        setUser(userReducer.currentUser);
+        const temp = userReducer.currentUser;
+        delete temp.groupId;
+        delete temp.permissionIds;
+        setUser(temp);
       });
     }
   }, [userReducer.currentUser]);
@@ -31,6 +34,10 @@ function Profile({ userReducer, getUser, ...props }) {
     const { value, name } = e.target;
     setUser({ ...user, [name]: value });
   };
+
+  function handleSaveUser() {
+    saveUser(user);
+  }
 
   return (
     <Grid container direction="column">
@@ -81,7 +88,7 @@ function Profile({ userReducer, getUser, ...props }) {
         </Grid>
       </Grid>
       <Grid item style={{ margin: "60px 0px" }}>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={handleSaveUser}>
           Save
         </Button>
       </Grid>
@@ -92,6 +99,7 @@ function Profile({ userReducer, getUser, ...props }) {
 Profile.propTypes = {
   userReducer: PropTypes.object.isRequired,
   getUser: PropTypes.func.isRequired,
+  saveUser: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -102,6 +110,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   getUser: userActions.get,
+  saveUser: userActions.save,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
