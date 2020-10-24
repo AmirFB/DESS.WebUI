@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -37,6 +36,7 @@ import red from "@material-ui/core/colors/red";
 import grey from "@material-ui/core/colors/grey";
 import green from "@material-ui/core/colors/green";
 import blue from "@material-ui/core/colors/blue";
+import cyan from "@material-ui/core/colors/cyan";
 
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
@@ -77,11 +77,24 @@ class SideBar extends React.Component {
       inactiveIndexes = [];
 
     this.props.siteReducer.sites.map((site, index) => {
-      if (site.status && Date.now() < site.status.date + site.interval * 2000)
+      this.setState((prevState) => {
+        console.log(prevState.expanded);
+        return {
+          expanded: {
+            ...prevState.expanded,
+            [site.id]: prevState.expanded[site.id]
+              ? prevState.expanded[site.id]
+              : false,
+          },
+        };
+      });
+      clearInterval(this.timerKey);
+
+      if (site.status && Date.now() < site.status.date + site.timeout)
         activeIndexes.push(index);
       else inactiveIndexes.push(index);
 
-      this.setState({ activeIndexes });
+      this.setState({ activeIndexes, inactiveIndexes });
       this.setState({ inactiveIndexes });
     });
   };
@@ -233,7 +246,7 @@ class SideBar extends React.Component {
   };
 
   renderHeader = (site) => (
-    <Grid container direction="row">
+    <Grid container direction="row" alignItems="center">
       <Grid item lg={4}>
         <span style={{ color: blue[500] }}>{site.siteId}</span>
       </Grid>
@@ -241,7 +254,19 @@ class SideBar extends React.Component {
         {this.renderState(getState(site))}
       </Grid>
       <Grid item xs>
-        {site.status.temperature}°C
+        <span
+          style={{
+            color:
+              site.status.temperature > site.temperatureMax
+                ? red[500]
+                : site.status.temperature < site.temperatureMin
+                ? cyan[500]
+                : green[500],
+            fondSize: "14px",
+          }}
+        >
+          {site.status.temperature}°C
+        </span>
       </Grid>
       <Grid item xs>
         {this.getBatteryIcon(site)}
@@ -256,22 +281,24 @@ class SideBar extends React.Component {
     const sites = this.props.siteReducer.sites;
     return (
       <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <AccordionSummary id={title} expandIcon={<ExpandMoreIcon />}>
           {title}&nbsp;(
           {indexes.length})
         </AccordionSummary>
         <AccordionDetails style={{ paddingLeft: "5px", paddingRight: "5px" }}>
-          <Grid container direction="column">
+          <Grid container direction="column" justify="space-evenly">
             {indexes.map((index) => {
               const site = sites[index];
               return (
-                <Grid item>
+                <Grid item id={"grid" + site.id}>
                   <Accordion
+                    id={"accordion" + site.id}
                     expanded={this.state.expanded[site.id]}
                     onChange={this.handleExpanded(site.id)}
                     style={{
                       fontSize: "12px",
                       backgroundColor: blue[100],
+                      margin: 0,
                     }}
                   >
                     <AccordionSummary
@@ -286,7 +313,7 @@ class SideBar extends React.Component {
                         padding: "0px",
                       }}
                     >
-                      <SiteCatalogBody site={site} />
+                      <SiteCatalogBody id={"catalog" + site.id} site={site} />
                     </AccordionDetails>
                   </Accordion>
                 </Grid>
@@ -302,8 +329,6 @@ class SideBar extends React.Component {
     const items = { ...this.state.expanded };
     items[index] = isExpanded;
     this.setState({ expanded: items });
-    console.log(items);
-    console.log(this.state.expanded);
   };
 
   render() {
