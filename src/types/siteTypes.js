@@ -1,8 +1,8 @@
 export const statusType = {
-  Clear: 0,
-  Warning: 1,
-  Fault: 2,
-  Null: 3,
+  Null: 0,
+  Clear: 1,
+  Warning: 2,
+  Fault: 3,
 };
 
 export const ioType = {
@@ -38,11 +38,7 @@ export const triggerTypes = [
 ];
 
 export function getState(site) {
-  if (
-    !site.status ||
-    !site.status.state ||
-    site.status.state == statusType.Null
-  )
+  if ((!site.status || !site.status.state) && site.status.state !== 0)
     return statusType.Null;
   return site.status.state;
 }

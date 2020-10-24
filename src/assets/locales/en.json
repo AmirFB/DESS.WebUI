@@ -5,12 +5,13 @@
     "hvCharge": "HV Charge",
     "hvDischarge": "HV Discharge",
     "hvPower": "HV Power",
+    "hvVoltage": "HV Voltage",
     "mainPower": "Main Power",
     "ok": "OK",
     "power": "Power",
+    "signalStrength": "Signal Strength",
     "tamper": "Tamper",
-    "temperature": "Temperature",
-    "voltage": "Voltage"
+    "temperature": "Temperature"
   },
 
   "common": {
