@@ -1,5 +1,6 @@
 {
   "catalog": {
+    "battery": "Bettery",
     "fault": "Fault",
     "hvCharge": "HV Charge",
     "hvDischarge": "HV Discharge",
@@ -8,6 +9,7 @@
     "ok": "OK",
     "power": "Power",
     "tamper": "Tamper",
+    "temperature": "Temperature",
     "voltage": "Voltage"
   },
 
@@ -108,9 +110,9 @@
   },
 
   "sideBar": {
-    "enterSiteName": "Enter site name",
-    "activeSites": "Active sites",
-    "offlineSites": "Offline sites",
+    "enterSiteName": "Enter Site name",
+    "activeSites": "Active Sites",
+    "offlineSites": "Offline Sites",
     "notDefined": "Not defined"
   },
 

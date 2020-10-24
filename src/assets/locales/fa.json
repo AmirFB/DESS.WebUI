@@ -1,5 +1,6 @@
 {
   "catalog": {
+    "battery": "باتری",
     "fault": "خطا",
     "hvCharge": "شارژ HV",
     "hvDischarge": "تخلیه HV",
@@ -8,6 +9,7 @@
     "ok": "سالم",
     "power": "توان",
     "tamper": "جعبه",
+    "temperature": "دما",
     "voltage": "ولتاژ"
   },
 
