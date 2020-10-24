@@ -69,7 +69,7 @@ export default function MapForm({ sites, ...props }) {
           icon={
             !site.status ||
             !site.status.state ||
-            site.status.state == statusType.Null
+            site.status.state === statusType.Null
               ? nullIcon
               : site.status.state === statusType.Clear
               ? normalIcon
