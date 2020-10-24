@@ -11,10 +11,11 @@ export const ioType = {
 };
 
 export const batteryStatusType = {
-  Charging: 0,
-  Charged: 1,
-  Low: 2,
-  Fault: 3,
+  Full: 0,
+  InUse: 1,
+  Charging: 2,
+  Low: 3,
+  Fault: 4,
 };
 
 export const triggerTypes = [
@@ -35,3 +36,13 @@ export const triggerTypes = [
     value: 3,
   },
 ];
+
+export function getState(site) {
+  if (
+    !site.status ||
+    !site.status.state ||
+    site.status.state == statusType.Null
+  )
+    return statusType.Null;
+  return site.status.state;
+}
