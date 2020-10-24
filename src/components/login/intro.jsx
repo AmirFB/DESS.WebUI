@@ -28,13 +28,7 @@ export default function Intro() {
         Distributed Enterprise Security System
       </div>
 
-      <div className="intro-middle">
-        <em>How to use This Program</em>
-        <br />
-        <em>What's the Meaning of DESS</em>
-        <br />
-        <em>How Electric-Fence Works</em>
-      </div>
+      <div className="intro-middle"></div>
 
       <div>
         <img

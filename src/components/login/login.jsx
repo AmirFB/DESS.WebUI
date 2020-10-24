@@ -24,9 +24,6 @@ export default function Login() {
         <Intro />
         <LoginForm />
       </div>
-      <footer className={classes.footer}>
-        &nbsp;&nbsp;&nbsp;&nbsp;about &nbsp;&nbsp;&nbsp;© 2020 EHP Corp.
-      </footer>
     </div>
   );
 }
