@@ -8,9 +8,17 @@ export const GET_USERS_REQUEST = "GET_USERS_REQUEST";
 export const GET_USERS_SUCCESS = "GET_USERS_SUCCESS";
 export const GET_USERS_ERROR = "GET_USERS_ERROR";
 
+export const GET_GROUPS_REQUEST = "GET_GROUPS_REQUEST";
+export const GET_GROUPS_SUCCESS = "GET_GROUPS_SUCCESS";
+export const GET_GROUPS_ERROR = "GET_GROUPS_ERROR";
+
 export const GET_USER_REQUEST = "GET_USER_REQUEST";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const GET_USER_ERROR = "GET_USER_ERROR";
+
+export const REMOVE_USER_REQUEST = "REMOVE_USER_REQUEST";
+export const REMOVE_USER_SUCCESS = "REMOVE_USER_SUCCESS";
+export const REMOVE_USER_ERROR = "REMOVE_USER_ERROR";
 
 export const REGISTER_USER_REQUEST = "REGISTER_USER_REQUEST";
 export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
@@ -49,6 +57,29 @@ function getUsersError(error) {
   };
 }
 
+// GET GROUP
+
+function getGroupsRequest(groups) {
+  return {
+    type: GET_GROUPS_REQUEST,
+    groups,
+  };
+}
+
+function getGroupsSuccess(groups) {
+  return {
+    type: GET_GROUPS_SUCCESS,
+    groups,
+  };
+}
+
+function getGroupsError(error) {
+  return {
+    type: GET_GROUPS_ERROR,
+    error,
+  };
+}
+
 // Get User
 
 function getUserRequest(user) {
@@ -68,6 +99,28 @@ function getUserSuccess(user) {
 function getUserError(error) {
   return {
     type: GET_USER_ERROR,
+    error,
+  };
+}
+
+// Remove User
+function removeUserRequest(user) {
+  return {
+    type: REMOVE_USER_REQUEST,
+    user,
+  };
+}
+
+function removeUserSuccess(user) {
+  return {
+    type: REMOVE_USER_SUCCESS,
+    user,
+  };
+}
+
+function removeUserError(error) {
+  return {
+    type: REMOVE_USER_ERROR,
     error,
   };
 }
@@ -161,6 +214,24 @@ export function getAll() {
   };
 }
 
+export function getGroups() {
+  return function (dispatch) {
+    dispatch(getGroupsRequest());
+    dispatch(beginApiCall());
+
+    return userApi
+      .getGroups()
+      .then((response) => {
+        dispatch(getGroupsSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(getGroupsError(error));
+        dispatch(apiCallError());
+        throw error;
+      });
+  };
+}
+
 export function get(id) {
   return function (dispatch) {
     dispatch(getUserRequest());
@@ -173,6 +244,24 @@ export function get(id) {
       })
       .catch((error) => {
         dispatch(getUserError(error));
+        dispatch(apiCallError());
+        throw error;
+      });
+  };
+}
+
+export function remove(id) {
+  return function (dispatch) {
+    dispatch(removeUserRequest());
+    dispatch(beginApiCall());
+
+    return userApi
+      .remove(id)
+      .then((response) => {
+        dispatch(removeUserSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(removeUserError(error));
         dispatch(apiCallError());
         throw error;
       });
