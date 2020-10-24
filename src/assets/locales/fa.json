@@ -5,12 +5,13 @@
     "hvCharge": "شارژ HV",
     "hvDischarge": "تخلیه HV",
     "hvPower": "تغذیه HV",
+    "hvVoltage": "ولتاژ HV",
     "mainPower": "تغذیه اصلی",
     "ok": "سالم",
     "power": "توان",
+    "signalStrength": "قدرت سیگنال",
     "tamper": "جعبه",
-    "temperature": "دما",
-    "voltage": "ولتاژ"
+    "temperature": "دما"
   },
 
   "common": {
