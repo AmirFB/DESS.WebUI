@@ -7,6 +7,7 @@ import whiteMarker from "../../../../assets/images/markers/whiteMarker.svg";
 import yellowMarker from "../../../../assets/images/markers/yellowMarker.svg";
 import redMarker from "../../../../assets/images/markers/redMarker.svg";
 import blackMarker from "../../../../assets/images/markers/blackMarker.svg";
+import SiteCatalogBody from "../../sideBar/SiteCatalogBody";
 
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import { statusType } from "../../../../types/siteTypes";
@@ -66,9 +67,8 @@ export default function MapForm({ sites, ...props }) {
           key={site.id}
           position={{ lat: site.latitude, lng: site.longitude }}
           icon={
-            site.status === undefined ||
-            site.status === null ||
-            site.status.state === undefined ||
+            !site.status ||
+            !site.status.state ||
             site.status.state == statusType.Null
               ? nullIcon
               : site.status.state === statusType.Clear
@@ -78,7 +78,9 @@ export default function MapForm({ sites, ...props }) {
               : faultIcon
           }
         >
-          <Popup>{site.name}</Popup>
+          <Popup>
+            <SiteCatalogBody site={site} />
+          </Popup>
         </Marker>
       ))}
     </Map>

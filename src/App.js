@@ -30,6 +30,7 @@ const theme = responsiveFontSizes(
       info: cyan,
       success: green,
       null: grey,
+      action: green,
     },
     main: {
       primary: blue[500],
