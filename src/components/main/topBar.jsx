@@ -59,18 +59,17 @@ function TopBar({ userReducer, logout, ...props }) {
         </span>
       )}
       <span style={{ margin: "10px" }}>
+        <IconButton aria-label="addSite" size="small" color="inherit">
+          <GTranslateIcon fontSize="inherit" />
+        </IconButton>
         <Select
           className={classes.container}
-          color={"white"}
           value={window.localStorage.getItem("lang")}
           onChange={changeLanguage}
         >
           <MenuItem value={"en"}>English</MenuItem>
           <MenuItem value={"fa"}>فارسی</MenuItem>
         </Select>
-        <IconButton aria-label="addSite" size="small" color="inherit">
-          <GTranslateIcon fontSize="inherit" />
-        </IconButton>
       </span>
     </Grid>
   );
