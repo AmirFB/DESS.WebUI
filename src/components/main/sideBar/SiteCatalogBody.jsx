@@ -1,9 +1,11 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
-import blue from "@material-ui/core/colors/blue";
+import SignalIcon from "./signalIcon";
 
 import { useTranslation } from "react-i18next";
+
+import * as colors from "@material-ui/core/colors";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -12,9 +14,9 @@ export default function SiteCatalogBody({ site, ...props }) {
 
   const statusText = (state) =>
     state ? (
-      <span style={{ color: "red" }}>{t("catalog.fault")}</span>
+      <span style={{ color: colors.red[500] }}>{t("catalog.fault")}</span>
     ) : (
-      <span style={{ color: "green" }}>{t("catalog.ok")}</span>
+      <span style={{ color: colors.green[500] }}>{t("catalog.ok")}</span>
     );
 
   return (
@@ -23,7 +25,7 @@ export default function SiteCatalogBody({ site, ...props }) {
       direction="column"
       className="site-catalog-body"
       style={{
-        backgroundColor: blue[100],
+        backgroundColor: colors.cyan[50],
       }}
     >
       <Grid
@@ -56,11 +58,13 @@ export default function SiteCatalogBody({ site, ...props }) {
       >
         <Grid item lg>
           {t("catalog.power")}:&nbsp;
-          <span style={{ color: "blue" }}>{site.hvPower}%</span>
+          <span style={{ color: colors.blue[500] }}>{site.hvPower}%</span>
         </Grid>
         <Grid item lg>
-          {t("catalog.voltage")}:&nbsp;
-          <span style={{ color: "blue" }}>{site.status.hvVoltage}</span>
+          {t("catalog.hvVoltage")}:&nbsp;
+          <span style={{ color: colors.blue[500] }}>
+            {site.status.hvVoltage}
+          </span>
         </Grid>
       </Grid>
       <Grid
@@ -113,13 +117,14 @@ export default function SiteCatalogBody({ site, ...props }) {
               style={{
                 color:
                   site.status.temperature > site.temperatureMax
-                    ? "red"
+                    ? colors.red[500]
                     : site.status.temperature < site.temperatureMin
-                    ? "cyan"
-                    : "blue",
+                    ? colors.cyan[500]
+                    : colors.green[500],
+                fondSize: "14px",
               }}
             >
-              {site.status.temperature}
+              {site.status.temperature}°C
             </span>
           </Grid>
           <Grid item lg>
@@ -127,12 +132,18 @@ export default function SiteCatalogBody({ site, ...props }) {
             <span
               style={{
                 color:
-                  site.status.batteryLevel < site.batteryMin ? "red" : "ble",
+                  site.status.batteryLevel < site.batteryMin
+                    ? colors.red[500]
+                    : colors.blue[500],
               }}
             >
-              {site.status.batteryLevel}
+              {site.status.batteryLevel} V
             </span>
           </Grid>
+        </Grid>
+        <Grid item lg>
+          {t("catalog.signalStrength")}:&nbsp;
+          <SignalIcon strength={site.status.signalStrength} />
         </Grid>
       </Grid>
     </Grid>

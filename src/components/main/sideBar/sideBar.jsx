@@ -4,33 +4,11 @@ import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import SiteCatalogBody from "./SiteCatalogBody";
-import SvgIcon from "@material-ui/core/SvgIcon";
+import SignalIcon from "./signalIcon";
+import BatteryIcon from "./batteryIcon";
+import StateIcon from "./stateIcon";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import SignalCellularOffRoundedIcon from "@material-ui/icons/SignalCellularOffRounded";
-import SignalCellular0BarRoundedIcon from "@material-ui/icons/SignalCellular0BarRounded";
-import SignalCellular1BarRoundedIcon from "@material-ui/icons/SignalCellular1BarRounded";
-import SignalCellular2BarRoundedIcon from "@material-ui/icons/SignalCellular2BarRounded";
-import SignalCellular3BarRoundedIcon from "@material-ui/icons/SignalCellular3BarRounded";
-import SignalCellular4BarRoundedIcon from "@material-ui/icons/SignalCellular4BarRounded";
-import Battery20RoundedIcon from "@material-ui/icons/Battery20Rounded";
-import Battery30RoundedIcon from "@material-ui/icons/Battery30Rounded";
-import Battery50RoundedIcon from "@material-ui/icons/Battery50Rounded";
-import Battery60RoundedIcon from "@material-ui/icons/Battery60Rounded";
-import Battery80RoundedIcon from "@material-ui/icons/Battery80Rounded";
-import Battery90RoundedIcon from "@material-ui/icons/Battery90Rounded";
-import BatteryCharging20RoundedIcon from "@material-ui/icons/BatteryCharging20Rounded";
-import BatteryCharging30RoundedIcon from "@material-ui/icons/BatteryCharging30Rounded";
-import BatteryCharging50RoundedIcon from "@material-ui/icons/BatteryCharging50Rounded";
-import BatteryCharging60RoundedIcon from "@material-ui/icons/BatteryCharging60Rounded";
-import BatteryCharging80RoundedIcon from "@material-ui/icons/BatteryCharging80Rounded";
-import BatteryCharging90RoundedIcon from "@material-ui/icons/BatteryCharging90Rounded";
-import BatteryChargingFullRoundedIcon from "@material-ui/icons/BatteryChargingFullRounded";
-import BatteryFullRoundedIcon from "@material-ui/icons/BatteryFullRounded";
-import BatteryAlertRoundedIcon from "@material-ui/icons/BatteryAlertRounded";
-import WarningIcon from "@material-ui/icons/Warning";
-import ErrorIcon from "@material-ui/icons/Error";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
-import HourglassEmptyIcon from "@material-ui/icons/HourglassEmpty";
+
 import amber from "@material-ui/core/colors/amber";
 import red from "@material-ui/core/colors/red";
 import grey from "@material-ui/core/colors/grey";
@@ -41,11 +19,6 @@ import cyan from "@material-ui/core/colors/cyan";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 import { withStyles } from "@material-ui/core/styles";
-import {
-  getState,
-  statusType,
-  batteryStatusType,
-} from "../../../types/siteTypes";
 
 import "./sideBar.css";
 
@@ -78,7 +51,6 @@ class SideBar extends React.Component {
 
     this.props.siteReducer.sites.map((site, index) => {
       this.setState((prevState) => {
-        console.log(prevState.expanded);
         return {
           expanded: {
             ...prevState.expanded,
@@ -99,159 +71,13 @@ class SideBar extends React.Component {
     });
   };
 
-  renderState(state) {
-    switch (state) {
-      case statusType.Clear:
-        return (
-          <SvgIcon
-            fontSize="small"
-            style={{ color: amber[500], fontSize: "14px" }}
-          >
-            <CheckBoxIcon />
-          </SvgIcon>
-        );
-
-      case statusType.Warning:
-        return (
-          <SvgIcon
-            fontSize="small"
-            style={{ color: amber[500], fontSize: "14px" }}
-          >
-            <WarningIcon />
-          </SvgIcon>
-        );
-
-      case statusType.Fault:
-        return (
-          <SvgIcon
-            fontSize="small"
-            style={{ color: red[500], fontSize: "14px" }}
-          >
-            <ErrorIcon />
-          </SvgIcon>
-        );
-
-      case statusType.Null:
-        return (
-          <SvgIcon
-            fontSize="small"
-            style={{ color: grey[500], fontSize: "14px" }}
-          >
-            <HourglassEmptyIcon />
-          </SvgIcon>
-        );
-    }
-  }
-
-  getBatteryIcon = (site) => {
-    const level = site.status.batteryLevel;
-    const status = site.status.batteryStatus;
-    const color =
-      status === batteryStatusType.Fault
-        ? red[500]
-        : level === 100
-        ? green[500]
-        : level > 30
-        ? blue[500]
-        : red[500];
-
-    return (
-      <SvgIcon style={{ color: color, fontSize: "14px" }}>
-        {status === batteryStatusType.Fault ? (
-          <BatteryAlertRoundedIcon />
-        ) : level === 100 ? (
-          status === batteryStatusType.Charging ? (
-            <BatteryChargingFullRoundedIcon />
-          ) : (
-            <BatteryFullRoundedIcon />
-          )
-        ) : level >= 90 ? (
-          status === batteryStatusType.Charging ? (
-            <BatteryCharging90RoundedIcon />
-          ) : (
-            <Battery90RoundedIcon />
-          )
-        ) : level >= 80 ? (
-          status === batteryStatusType.Charging ? (
-            <BatteryCharging80RoundedIcon />
-          ) : (
-            <Battery80RoundedIcon />
-          )
-        ) : level >= 60 ? (
-          status === batteryStatusType.Charging ? (
-            <BatteryCharging60RoundedIcon />
-          ) : (
-            <Battery60RoundedIcon />
-          )
-        ) : level >= 50 ? (
-          status === batteryStatusType.Charging ? (
-            <BatteryCharging50RoundedIcon />
-          ) : (
-            <Battery50RoundedIcon />
-          )
-        ) : level >= 30 ? (
-          status === batteryStatusType.Charging ? (
-            <BatteryCharging30RoundedIcon />
-          ) : (
-            <Battery30RoundedIcon />
-          )
-        ) : status === batteryStatusType.Charging ? (
-          <BatteryCharging20RoundedIcon />
-        ) : (
-          <Battery20RoundedIcon />
-        )}
-      </SvgIcon>
-    );
-  };
-
-  getSignalIcon = (site) => {
-    switch (site.status.signalStrength) {
-      case 0:
-        return (
-          <SvgIcon style={{ fontSize: "14px", color: blue[500] }}>
-            <SignalCellularOffRoundedIcon />
-          </SvgIcon>
-        );
-      case 1:
-        return (
-          <SvgIcon style={{ fontSize: "14px", color: blue[500] }}>
-            <SignalCellular0BarRoundedIcon />
-          </SvgIcon>
-        );
-      case 2:
-        return (
-          <SvgIcon style={{ fontSize: "14px", color: blue[500] }}>
-            <SignalCellular1BarRoundedIcon />
-          </SvgIcon>
-        );
-      case 3:
-        return (
-          <SvgIcon style={{ fontSize: "14px", color: blue[500] }}>
-            <SignalCellular2BarRoundedIcon />
-          </SvgIcon>
-        );
-      case 4:
-        return (
-          <SvgIcon style={{ fontSize: "14px", color: blue[500] }}>
-            <SignalCellular3BarRoundedIcon />
-          </SvgIcon>
-        );
-      case 5:
-        return (
-          <SvgIcon style={{ fontSize: "14px", color: blue[500] }}>
-            <SignalCellular4BarRoundedIcon />
-          </SvgIcon>
-        );
-    }
-  };
-
   renderHeader = (site) => (
     <Grid container direction="row" alignItems="center">
       <Grid item lg={4}>
         <span style={{ color: blue[500] }}>{site.siteId}</span>
       </Grid>
       <Grid item lg>
-        {this.renderState(getState(site))}
+        <StateIcon site={site} />
       </Grid>
       <Grid item xs>
         <span
@@ -269,10 +95,10 @@ class SideBar extends React.Component {
         </span>
       </Grid>
       <Grid item xs>
-        {this.getBatteryIcon(site)}
+        <BatteryIcon status={site.status} />
       </Grid>
       <Grid item xs>
-        {this.getSignalIcon(site)}
+        <SignalIcon strength={site.status.signalStrength} />
       </Grid>
     </Grid>
   );
