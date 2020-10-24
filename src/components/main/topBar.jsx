@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { connect } from "react-redux";
-import { Button } from "@progress/kendo-react-buttons";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import IconButton from "@material-ui/core/IconButton";
+import GTranslateIcon from "@material-ui/icons/GTranslate";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import Grid from "@material-ui/core/Grid";
 
 import * as userActions from "../../redux/actions/userActions";
 import { makeStyles } from "@material-ui/core/styles";
-
-import EN from "../../assets/images/en.svg";
-import IR from "../../assets/images/ir.svg";
 
 import "../../index.css";
 
@@ -15,8 +17,11 @@ const useStyles = makeStyles((theme) => {
   return {
     container: {
       backgroundColor: theme.palette.primary.main,
-      flex: 1,
-      direction: "rtl",
+      color: "white",
+    },
+    select: {
+      marginTop: theme.spacing(2),
+      color: "inherit",
     },
   };
 });
@@ -24,9 +29,10 @@ const useStyles = makeStyles((theme) => {
 function TopBar({ userReducer, logout, ...props }) {
   const [t, i18n] = useTranslation();
   const classes = useStyles();
-  const changeLanguage = (language) => {
-    i18n.changeLanguage(language);
-    window.localStorage.setItem("lang", language);
+
+  const changeLanguage = (event) => {
+    i18n.changeLanguage(event.target.value);
+    window.localStorage.setItem("lang", event.target.value);
   };
 
   function handelLogout() {
@@ -34,24 +40,39 @@ function TopBar({ userReducer, logout, ...props }) {
   }
 
   return (
-    <div className={classes.container}>
-      <img
-        onClick={() => changeLanguage("en")}
-        className="language-button"
-        src={EN}
-      />
-      <img
-        onClick={() => changeLanguage("fa")}
-        className="language-button"
-        src={IR}
-      />
-
+    <Grid
+      container
+      direction="row"
+      justify="flex-end"
+      alignItems="center"
+      className={classes.container}
+    >
       {userReducer.loggedIn && (
-        <Button look="flat" onClick={handelLogout} id="logout-button">
-          Logout
-        </Button>
+        <span
+          onClick={handelLogout}
+          style={{ margin: "10px", cursor: "pointer" }}
+        >
+          <IconButton aria-label="addSite" size="small" color="inherit">
+            <ExitToAppIcon fontSize="inherit" />
+          </IconButton>
+          <em>Logout</em>
+        </span>
       )}
-    </div>
+      <span style={{ margin: "10px" }}>
+        <Select
+          className={classes.container}
+          color={"white"}
+          value={window.localStorage.getItem("lang")}
+          onChange={changeLanguage}
+        >
+          <MenuItem value={"en"}>English</MenuItem>
+          <MenuItem value={"fa"}>فارسی</MenuItem>
+        </Select>
+        <IconButton aria-label="addSite" size="small" color="inherit">
+          <GTranslateIcon fontSize="inherit" />
+        </IconButton>
+      </span>
+    </Grid>
   );
 }
 
