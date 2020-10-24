@@ -21,7 +21,6 @@ import "@progress/kendo-theme-material/dist/all.css";
 function SiteList({ siteReducer, userReducer, getSites, ...props }) {
   const [t, i18n] = useTranslation();
   const [getFailed, setGetFailed] = useState(false);
-  const [redirect, setRedirect] = useState(false);
   const [permission, setPermission] = useState();
   const history = useHistory();
 
@@ -36,7 +35,13 @@ function SiteList({ siteReducer, userReducer, getSites, ...props }) {
           }, 10000);
         }
       });
-    setPermission(userReducer.currentUser.permissions.includes("CanEditSites"));
+    setTimeout(() => {
+      setPermission(
+        userReducer.currentUser.permissions
+          ? userReducer.currentUser.permissions.includes("CanEditSites")
+          : false
+      );
+    }, 200);
   }, [props.sites]);
 
   function handleAddSite() {

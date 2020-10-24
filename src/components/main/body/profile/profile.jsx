@@ -1,42 +1,47 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
 
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+
 import * as userActions from "../../../../redux/actions/userActions";
 
 function Profile({ userReducer, getUser, saveUser, ...props }) {
   const [t, i18n] = useTranslation();
-  const [user, setUser] = useState({
-    ...userReducer.currentUser,
-    firstName: "",
-    lastName: "",
-    password: "",
-    passwordConfirm: "",
-  });
+  const [groupEdit, setGroupEdit] = useState(false);
+  const [user, setUser] = useState({ ...userReducer.user });
+  const history = useHistory();
 
   useEffect(() => {
-    if (!user.firstName) {
-      getUser(userReducer.currentUser.id).then(() => {
-        const temp = userReducer.currentUser;
-        delete temp.groupId;
-        delete temp.permissionIds;
-        setUser(temp);
+    if (props.location.state) {
+      setGroupEdit(true);
+      setUser({
+        ...userReducer.users.find((u) => u.id === props.location.state.id),
       });
+    } else {
+      setGroupEdit(false);
+      setUser({ ...userReducer.currentUser });
     }
-  }, [userReducer.currentUser]);
+  }, []);
 
   const handleChange = (e) => {
     const { value, name } = e.target;
     setUser({ ...user, [name]: value });
+    console.log(user);
   };
 
   function handleSaveUser() {
     saveUser(user);
+    history.push({
+      pathname: "/users",
+    });
   }
 
   return (
@@ -59,12 +64,24 @@ function Profile({ userReducer, getUser, saveUser, ...props }) {
           />
         </Grid>
       </Grid>
-
+      {groupEdit && (
+        <Grid item>
+          <Select
+            name="groupId"
+            style={{ margin: "10px 0px", width: 100 }}
+            value={user.groupId}
+            onChange={handleChange}
+          >
+            {props.location.state.groups.map((group) => (
+              <MenuItem value={group.id}>{group.title}</MenuItem>
+            ))}
+          </Select>
+        </Grid>
+      )}
       <Grid item>
         <TextField
-          name="username"
+          name={"username"}
           value={user.username}
-          name="username"
           label={t("users.username")}
           onChange={handleChange}
         />
