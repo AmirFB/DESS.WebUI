@@ -13,12 +13,22 @@ import UserGrid from "./userGrid";
 
 import * as userActions from "../../../../redux/actions/userActions";
 
-function UserList({ userReducer, getUsers, ...props }) {
+function UserList({ userReducer, getUsers, getGroups, ...props }) {
   const [t, i18n] = useTranslation();
   const [getFailed, setGetFailed] = useState(false);
 
   useEffect(() => {
     getUsers().catch((error) => {
+      setGetFailed(true);
+
+      if (!getFailed) {
+        setTimeout(() => {
+          setGetFailed(false);
+        }, 10000);
+      }
+    });
+
+    getGroups().catch((error) => {
       setGetFailed(true);
 
       if (!getFailed) {
@@ -36,7 +46,7 @@ function UserList({ userReducer, getUsers, ...props }) {
       ) : userReducer.hasError && userReducer.users.length === 0 ? (
         <h3>{t("common.getFailed")}</h3>
       ) : (
-        <UserGrid users={userReducer.users} />
+        <UserGrid users={userReducer.users} groups={userReducer.groups} />
       )}
 
       <NotificationGroup
@@ -66,6 +76,7 @@ function UserList({ userReducer, getUsers, ...props }) {
 UserList.propTypes = {
   userReducer: PropTypes.object.isRequired,
   getUsers: PropTypes.func.isRequired,
+  getGroups: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -76,6 +87,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   getUsers: userActions.getAll,
+  getGroups: userActions.getGroups,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserList);
