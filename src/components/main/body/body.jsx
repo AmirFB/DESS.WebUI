@@ -45,7 +45,8 @@ export default function Body() {
 
         <TabStripTab title={t("common.users")}>
           <Redirect push to="/users" />
-          <Route path="/users" component={Users} />
+          <Route exact path="/users" component={Users} />
+          <Route exact path="/users/userEdit/" component={Profile} />
         </TabStripTab>
 
         <TabStripTab title={t("common.report")}>
