@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import SiteGrid from "./siteGrid";
 import Loading from "../../../common/loading";
-
 import { connect } from "react-redux";
 import { useTranslation } from "react-i18next";
+
 import {
   Notification,
   NotificationGroup,
@@ -35,13 +35,6 @@ function SiteList({ siteReducer, userReducer, getSites, ...props }) {
           }, 10000);
         }
       });
-    setTimeout(() => {
-      setPermission(
-        userReducer.currentUser.permissions
-          ? userReducer.currentUser.permissions.includes("CanEditSites")
-          : false
-      );
-    }, 200);
   }, [props.sites]);
 
   function handleAddSite() {
@@ -65,7 +58,14 @@ function SiteList({ siteReducer, userReducer, getSites, ...props }) {
       ) : siteReducer.hasError && siteReducer.sites.length === 0 ? (
         <h3>{t("common.getFailed")}</h3>
       ) : (
-        <SiteGrid sites={siteReducer.sites} permission={permission} />
+        <SiteGrid
+          sites={siteReducer.sites}
+          permission={
+            userReducer.currentUser.permissions
+              ? userReducer.currentUser.permissions.includes("CanEditSites")
+              : false
+          }
+        />
       )}
       <NotificationGroup
         style={{
