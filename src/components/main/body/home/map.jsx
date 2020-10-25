@@ -79,7 +79,7 @@ export default function MapForm({ sites, ...props }) {
           }
         >
           <Popup>
-            <SiteCatalogBody site={site} />
+            <SiteCatalogBody site={site} onMap />
           </Popup>
         </Marker>
       ))}
