@@ -28,6 +28,8 @@
     "disabled": "Disabled",
     "min": "Min",
     "max": "Max",
+    "off": "Off",
+    "on": "On",
     "back": "Back",
     "refresh": "Refresh",
     "home": "Home",
