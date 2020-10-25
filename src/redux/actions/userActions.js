@@ -16,6 +16,10 @@ export const GET_USER_REQUEST = "GET_USER_REQUEST";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const GET_USER_ERROR = "GET_USER_ERROR";
 
+export const GET_PERMISSIONS_REQUEST = "GET_PERMISSIONS_REQUEST";
+export const GET_PERMISSIONS_SUCCESS = "GET_PERMISSIONS_SUCCESS";
+export const GET_PERMISSIONS_ERROR = "GET_PERMISSIONS_ERROR";
+
 export const REMOVE_USER_REQUEST = "REMOVE_USER_REQUEST";
 export const REMOVE_USER_SUCCESS = "REMOVE_USER_SUCCESS";
 export const REMOVE_USER_ERROR = "REMOVE_USER_ERROR";
@@ -99,6 +103,29 @@ function getUserSuccess(user) {
 function getUserError(error) {
   return {
     type: GET_USER_ERROR,
+    error,
+  };
+}
+
+// Get Permissions
+
+function getPermissionsRequest(permissions) {
+  return {
+    type: GET_PERMISSIONS_REQUEST,
+    permissions,
+  };
+}
+
+function getPermissionsSuccess(permissions) {
+  return {
+    type: GET_PERMISSIONS_SUCCESS,
+    permissions,
+  };
+}
+
+function getPermissionsError(error) {
+  return {
+    type: GET_PERMISSIONS_ERROR,
     error,
   };
 }
@@ -244,6 +271,24 @@ export function get(id) {
       })
       .catch((error) => {
         dispatch(getUserError(error));
+        dispatch(apiCallError());
+        throw error;
+      });
+  };
+}
+
+export function getPermissions() {
+  return function (dispatch) {
+    dispatch(getPermissionsRequest());
+    dispatch(beginApiCall());
+
+    return userApi
+      .getPermissions()
+      .then((response) => {
+        dispatch(getPermissionsSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(getPermissionsError(error));
         dispatch(apiCallError());
         throw error;
       });
