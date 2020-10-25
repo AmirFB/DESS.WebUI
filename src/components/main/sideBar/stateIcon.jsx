@@ -40,13 +40,6 @@ const getIcon = (state) => {
 export default function StateIcon({ site }) {
   const state = getState(site);
 
-  if (state === statusType.Null) {
-    console.log(site);
-    console.log(statusType.Null);
-    console.log(state);
-    console.log(!site.status || !site.status.state);
-  }
-
   return (
     <SvgIcon style={{ color: getColor(state), fontSize: "14px" }}>
       {getIcon(state)}

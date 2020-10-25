@@ -124,6 +124,7 @@ function SiteConfig({
     delete data.input2;
     delete data.output1;
     delete data.output2;
+    delete data.status;
 
     saveSite(data);
   };
