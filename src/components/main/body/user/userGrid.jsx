@@ -11,10 +11,17 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
 import red from "@material-ui/core/colors/red";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
   const [t, i18n] = useTranslation();
   const [rows, setRows] = useState([]);
+  const [open, setOpen] = useState(false);
   const history = useHistory();
 
   const handleEdit = (userId, groups) => {
@@ -24,9 +31,18 @@ function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
     });
   };
 
-  const handelRemove = (userId) => {
+  const handleRemove = () => {
+    setOpen(true);
+  };
+
+  const handleAccept = (userId) => {
     removeUser(userId);
     getUsers();
+    setOpen(false);
+  };
+
+  const handleDecline = () => {
+    setOpen(false);
   };
 
   const columns = [
@@ -65,16 +81,55 @@ function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
           >
             <EditIcon fontSize="inherit" />
           </IconButton>
-          <IconButton
-            aria-label="addSite"
-            size="medium"
-            style={{ color: red[500] }}
+          <>
+            <IconButton
+              aria-label="removeSite"
+              size="medium"
+              style={{ color: red[500] }}
+              onClick={handleRemove}
+            >
+              <DeleteForeverIcon fontSize="inherit" />
+            </IconButton>
+
+            <Dialog
+              open={open}
+              onClose={handleDecline}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                "Use Google's location service?"
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Are you sure?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button color="primary" onClick={handleDecline}>
+                  Disagree
+                </Button>
+                <Button
+                  onClick={() => {
+                    handleAccept(params.getValue("id"));
+                  }}
+                  color="primary"
+                  autoFocus
+                >
+                  Agree
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </>
+          <Button
+            className="action-button"
+            primary
+            look="flat"
+            icon="edit"
             onClick={() => {
-              handelRemove(params.getValue("id"));
+              handleEdit(props.dataItem.id);
             }}
-          >
-            <DeleteForeverIcon fontSize="inherit" />
-          </IconButton>
+          />
         </>
       ),
     },
