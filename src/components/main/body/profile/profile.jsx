@@ -33,8 +33,7 @@ function Profile({ userReducer, getUser, saveUser, ...props }) {
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    setUser({ ...user, [name]: value });
-    console.log(user);
+    setUser((prevUser) => ({ ...prevUser, [name]: value }));
   };
 
   function handleSaveUser() {

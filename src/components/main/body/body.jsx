@@ -6,15 +6,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import Home from "./home/home";
-import Settings from "./settings/settings";
 import Users from "./user/userList";
 import Report from "./report/report";
-import About from "./about";
 import SiteList from "./site/siteList";
 import SiteConfig from "./site/siteConfig";
 import Profile from "./profile/profile";
-import Groups from "./user/UserGroupList";
-import GroupsConfig from "./user/UserGroupConfig";
+import Groups from "./user/userGroupList";
+import GroupsConfig from "./user/userGroupConfig";
 
 import HomeIcon from "@material-ui/icons/Home";
 import MemoryIcon from "@material-ui/icons/Memory";
