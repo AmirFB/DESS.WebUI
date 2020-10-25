@@ -8,6 +8,9 @@ import {
   GET_USER_REQUEST,
   GET_USER_SUCCESS,
   GET_USER_ERROR,
+  GET_PERMISSIONS_REQUEST,
+  GET_PERMISSIONS_SUCCESS,
+  GET_PERMISSIONS_ERROR,
   REMOVE_USER_REQUEST,
   REMOVE_USER_SUCCESS,
   REMOVE_USER_ERROR,
@@ -24,6 +27,8 @@ const INITIAL_STATE = {
   loggedIn: false,
   currentUser: null,
   users: [],
+  groups: [],
+  permissions: [],
   user: {
     firstName: "",
     lastName: "",
@@ -101,6 +106,29 @@ export default function userRecuder(state = INITIAL_STATE, action) {
         loading: false,
         hasError: true,
         users: action.users,
+        error: action.error,
+      };
+
+    case GET_PERMISSIONS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case GET_PERMISSIONS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        hasError: false,
+        permissions: action.permissions,
+      };
+
+    case GET_PERMISSIONS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        hasError: true,
+        permissions: action.permissions,
         error: action.error,
       };
 

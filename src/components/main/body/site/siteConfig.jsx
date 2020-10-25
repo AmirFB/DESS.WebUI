@@ -507,6 +507,15 @@ function SiteConfig({
                 type="number"
               />
             </Grid>
+            <Grid item xs={3}>
+              <TextField
+                name={"timeOut"}
+                value={site.timeOut}
+                label={t("site.timeOut")}
+                onChange={handleNumberChange}
+                type="number"
+              />
+            </Grid>
           </Grid>
         </Grid>
         <Divider className={classes.divider} />

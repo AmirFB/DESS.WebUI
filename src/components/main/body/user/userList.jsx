@@ -18,15 +18,16 @@ function UserList({ userReducer, getUsers, getGroups, ...props }) {
   const [getFailed, setGetFailed] = useState(false);
 
   useEffect(() => {
-    getUsers().catch((error) => {
-      setGetFailed(true);
+    if (userReducer.users.length === 0)
+      getUsers().catch((error) => {
+        setGetFailed(true);
 
-      if (!getFailed) {
-        setTimeout(() => {
-          setGetFailed(false);
-        }, 10000);
-      }
-    });
+        if (!getFailed) {
+          setTimeout(() => {
+            setGetFailed(false);
+          }, 10000);
+        }
+      });
 
     getGroups().catch((error) => {
       setGetFailed(true);
@@ -37,7 +38,7 @@ function UserList({ userReducer, getUsers, getGroups, ...props }) {
         }, 10000);
       }
     });
-  }, [props.users]);
+  }, [userReducer.users]);
 
   return (
     <>

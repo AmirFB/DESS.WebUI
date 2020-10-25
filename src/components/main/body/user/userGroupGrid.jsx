@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import PropType from "prop-types";
-import { useHistory } from "react-router-dom";
-import { connect } from "react-redux";
 import { useTranslation } from "react-i18next";
-
-import * as userActions from "../../../../redux/actions/userActions";
+import { useHistory } from "react-router-dom";
 
 import { DataGrid } from "@material-ui/data-grid";
+import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
@@ -18,26 +15,26 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
+function UserGroupGrid({ groups, permissions, removeGroup, ...props }) {
   const [t, i18n] = useTranslation();
   const [rows, setRows] = useState([]);
   const [open, setOpen] = useState(false);
   const history = useHistory();
 
-  const handleEdit = (userId, groups) => {
+  const handleEdit = (id) => {
     history.push({
-      pathname: "/users/userEdit/",
-      state: { id: userId, groups: groups },
+      pathname: "/groups/groupEdit",
+      state: { id },
     });
   };
 
-  const handleRemove = () => {
+  const handelRemove = () => {
     setOpen(true);
   };
 
-  const handleAccept = (userId) => {
-    removeUser(userId);
-    getUsers();
+  const handleAccept = (groupId) => {
+    // removeGroup(groupId);
+    // getGroups();
     setOpen(false);
   };
 
@@ -47,21 +44,27 @@ function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
 
   const columns = [
     {
-      field: "username",
-      headerName: t("users.username"),
+      field: "title",
+      headerName: t("users.groupName"),
       width: 130,
     },
-    { field: "firstName", headerName: t("users.firstName"), width: 110 },
-    { field: "lastName", headerName: t("users.lastName"), width: 140 },
     {
-      field: "groupName",
-      headerName: "Group name",
-      width: 112,
+      field: "permission",
+      headerName: t("users.permissions"),
+      width: 600,
       renderCell: (params) => (
         <>
-          {groups
-            ? groups.find((g) => g.id === params.getValue("groupId")).title
-            : "NULL"}
+          {permissions.map((permission) => (
+            <>
+              <Checkbox
+                checked={params
+                  .getValue("permissionIds")
+                  .includes(permission.id)}
+                color="primary"
+              ></Checkbox>
+              {permission.title}
+            </>
+          ))}
         </>
       ),
     },
@@ -72,21 +75,23 @@ function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
       renderCell: (params) => (
         <>
           <IconButton
-            aria-label="addSite"
+            aria-label="addGroup"
             size="medium"
             color="primary"
             onClick={() => {
-              handleEdit(params.getValue("id"), groups);
+              handleEdit(params.getValue("id"));
             }}
           >
             <EditIcon fontSize="inherit" />
           </IconButton>
           <>
             <IconButton
-              aria-label="removeSite"
+              aria-label="removeGroup"
               size="medium"
               style={{ color: red[500] }}
-              onClick={handleRemove}
+              onClick={() => {
+                handelRemove(params.getValue("id"));
+              }}
             >
               <DeleteForeverIcon fontSize="inherit" />
             </IconButton>
@@ -136,8 +141,8 @@ function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
   ];
 
   useEffect(() => {
-    setRows(users);
-  }, [users]);
+    setRows(groups);
+  }, [groups]);
 
   return (
     <div style={{ height: "99%", width: "99%" }}>
@@ -151,21 +156,4 @@ function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
   );
 }
 
-UserGrid.PropType = {
-  users: PropType.array.isRequired,
-  removeUser: PropType.func.isRequired,
-  getUsers: PropType.func.isRequired,
-};
-
-function mapStateToProps(state) {
-  return {
-    userReducer: state.userReducer,
-  };
-}
-
-const mapDispatchToProps = {
-  removeUser: userActions.remove,
-  getUsers: userActions.getAll,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserGrid);
+export default UserGroupGrid;

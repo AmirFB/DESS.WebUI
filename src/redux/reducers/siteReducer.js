@@ -6,6 +6,9 @@ import {
   UPDATE_SITE_SUCCESS,
   UPDATE_SITE_ERROR,
   SAVE_SITE_DONE,
+  REMOVE_SITE_REQUEST,
+  REMOVE_SITE_SUCCESS,
+  REMOVE_SITE_ERROR,
   GET_ALL_LOG_REQUEST,
   GET_ALL_LOG_SUCCESS,
   GET_ALL_LOG_ERROR,
@@ -101,6 +104,25 @@ export default function siteRecuder(state = INITIAL_STATE, action) {
       return {
         ...state,
         saving: false,
+      };
+
+    case REMOVE_SITE_REQUEST:
+      return {
+        ...state,
+        saving: true,
+      };
+
+    case REMOVE_SITE_SUCCESS:
+      return {
+        ...state,
+        saveSuccessfull: true,
+      };
+
+    case REMOVE_SITE_ERROR:
+      return {
+        ...state,
+        saveSuccessfull: false,
+        error: action.error,
       };
 
     case GET_ALL_LOG_REQUEST:

@@ -30,6 +30,17 @@ export function getGroups() {
   return axios.get(url + "groups");
 }
 
+export function editGroups() {
+  return axios.put(url + "groups");
+}
+
+export function removeGroups() {
+  return axios.delete(url + "groups");
+}
+
+export function addGroups() {
+  return axios.post(url + "groups");
+}
 export function getPermissions() {
-  return axios.get("permissions");
+  return axios.get(url + "permissions");
 }

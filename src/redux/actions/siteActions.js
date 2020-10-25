@@ -13,6 +13,10 @@ export const ADD_SITE_REQUEST = "ADD_SITE_REQUEST";
 export const ADD_SITE_SUCCESS = "ADD_SITE_SUCCESS";
 export const ADD_SITE_ERROR = "ADD_SITE_ERROR";
 
+export const REMOVE_SITE_REQUEST = "REMOVE_SITE_REQUEST";
+export const REMOVE_SITE_SUCCESS = "REMOVE_SITE_SUCCESS";
+export const REMOVE_SITE_ERROR = "REMOVE_SITE_ERROR";
+
 export const UPDATE_SITE_REQUEST = "UPDATE_SITE_REQUEST";
 export const UPDATE_SITE_SUCCESS = "UPDATE_SITE_SUCCESS";
 export const UPDATE_SITE_ERROR = "UPDATE_SITE_ERROR";
@@ -83,6 +87,27 @@ function addSiteSuccess(site) {
 function addSiteError(error) {
   return {
     type: ADD_SITE_ERROR,
+    error,
+  };
+}
+
+// REMOVE Site
+
+function removeSiteRequest(id) {
+  return {
+    type: REMOVE_SITE_REQUEST,
+  };
+}
+
+function removeSiteSuccess(id) {
+  return {
+    type: REMOVE_SITE_SUCCESS,
+  };
+}
+
+function removeSiteError(error) {
+  return {
+    type: REMOVE_SITE_ERROR,
     error,
   };
 }
@@ -167,6 +192,24 @@ export function save(site) {
           ? dispatch(updateSiteError(error))
           : dispatch(addSiteError(error));
         dispatch(apiCallError(error));
+        throw error;
+      });
+  };
+}
+
+export function remove(id) {
+  return function (dispatch) {
+    dispatch(removeSiteRequest());
+    dispatch(beginApiCall());
+
+    return siteApi
+      .remove(id)
+      .then((response) => {
+        dispatch(removeSiteSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(removeSiteError(error));
+        dispatch(apiCallError());
         throw error;
       });
   };
