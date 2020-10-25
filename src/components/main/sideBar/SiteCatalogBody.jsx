@@ -9,7 +9,7 @@ import * as colors from "@material-ui/core/colors";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function SiteCatalogBody({ site, ...props }) {
+export default function SiteCatalogBody({ site, onMap, ...props }) {
   const [t, i18n] = useTranslation();
 
   const statusText = (state) =>
@@ -25,7 +25,7 @@ export default function SiteCatalogBody({ site, ...props }) {
       direction="column"
       className="site-catalog-body"
       style={{
-        backgroundColor: colors.cyan[50],
+        backgroundColor: onMap ? "transparent" : colors.cyan[50],
       }}
     >
       <Grid
@@ -144,6 +144,65 @@ export default function SiteCatalogBody({ site, ...props }) {
         <Grid item lg>
           {t("catalog.signalStrength")}:&nbsp;
           <SignalIcon strength={site.status.signalStrength} />
+        </Grid>
+      </Grid>
+      <Divider />
+      <Grid container item direction="row" justify="space-between">
+        <Grid item lg>
+          <Grid container direction="column">
+            <Grid item lg>
+              {t("common.input1")}:&nbsp;
+              <span
+                style={{
+                  color: site.status.inputs[0]
+                    ? colors.red[500]
+                    : colors.blue[500],
+                }}
+              >
+                {site.status.inputs[0] ? t("common.on") : t("common.off")}
+              </span>
+            </Grid>
+            <Grid item lg>
+              {t("common.input2")}:&nbsp;
+              <span
+                style={{
+                  color: site.status.inputs[1]
+                    ? colors.red[500]
+                    : colors.blue[500],
+                }}
+              >
+                {site.status.inputs[1] ? t("common.on") : t("common.off")}
+              </span>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item lg>
+          <Grid container direction="column">
+            <Grid item lg>
+              {t("common.output1")}:&nbsp;
+              <span
+                style={{
+                  color: site.status.outputs[0]
+                    ? colors.red[500]
+                    : colors.blue[500],
+                }}
+              >
+                {site.status.outputs[0] ? t("common.on") : t("common.off")}
+              </span>
+            </Grid>
+            <Grid item lg>
+              {t("common.output2")}:&nbsp;
+              <span
+                style={{
+                  color: site.status.outputs[1]
+                    ? colors.red[500]
+                    : colors.blue[500],
+                }}
+              >
+                {site.status.outputs[1] ? t("common.on") : t("common.off")}
+              </span>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
