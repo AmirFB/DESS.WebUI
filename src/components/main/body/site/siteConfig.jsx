@@ -98,7 +98,7 @@ function SiteConfig({
       setLocatonDisabled(data.autoLocation);
     } else setSite({ ...defaultSite });
     setLocatonDisabled(defaultSite.autoLocation);
-  }, [siteReducer]);
+  }, []);
 
   useEffect(() => {
     if (siteReducer.saveSuccessfull && siteReducer.saving) {
@@ -509,9 +509,9 @@ function SiteConfig({
             </Grid>
             <Grid item xs={3}>
               <TextField
-                name={"timeOut"}
-                value={site.timeOut}
-                label={t("site.timeOut")}
+                name={"timeout"}
+                value={site.timeout}
+                label={t("site.timeout")}
                 onChange={handleNumberChange}
                 type="number"
               />

@@ -154,7 +154,7 @@
     "autoLocation": "Auto Location",
     "temperatureMin": "Temperature Min",
     "temperatureMax": "Temperature Max",
-    "timeOut": "timeOut",
+    "timeout": "Timeout",
     "batteryMin": "Battery Min",
     "batteryMax": "Battery Max",
     "serialNo": "Serial"

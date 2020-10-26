@@ -62,7 +62,7 @@ class SideBar extends React.Component {
       });
       clearInterval(this.timerKey);
 
-      if (site.status && Date.now() < site.status.date + site.timeout)
+      if (site.status && Date.now() < site.status.date + site.timeout * 1000)
         activeIndexes.push(index);
       else inactiveIndexes.push(index);
 
