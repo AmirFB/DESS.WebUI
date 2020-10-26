@@ -71,11 +71,11 @@ function UserGroupGrid({ groups, permissions, removeGroup, ...props }) {
     {
       field: "actions",
       headerName: t("common.actions"),
-      width: 140,
+      width: 110,
       renderCell: (params) => (
         <>
           <IconButton
-            aria-label="addGroup"
+            aria-label="editGroup"
             size="medium"
             color="primary"
             onClick={() => {
@@ -126,15 +126,6 @@ function UserGroupGrid({ groups, permissions, removeGroup, ...props }) {
               </DialogActions>
             </Dialog>
           </>
-          <Button
-            className="action-button"
-            primary
-            look="flat"
-            icon="edit"
-            onClick={() => {
-              handleEdit(props.dataItem.id);
-            }}
-          />
         </>
       ),
     },

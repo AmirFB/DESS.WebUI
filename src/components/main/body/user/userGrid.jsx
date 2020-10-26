@@ -68,7 +68,7 @@ function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
     {
       field: "actions",
       headerName: t("common.actions"),
-      width: 140,
+      width: 100,
       renderCell: (params) => (
         <>
           <IconButton
@@ -121,15 +121,6 @@ function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
               </DialogActions>
             </Dialog>
           </>
-          <Button
-            className="action-button"
-            primary
-            look="flat"
-            icon="edit"
-            onClick={() => {
-              handleEdit(props.dataItem.id);
-            }}
-          />
         </>
       ),
     },
