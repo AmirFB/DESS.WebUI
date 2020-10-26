@@ -137,7 +137,7 @@ export default function SiteCatalogBody({ site, onMap, ...props }) {
                     : colors.blue[500],
               }}
             >
-              {site.status.batteryLevel} V
+              %{site.status.batteryLevel}
             </span>
           </Grid>
         </Grid>

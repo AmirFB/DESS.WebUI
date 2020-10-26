@@ -18,7 +18,7 @@
   "temperatureMin": 5,
   "temperatureMax": 50,
   "batteryWarning": true,
-  "batteryMin": 11.5,
+  "batteryMin": 40,
   "input1": { "name": "input1", "type": 0, "timer": 0, "enabled": false },
   "input2": { "name": "input2", "type": 0, "timer": 0, "enabled": false },
   "output1": {
