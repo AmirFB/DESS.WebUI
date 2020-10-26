@@ -84,6 +84,13 @@
     "temperatureWarning": "Temperature Warning"
   },
 
+  "fault": {
+    "hv": "HV",
+    "lv": "LV",
+    "power": "Power",
+    "tamper": "Tamper"
+  },
+
   "home": {
     "muteAlarm": "Mute Alarm",
     "raiseAlarm": "Raise Alarm",

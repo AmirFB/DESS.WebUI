@@ -84,6 +84,13 @@
     "temperatureWarning": "هشدار دما"
   },
 
+  "fault": {
+    "hv": "HV",
+    "lv": "LV",
+    "power": "توان",
+    "tamper": "جعبه"
+  },
+
   "home": {
     "muteAlarm": "سکوت",
     "raiseAlarm": "آژیر",
