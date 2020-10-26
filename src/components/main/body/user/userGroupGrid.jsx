@@ -62,7 +62,7 @@ function UserGroupGrid({ groups, permissions, removeGroup, ...props }) {
                   .includes(permission.id)}
                 color="primary"
               ></Checkbox>
-              {permission.title}
+              {t("users." + permission.title)}
             </>
           ))}
         </>
@@ -71,7 +71,7 @@ function UserGroupGrid({ groups, permissions, removeGroup, ...props }) {
     {
       field: "actions",
       headerName: t("common.actions"),
-      width: 110,
+      width: 125,
       renderCell: (params) => (
         <>
           <IconButton
@@ -103,16 +103,16 @@ function UserGroupGrid({ groups, permissions, removeGroup, ...props }) {
               aria-describedby="alert-dialog-description"
             >
               <DialogTitle id="alert-dialog-title">
-                "Use Google's location service?"
+                {t("dialog.title")}
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                  Are you sure?
+                  {t("dialog.message")}
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
                 <Button color="primary" onClick={handleDecline}>
-                  Disagree
+                  {t("dialog.disagree")}
                 </Button>
                 <Button
                   onClick={() => {
@@ -121,7 +121,7 @@ function UserGroupGrid({ groups, permissions, removeGroup, ...props }) {
                   color="primary"
                   autoFocus
                 >
-                  Agree
+                  {t("dialog.agree")}
                 </Button>
               </DialogActions>
             </Dialog>

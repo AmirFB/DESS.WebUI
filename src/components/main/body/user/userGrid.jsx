@@ -55,7 +55,7 @@ function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
     { field: "lastName", headerName: t("users.lastName"), width: 140 },
     {
       field: "groupName",
-      headerName: "Group name",
+      headerName: t("users.groupName"),
       width: 112,
       renderCell: (params) => (
         <>
@@ -68,7 +68,7 @@ function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
     {
       field: "actions",
       headerName: t("common.actions"),
-      width: 100,
+      width: 125,
       renderCell: (params) => (
         <>
           <IconButton
@@ -98,16 +98,16 @@ function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
               aria-describedby="alert-dialog-description"
             >
               <DialogTitle id="alert-dialog-title">
-                "Use Google's location service?"
+                {t("dialog.title")}
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                  Are you sure?
+                  {t("dialog.message")}
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
                 <Button color="primary" onClick={handleDecline}>
-                  Disagree
+                  {t("dialog.disagree")}
                 </Button>
                 <Button
                   onClick={() => {
@@ -116,7 +116,7 @@ function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
                   color="primary"
                   autoFocus
                 >
-                  Agree
+                  {t("dialog.agree")}
                 </Button>
               </DialogActions>
             </Dialog>
