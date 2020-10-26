@@ -4,7 +4,11 @@ import { connect } from "react-redux";
 
 import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
 import { useTranslation } from "react-i18next";
-import { Button } from "@progress/kendo-react-buttons";
+import Button from "@material-ui/core/Button";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import red from "@material-ui/core/colors/red";
+import IconButton from "@material-ui/core/IconButton";
 import { useHistory } from "react-router-dom";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -113,53 +117,59 @@ function SiteGrid({ removeSite, ...props }) {
           locked
           cell={(props) => (
             <td className={props.className} style={props.style}>
-              <>
-                <Button
-                  className="action-button"
-                  primary
-                  look="flat"
-                  icon="delete"
-                  onClick={handleDelete}
-                />
-                <Dialog
-                  open={open}
-                  onClose={handleDecline}
-                  aria-labelledby="alert-dialog-title"
-                  aria-describedby="alert-dialog-description"
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                <IconButton
+                  aria-label="addSite"
+                  size="medium"
+                  color="primary"
+                  onClick={() => {
+                    handleEdit(props.dataItem.id);
+                  }}
                 >
-                  <DialogTitle id="alert-dialog-title">
-                    "Use Google's location service?"
-                  </DialogTitle>
-                  <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                      Are you sure?
-                    </DialogContentText>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button color="primary" onClick={handleDecline}>
-                      Disagree
-                    </Button>
-                    <Button
-                      onClick={() => {
-                        handleAccept(props.dataItem.id);
-                      }}
-                      color="primary"
-                      autoFocus
-                    >
-                      Agree
-                    </Button>
-                  </DialogActions>
-                </Dialog>
-              </>
-              <Button
-                className="action-button"
-                primary
-                look="flat"
-                icon="edit"
-                onClick={() => {
-                  handleEdit(props.dataItem.id);
-                }}
-              />
+                  <EditIcon fontSize="inherit" />
+                </IconButton>
+
+                <>
+                  <IconButton
+                    aria-label="removeSite"
+                    size="medium"
+                    style={{ color: red[500] }}
+                    onClick={handleDelete}
+                  >
+                    <DeleteForeverIcon fontSize="inherit" />
+                  </IconButton>
+
+                  <Dialog
+                    open={open}
+                    onClose={handleDecline}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                  >
+                    <DialogTitle id="alert-dialog-title">
+                      "Use Google's location service?"
+                    </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                        Are you sure?
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button color="primary" onClick={handleDecline}>
+                        Disagree
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          handleAccept(props.dataItem.id);
+                        }}
+                        color="primary"
+                        autoFocus
+                      >
+                        Agree
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
+                </>
+              </div>
             </td>
           )}
         />
