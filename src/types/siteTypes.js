@@ -37,6 +37,15 @@ export const triggerTypes = [
   },
 ];
 
+export const faultType = {
+  Input1: 0,
+  Input2: 1,
+  Hv: 2,
+  Lv: 3,
+  Power: 4,
+  Tamper: 5,
+};
+
 export function getState(site) {
   if ((!site.status || !site.status.state) && site.status.state !== 0)
     return statusType.Null;
