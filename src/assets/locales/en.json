@@ -108,9 +108,14 @@
     "hvChargeFault": "HV Charge Fault",
     "hvDichargeFault": "HV Discharge Fault",
     "hvVoltage": "HV Voltage",
+    "occuredOn": "Occured on",
+    "obviatedOn": "Obviated on",
+    "resetedOn": "Rested on",
+    "resetedBy": "Reseted by",
     "batteryStatus": "Battery Status",
     "batteryLevel": "Battery Level",
-    "signalStrength": "Signal Strength"
+    "signalStrength": "Signal Strength",
+    "seenBy": "Seen by"
   },
 
   "sideBar": {
@@ -161,6 +166,10 @@
   },
 
   "users": {
+    "CanResetFaults": "Reset Faults",
+    "CanEditSites": "Edit sites",
+    "CanEditUsers": "Edit users",
+    "CanEditUserGroups": "Edit user groups",
     "firstName": "First Name",
     "getUserssFailed": "Loading users from server failed.",
     "group": "Group",
@@ -174,5 +183,12 @@
     "usernameNull": "Please enter username.",
     "usernameWrong": "Username should only contain A-Z, a-z, 0-9 and _ characters.",
     "worngUsernamePassword": "Wrong Username or Password"
+  },
+
+  "dialog": {
+    "title": "delete",
+    "message": "Are you sure you want to delete?",
+    "agree": "Agree",
+    "disagree": "Disagree"
   }
 }
