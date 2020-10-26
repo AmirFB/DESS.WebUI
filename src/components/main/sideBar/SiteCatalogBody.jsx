@@ -2,6 +2,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
 import SignalIcon from "./signalIcon";
+import FaultList from "./faultList";
 
 import { useTranslation } from "react-i18next";
 
@@ -204,6 +205,9 @@ export default function SiteCatalogBody({ site, onMap, ...props }) {
             </Grid>
           </Grid>
         </Grid>
+      </Grid>
+      <Grid item>
+        <FaultList site={site}></FaultList>
       </Grid>
     </Grid>
   );
