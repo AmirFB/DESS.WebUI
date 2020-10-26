@@ -115,9 +115,14 @@
     "hvChargeFault": "شارژ HV",
     "hvDichargeFault": "تخلیه HV",
     "hvVoltage": "ولتاژ HV",
+    "occuredOn": "تاریخ رخداد",
+    "obviatedOn": "Obviated on",
+    "resetedOn": "تاریخ بازنشانی",
+    "resetedBy": "بارنشانی شده توسط",
     "batteryStatus": "وضعیت باطری",
     "batteryLevel": "باطری",
-    "signalStrength": "قدرت سیگنال"
+    "signalStrength": "قدرت سیگنال",
+    "seenBy": "دیده شده توسط"
   },
 
   "sideBar": {
@@ -168,6 +173,10 @@
   },
 
   "users": {
+    "CanResetFaults": "بازنشانی خطاها",
+    "CanEditSites": "مدیریت سایت ها",
+    "CanEditUsers": "مدیریت کاربر ها",
+    "CanEditUserGroups": "مدیریت گروه کاربر ها",
     "firstName": "نام",
     "getUserssFailed": "بارگذاری لیست کاربر ها از سرور با مشکل مواجه شد",
     "group": "گروه",
@@ -181,5 +190,12 @@
     "usernameNull": "لطفا نام کاربری را وارد کنید.",
     "usernameWrong": "نام کاربری فقط می تواند شامل این کاراکتر ها باشد. A-Z, a-z, 0-9, _",
     "worngUsernamePassword": "نام کاربری یا رمز عبور اشتباه"
+  },
+
+  "dialog": {
+    "title": "حذف",
+    "message": "آیا از حذف مطمئمن هستید؟",
+    "agree": "قبول",
+    "disagree": "رد"
   }
 }

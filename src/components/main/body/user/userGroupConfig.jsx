@@ -56,7 +56,7 @@ function UserGroupConfig({ userReducer, ...props }) {
               color="primary"
               onChange={handlePermissionChange}
             ></Checkbox>
-            {permission.title}
+            {t("users." + permission.title)}
           </Grid>
         ))}
       </Grid>

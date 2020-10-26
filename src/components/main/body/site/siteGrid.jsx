@@ -112,7 +112,7 @@ function SiteGrid({ removeSite, ...props }) {
       {props.permission && (
         <Column
           title={t("common.actions")}
-          width="100"
+          width="125"
           locked
           locked
           cell={(props) => (
@@ -146,16 +146,16 @@ function SiteGrid({ removeSite, ...props }) {
                     aria-describedby="alert-dialog-description"
                   >
                     <DialogTitle id="alert-dialog-title">
-                      "Use Google's location service?"
+                      {t("dialog.title")}
                     </DialogTitle>
                     <DialogContent>
                       <DialogContentText id="alert-dialog-description">
-                        Are you sure?
+                        {t("dialog.message")}
                       </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                       <Button color="primary" onClick={handleDecline}>
-                        Disagree
+                        {t("dialog.disagree")}
                       </Button>
                       <Button
                         onClick={() => {
@@ -164,7 +164,7 @@ function SiteGrid({ removeSite, ...props }) {
                         color="primary"
                         autoFocus
                       >
-                        Agree
+                        {t("dialog.agree")}
                       </Button>
                     </DialogActions>
                   </Dialog>
