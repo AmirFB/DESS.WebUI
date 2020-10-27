@@ -17,6 +17,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Input from "@material-ui/core/Input";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
 import { useTranslation } from "react-i18next";
 import { connect } from "react-redux";
@@ -26,6 +28,10 @@ import { triggerTypes } from "../../../../types/siteTypes";
 import * as siteActions from "../../../../redux/actions/siteActions";
 
 import "./site.css";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -75,6 +81,9 @@ function SiteConfig({
   const [t, i18n] = useTranslation();
   const [site, setSite] = useState({ ...defaultSite });
   const [locatonDisabled, setLocatonDisabled] = useState(true);
+  const [open, setOpen] = useState(false);
+  const vertical = "bottom";
+  const horizontal = "right";
   const classes = useStyles();
   const history = useHistory();
 
@@ -108,7 +117,22 @@ function SiteConfig({
       saveSiteDone();
       getSites();
     }
+    if (siteReducer.hasError) {
+      handleClick();
+    }
   }, [siteReducer]);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -842,6 +866,16 @@ function SiteConfig({
           >
             {t("common.cancel")}
           </Button>
+          <Snackbar
+            open={open}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            anchorOrigin={{ vertical, horizontal }}
+          >
+            <Alert onClose={handleClose} severity="error">
+              {t("error.saveError")}
+            </Alert>
+          </Snackbar>
         </Grid>
       </Container>
     </form>

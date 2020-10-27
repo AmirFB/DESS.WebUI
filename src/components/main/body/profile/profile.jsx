@@ -10,13 +10,22 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
 import * as userActions from "../../../../redux/actions/userActions";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 function Profile({ userReducer, getUser, saveUser, ...props }) {
   const [t, i18n] = useTranslation();
   const [groupEdit, setGroupEdit] = useState(false);
   const [user, setUser] = useState({ ...userReducer.user });
+  const [open, setOpen] = useState(false);
+  const vertical = "bottom";
+  const horizontal = "right";
   const history = useHistory();
 
   useEffect(() => {
@@ -29,7 +38,20 @@ function Profile({ userReducer, getUser, saveUser, ...props }) {
       setGroupEdit(false);
       setUser({ ...userReducer.currentUser });
     }
-  }, []);
+    if (userReducer.hasError) handleClick();
+  }, [userReducer]);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -38,9 +60,13 @@ function Profile({ userReducer, getUser, saveUser, ...props }) {
 
   function handleSaveUser() {
     saveUser(user);
-    history.push({
-      pathname: "/users",
-    });
+    if (props.location.state) {
+      if (userReducer.saveSuccessfull) {
+        history.push({
+          pathname: "/users",
+        });
+      }
+    }
   }
 
   return (
@@ -107,6 +133,17 @@ function Profile({ userReducer, getUser, saveUser, ...props }) {
         <Button variant="contained" color="primary" onClick={handleSaveUser}>
           Save
         </Button>
+
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          anchorOrigin={{ vertical, horizontal }}
+        >
+          <Alert onClose={handleClose} severity="error">
+            {t("error.saveError")}
+          </Alert>
+        </Snackbar>
       </Grid>
     </Grid>
   );

@@ -6,6 +6,12 @@ import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 function UserGroupConfig({ userReducer, ...props }) {
   const [t, i18n] = useTranslation();
@@ -14,6 +20,9 @@ function UserGroupConfig({ userReducer, ...props }) {
     permissionIds: "",
     CanSecureSites: false,
   });
+  const [open, setOpen] = useState(false);
+  const vertical = "bottom";
+  const horizontal = "right";
 
   const handleEdit = (userId, groups) => {};
 
@@ -35,6 +44,18 @@ function UserGroupConfig({ userReducer, ...props }) {
         : delete permissionIds[permissionIds.indexOf(parseInt(value))];
       return { ...prevGroup, permissionIds };
     });
+  };
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
   };
 
   return (
@@ -59,6 +80,16 @@ function UserGroupConfig({ userReducer, ...props }) {
             {t("users." + permission.title)}
           </Grid>
         ))}
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          anchorOrigin={{ vertical, horizontal }}
+        >
+          <Alert onClose={handleClose} severity="error">
+            {t("error.saveError")}
+          </Alert>
+        </Snackbar>
       </Grid>
     </Grid>
   );
