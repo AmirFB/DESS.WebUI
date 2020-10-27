@@ -115,9 +115,9 @@
     "hvChargeFault": "HV Charge Fault",
     "hvDichargeFault": "HV Discharge Fault",
     "hvVoltage": "HV Voltage",
-    "occuredOn": "Occured on",
-    "obviatedOn": "Obviated on",
-    "resetedOn": "Rested on",
+    "occuredOn": "Occured",
+    "obviatedOn": "Obviated",
+    "resetedOn": "Rested",
     "resetedBy": "Reseted by",
     "batteryStatus": "Battery Status",
     "batteryLevel": "Battery Level",
@@ -197,5 +197,9 @@
     "message": "Are you sure you want to delete?",
     "agree": "Agree",
     "disagree": "Disagree"
+  },
+
+  "error": {
+    "saveError": "Error while saving"
   }
 }

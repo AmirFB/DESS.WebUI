@@ -115,9 +115,9 @@
     "hvChargeFault": "شارژ HV",
     "hvDichargeFault": "تخلیه HV",
     "hvVoltage": "ولتاژ HV",
-    "occuredOn": "تاریخ رخداد",
-    "obviatedOn": "Obviated on",
-    "resetedOn": "تاریخ بازنشانی",
+    "occuredOn": "زمان رخداد",
+    "obviatedOn": "زمان رفع",
+    "resetedOn": "زمان بازنشانی",
     "resetedBy": "بارنشانی شده توسط",
     "batteryStatus": "وضعیت باطری",
     "batteryLevel": "باطری",
@@ -197,5 +197,9 @@
     "message": "آیا از حذف مطمئمن هستید؟",
     "agree": "قبول",
     "disagree": "رد"
+  },
+
+  "error": {
+    "saveError": "خطا در هنگام ذخیره سازی"
   }
 }
