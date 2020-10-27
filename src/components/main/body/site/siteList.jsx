@@ -13,6 +13,7 @@ import {
 import { Zoom } from "@progress/kendo-react-animation";
 import IconButton from "@material-ui/core/IconButton";
 import AddBoxIcon from "@material-ui/icons/AddBox";
+import RefreshIcon from "@material-ui/icons/Refresh";
 
 import * as siteActions from "../../../../redux/actions/siteActions";
 
@@ -43,6 +44,18 @@ function SiteList({ siteReducer, userReducer, getSites, ...props }) {
     });
   }
 
+  function handleRefresh() {
+    getSites().catch((error) => {
+      setGetFailed(true);
+
+      if (!getFailed) {
+        setTimeout(() => {
+          setGetFailed(false);
+        }, 10000);
+      }
+    });
+  }
+
   return (
     <div>
       <IconButton
@@ -52,6 +65,15 @@ function SiteList({ siteReducer, userReducer, getSites, ...props }) {
         onClick={handleAddSite}
       >
         <AddBoxIcon fontSize="inherit" />
+      </IconButton>
+
+      <IconButton
+        aria-label="addSite"
+        color="primary"
+        size="large"
+        onClick={handleRefresh}
+      >
+        <RefreshIcon fontSize="inherit" />
       </IconButton>
       {siteReducer.loading ? (
         <Loading />

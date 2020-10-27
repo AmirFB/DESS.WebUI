@@ -10,6 +10,8 @@ import {
 import { Zoom } from "@progress/kendo-react-animation";
 import Loading from "../../../common/loading";
 import ReportGrid from "./reportGrid";
+import IconButton from "@material-ui/core/IconButton";
+import RefreshIcon from "@material-ui/icons/Refresh";
 
 import * as siteActions from "../../../../redux/actions/siteActions";
 
@@ -29,8 +31,31 @@ function Report({ siteReducer, getAllLog, ...props }) {
     });
   }, [props.log]);
 
+  function handleRefresh() {
+    getAllLog().catch((error) => {
+      setGetFailed(true);
+
+      if (!getFailed) {
+        setTimeout(() => {
+          setGetFailed(false);
+        }, 10000);
+      }
+    });
+  }
+
   return (
     <div className="list-div">
+      <div>
+        <IconButton
+          aria-label="addSite"
+          color="primary"
+          size="large"
+          onClick={handleRefresh}
+        >
+          <RefreshIcon fontSize="inherit" />
+        </IconButton>
+      </div>
+
       {siteReducer.loading ? (
         <Loading />
       ) : siteReducer.hasError && siteReducer.log.length === 0 ? (

@@ -10,6 +10,8 @@ import {
 import { Zoom } from "@progress/kendo-react-animation";
 import Loading from "../../../common/loading";
 import UserGroupGrid from "./userGroupGrid";
+import IconButton from "@material-ui/core/IconButton";
+import RefreshIcon from "@material-ui/icons/Refresh";
 
 import * as userActions from "../../../../redux/actions/userActions";
 
@@ -41,8 +43,28 @@ function UserGroupList({ userReducer, getGroups, getPermissions, ...props }) {
       });
   }, [userReducer.permissions]);
 
+  function handleRefresh() {
+    getGroups().catch((error) => {
+      setGetFailed(true);
+
+      if (!getFailed) {
+        setTimeout(() => {
+          setGetFailed(false);
+        }, 10000);
+      }
+    });
+  }
+
   return (
     <>
+      <IconButton
+        aria-label="addSite"
+        color="primary"
+        size="large"
+        onClick={handleRefresh}
+      >
+        <RefreshIcon fontSize="inherit" />
+      </IconButton>
       {userReducer.loading ? (
         <Loading />
       ) : userReducer.hasError && userReducer.groups.length === 0 ? (
