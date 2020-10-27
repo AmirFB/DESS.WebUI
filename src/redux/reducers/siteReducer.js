@@ -90,6 +90,8 @@ export default function siteRecuder(state = INITIAL_STATE, action) {
     case UPDATE_SITE_SUCCESS:
       return {
         ...state,
+        loading: false,
+        hasError: false,
         saveSuccessfull: true,
       };
 
@@ -97,6 +99,8 @@ export default function siteRecuder(state = INITIAL_STATE, action) {
       return {
         ...state,
         saveSuccessfull: false,
+        loading: false,
+        hasError: true,
         error: action.error,
       };
 

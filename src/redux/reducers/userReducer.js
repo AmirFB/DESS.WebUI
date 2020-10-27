@@ -14,6 +14,9 @@ import {
   REMOVE_USER_REQUEST,
   REMOVE_USER_SUCCESS,
   REMOVE_USER_ERROR,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR,
   AUTHENTICATE_USER_REQUEST,
   AUTHENTICATE_USER_SUCCESS,
   AUTHENTICATE_USER_ERROR,
@@ -148,6 +151,29 @@ export default function userRecuder(state = INITIAL_STATE, action) {
     case REMOVE_USER_ERROR:
       return {
         ...state,
+        loading: false,
+        hasError: true,
+        error: action.error,
+      };
+
+    case UPDATE_USER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        saveSuccessfull: true,
+        loading: false,
+        hasError: false,
+      };
+
+    case UPDATE_USER_ERROR:
+      return {
+        ...state,
+        saveSuccessfull: false,
         loading: false,
         hasError: true,
         error: action.error,
