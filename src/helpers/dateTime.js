@@ -3,9 +3,9 @@ export function dateToString(date) {
   return (
     data.getFullYear() +
     "/" +
-    data.getMonth() +
+    (data.getMonth() + 1) +
     "/" +
-    data.getDay() +
+    data.getDate() +
     " " +
     data.getHours() +
     ":" +

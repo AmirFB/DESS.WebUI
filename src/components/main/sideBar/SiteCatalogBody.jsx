@@ -116,12 +116,13 @@ export default function SiteCatalogBody({ site, onMap, ...props }) {
             {t("catalog.temperature")}:&nbsp;
             <span
               style={{
-                color:
-                  site.status.temperature > site.temperatureMax
-                    ? colors.red[500]
-                    : site.status.temperature < site.temperatureMin
-                    ? colors.cyan[500]
-                    : colors.green[500],
+                color: !site.temperatureWarning
+                  ? colors.blue[500]
+                  : site.status.temperature > site.temperatureMax
+                  ? colors.red[500]
+                  : site.status.temperature < site.temperatureMin
+                  ? colors.cyan[500]
+                  : colors.green[500],
                 fondSize: "14px",
               }}
             >
@@ -132,10 +133,11 @@ export default function SiteCatalogBody({ site, onMap, ...props }) {
             {t("catalog.battery")}:&nbsp;
             <span
               style={{
-                color:
-                  site.status.batteryLevel < site.batteryMin
-                    ? colors.red[500]
-                    : colors.blue[500],
+                color: !site.batteryWarning
+                  ? colors.blue[500]
+                  : site.status.batteryLevel < site.batteryMin
+                  ? colors.red[500]
+                  : colors.green[500],
               }}
             >
               %{site.status.batteryLevel}
@@ -206,9 +208,9 @@ export default function SiteCatalogBody({ site, onMap, ...props }) {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item>
+      {/* <Grid item>
         <FaultList site={site}></FaultList>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }

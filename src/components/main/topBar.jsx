@@ -55,7 +55,7 @@ function TopBar({ userReducer, logout, ...props }) {
           <IconButton aria-label="addSite" size="small" color="inherit">
             <ExitToAppIcon fontSize="inherit" />
           </IconButton>
-          <em>Logout</em>
+          <em>{t("common.logout")}</em>
         </span>
       )}
       <span style={{ margin: "10px" }}>

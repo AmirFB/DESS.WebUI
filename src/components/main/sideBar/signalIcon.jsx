@@ -19,15 +19,15 @@ export default function SignalIcon({ strength }) {
 
   return (
     <SvgIcon style={{ fontSize: "14px", color: color }}>
-      {strength == 0 ? (
+      {strength < 0 ? (
         <SignalCellularOffRoundedIcon />
-      ) : strength === 1 ? (
+      ) : strength === 0 ? (
         <SignalCellular0BarRoundedIcon />
-      ) : strength === 2 ? (
+      ) : strength === 1 ? (
         <SignalCellular1BarRoundedIcon />
-      ) : strength === 3 ? (
+      ) : strength === 2 ? (
         <SignalCellular2BarRoundedIcon />
-      ) : strength === 4 ? (
+      ) : strength === 3 ? (
         <SignalCellular3BarRoundedIcon />
       ) : (
         <SignalCellular4BarRoundedIcon />

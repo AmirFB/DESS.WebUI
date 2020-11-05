@@ -59,7 +59,13 @@ function Profile({ userReducer, getUser, saveUser, ...props }) {
   };
 
   function handleSaveUser() {
+    if (user.password !== user.passwordConfirm) {
+      setOpen(true);
+      return;
+    }
+
     saveUser(user);
+
     if (props.location.state) {
       if (userReducer.saveSuccessfull) {
         history.push({
@@ -130,9 +136,11 @@ function Profile({ userReducer, getUser, saveUser, ...props }) {
         </Grid>
       </Grid>
       <Grid item style={{ margin: "60px 0px" }}>
-        <Button variant="contained" color="primary" onClick={handleSaveUser}>
-          Save
-        </Button>
+        {!userReducer.currentUser.permissions.includes("IsAlmighty") && (
+          <Button variant="contained" color="primary" onClick={handleSaveUser}>
+            Save
+          </Button>
+        )}
 
         <Snackbar
           open={open}

@@ -34,6 +34,7 @@
     "back": "Back",
     "refresh": "Refresh",
     "home": "Home",
+    "logout": "Logout",
     "site": "Site",
     "sites": "Sites",
     "settings": "Settings",
@@ -115,14 +116,20 @@
     "hvChargeFault": "HV Charge Fault",
     "hvDichargeFault": "HV Discharge Fault",
     "hvVoltage": "HV Voltage",
-    "occuredOn": "Occured",
-    "obviatedOn": "Obviated",
-    "resetedOn": "Rested",
+    "input1": "Input1",
+    "input2": "Input2",
+    "occuredOn": "Occur Time",
+    "obviatedOn": "Obviate Time",
+    "power": "Power",
+    "resetedOn": "Reset Time",
     "resetedBy": "Reseted by",
     "batteryStatus": "Battery Status",
     "batteryLevel": "Battery Level",
     "signalStrength": "Signal Strength",
-    "seenBy": "Seen by"
+    "seenBy": "Seen by",
+    "site": "Site",
+    "tamper": "Tamper",
+    "type": "Type"
   },
 
   "sideBar": {

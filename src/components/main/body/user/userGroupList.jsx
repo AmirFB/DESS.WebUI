@@ -60,7 +60,7 @@ function UserGroupList({ userReducer, getGroups, getPermissions, ...props }) {
       <IconButton
         aria-label="addSite"
         color="primary"
-        size="large"
+        size="medium"
         onClick={handleRefresh}
       >
         <RefreshIcon fontSize="inherit" />

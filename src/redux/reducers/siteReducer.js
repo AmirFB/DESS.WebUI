@@ -21,6 +21,7 @@ const INITIAL_STATE = {
   hasError: false,
   error: null,
   sites: [],
+  log: [],
 };
 
 function getStatusState(site, status) {

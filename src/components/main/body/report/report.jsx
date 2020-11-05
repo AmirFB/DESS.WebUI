@@ -22,7 +22,6 @@ function Report({ siteReducer, getAllLog, ...props }) {
   useEffect(() => {
     getAllLog().catch((error) => {
       setGetFailed(true);
-
       if (!getFailed) {
         setTimeout(() => {
           setGetFailed(false);
@@ -34,7 +33,6 @@ function Report({ siteReducer, getAllLog, ...props }) {
   function handleRefresh() {
     getAllLog().catch((error) => {
       setGetFailed(true);
-
       if (!getFailed) {
         setTimeout(() => {
           setGetFailed(false);
@@ -49,7 +47,7 @@ function Report({ siteReducer, getAllLog, ...props }) {
         <IconButton
           aria-label="addSite"
           color="primary"
-          size="large"
+          size="medium"
           onClick={handleRefresh}
         >
           <RefreshIcon fontSize="inherit" />
@@ -61,7 +59,7 @@ function Report({ siteReducer, getAllLog, ...props }) {
       ) : siteReducer.hasError && siteReducer.log.length === 0 ? (
         <h3>{t("common.getFailed")}</h3>
       ) : (
-        <ReportGrid log={siteReducer.log} />
+        <ReportGrid log={siteReducer.log} sites={siteReducer.sites} />
       )}
 
       <NotificationGroup

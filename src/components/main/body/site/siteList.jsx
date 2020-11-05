@@ -61,7 +61,7 @@ function SiteList({ siteReducer, userReducer, getSites, ...props }) {
       <IconButton
         aria-label="addSite"
         color="primary"
-        size="large"
+        size="medium"
         onClick={handleAddSite}
       >
         <AddBoxIcon fontSize="inherit" />
@@ -70,7 +70,7 @@ function SiteList({ siteReducer, userReducer, getSites, ...props }) {
       <IconButton
         aria-label="addSite"
         color="primary"
-        size="large"
+        size="medium"
         onClick={handleRefresh}
       >
         <RefreshIcon fontSize="inherit" />

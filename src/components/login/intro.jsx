@@ -2,17 +2,22 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import "./login.css";
+import logo from "../../assets/images/logo.png";
 
 const useStyles = makeStyles((theme) => {
   return {
     intro: {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.primary[50],
       display: "flex",
       flex: 1,
       flexDirection: "column",
       padding: "5px",
       float: "left",
       paddingTop: "2%",
+    },
+
+    title: {
+      color: theme.palette.primary[600],
     },
   };
 });
@@ -23,9 +28,11 @@ export default function Intro() {
   return (
     <div className={classes.intro}>
       <div className="intro-top">
-        <b>DESS</b>
-        <br />
-        Distributed Enterprise Security System
+        <span className={classes.title}>
+          <b>DESS</b>
+          <br />
+          Distributed Enterprise Security System
+        </span>
       </div>
 
       <div className="intro-middle"></div>
@@ -33,10 +40,9 @@ export default function Intro() {
       <div>
         <img
           style={{ margin: "0px 0px 15px 15px" }}
-          src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Irancell_Logo.gif"
+          src={logo}
           alt="Irancell"
-          width={55}
-          height={60}
+          width={80}
         />
       </div>
     </div>

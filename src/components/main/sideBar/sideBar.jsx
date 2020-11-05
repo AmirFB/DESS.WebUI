@@ -9,16 +9,11 @@ import BatteryIcon from "./batteryIcon";
 import StateIcon from "./stateIcon";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import amber from "@material-ui/core/colors/amber";
-import red from "@material-ui/core/colors/red";
-import grey from "@material-ui/core/colors/grey";
-import green from "@material-ui/core/colors/green";
-import blue from "@material-ui/core/colors/blue";
-import cyan from "@material-ui/core/colors/cyan";
-
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 import { withStyles } from "@material-ui/core/styles";
+
+import * as colors from "@material-ui/core/colors";
 
 import "./sideBar.css";
 
@@ -74,7 +69,7 @@ class SideBar extends React.Component {
   renderHeader = (site) => (
     <Grid container direction="row" alignItems="center">
       <Grid item lg={4}>
-        <span style={{ color: blue[500] }}>{site.siteId}</span>
+        <span style={{ color: colors.blue[500] }}>{site.siteId}</span>
       </Grid>
       <Grid item lg>
         <StateIcon site={site} />
@@ -82,12 +77,13 @@ class SideBar extends React.Component {
       <Grid item xs>
         <span
           style={{
-            color:
-              site.status.temperature > site.temperatureMax
-                ? red[500]
-                : site.status.temperature < site.temperatureMin
-                ? cyan[500]
-                : green[500],
+            color: !site.temperatureWarning
+              ? colors.blue[500]
+              : site.status.temperature > site.temperatureMax
+              ? colors.red[500]
+              : site.status.temperature < site.temperatureMin
+              ? colors.cyan[500]
+              : colors.green[500],
             fondSize: "14px",
           }}
         >
@@ -95,7 +91,7 @@ class SideBar extends React.Component {
         </span>
       </Grid>
       <Grid item xs>
-        <BatteryIcon status={site.status} />
+        <BatteryIcon site={site} />
       </Grid>
       <Grid item xs>
         <SignalIcon strength={site.status.signalStrength} />
@@ -123,7 +119,7 @@ class SideBar extends React.Component {
                     onChange={this.handleExpanded(site.id)}
                     style={{
                       fontSize: "12px",
-                      backgroundColor: blue[100],
+                      backgroundColor: colors.blue[100],
                       margin: 0,
                     }}
                   >

@@ -34,6 +34,7 @@
     "back": "برگشت",
     "refresh": "بارگذاری",
     "home": "خانه",
+    "logout": "خروج",
     "site": "سایت",
     "sites": "سایت ها",
     "settings": "تنظیمات",
@@ -115,14 +116,20 @@
     "hvChargeFault": "شارژ HV",
     "hvDichargeFault": "تخلیه HV",
     "hvVoltage": "ولتاژ HV",
+    "input1": "ورودی 1",
+    "input2": "ورودی 2",
     "occuredOn": "زمان رخداد",
     "obviatedOn": "زمان رفع",
+    "power": "تغذیه",
     "resetedOn": "زمان بازنشانی",
     "resetedBy": "بارنشانی شده توسط",
     "batteryStatus": "وضعیت باطری",
     "batteryLevel": "باطری",
     "signalStrength": "قدرت سیگنال",
-    "seenBy": "دیده شده توسط"
+    "seenBy": "دیده شده توسط",
+    "site": "سایت",
+    "tamper": "جعبه",
+    "type": "نوع"
   },
 
   "sideBar": {

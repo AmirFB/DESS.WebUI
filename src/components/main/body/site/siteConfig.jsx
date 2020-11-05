@@ -181,51 +181,71 @@ function SiteConfig({
   };
 
   const handleInput1Change = (e) => {
-    const { name, value, checked } = e.target;
+    const { name, value, checked, type } = e.target;
     setSite((prevSite) => ({
       ...prevSite,
       input1: {
         ...prevSite.input1,
-        [name]: name !== "enabled" ? value : checked,
+        [name]:
+          type === "number"
+            ? parseFloat(value)
+            : name !== "enabled"
+            ? value
+            : checked,
       },
     }));
   };
 
   const handleInput2Change = (e) => {
-    const { name, value, checked } = e.target;
+    const { name, value, checked, type } = e.target;
     setSite((prevSite) => ({
       ...prevSite,
       input2: {
         ...prevSite.input2,
-        [name]: name !== "enabled" ? value : checked,
+        [name]:
+          type === "number"
+            ? parseFloat(value)
+            : name !== "enabled"
+            ? value
+            : checked,
       },
     }));
   };
 
   const handleOutput1Change = (e) => {
-    const { name, value, checked } = e.target;
+    const { name, value, checked, type } = e.target;
     setSite((prevSite) => ({
       ...prevSite,
       output1: {
         ...prevSite.output1,
-        [name]: name !== "enabled" ? value : checked,
+        [name]:
+          type === "number"
+            ? parseFloat(value)
+            : name !== "enabled"
+            ? value
+            : checked,
       },
     }));
   };
 
   const handleOutput2Change = (e) => {
-    const { name, value, checked } = e.target;
+    const { name, value, checked, type } = e.target;
     setSite((prevSite) => ({
       ...prevSite,
       output2: {
         ...prevSite.output2,
-        [name]: name !== "enabled" ? value : checked,
+        [name]:
+          type === "number"
+            ? parseFloat(value)
+            : name !== "enabled"
+            ? value
+            : checked,
       },
     }));
   };
 
   const handleTriggerChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, checked, type } = e.target;
     setSite((prevSite) => ({
       ...prevSite,
       [name]: {
@@ -715,9 +735,9 @@ function SiteConfig({
               </Grid>
               <Grid item xs={2}>
                 <TextField
-                  name="autoReset"
+                  name="resetTime"
                   type="number"
-                  value={site.output1.autoReset}
+                  value={site.output1.resetTime}
                   label={t("editSite.autoReset")}
                   onChange={handleOutput1Change}
                 />
@@ -804,9 +824,9 @@ function SiteConfig({
               </Grid>
               <Grid item xs={2}>
                 <TextField
-                  name="autoReset"
+                  name="resetTime"
                   type="number"
-                  value={site.output2.autoReset}
+                  value={site.output2.resetTime}
                   label={t("editSite.autoReset")}
                   onChange={handleOutput2Change}
                 />

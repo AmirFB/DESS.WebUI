@@ -21,7 +21,8 @@ import BatteryChargingFullRoundedIcon from "@material-ui/icons/BatteryChargingFu
 import BatteryFullRoundedIcon from "@material-ui/icons/BatteryFullRounded";
 import BatteryAlertRoundedIcon from "@material-ui/icons/BatteryAlertRounded";
 
-export default function BatteryIcon({ status }) {
+export default function BatteryIcon({ site }) {
+  const status = site.status;
   const level = status.batteryLevel;
   const state = status.batteryStatus;
   const color =
@@ -29,8 +30,10 @@ export default function BatteryIcon({ status }) {
       ? colors.red[500]
       : level === 100
       ? colors.green[500]
-      : level > 30
+      : level > site.battteryMin
       ? colors.blue[500]
+      : level > site.battteryMin / 2
+      ? colors.yellow[500]
       : colors.red[500];
 
   return (

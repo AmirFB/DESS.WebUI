@@ -1,4 +1,5 @@
 import axios from "axios";
+import { generatePasswordHash } from "../helpers/cryptography";
 
 const url = "users/";
 
@@ -15,7 +16,11 @@ export function get(id) {
 }
 
 export function save(user) {
-  return user.id ? axios.put(url, user) : axios.post(url + "register", user);
+  const data = {
+    ...user,
+    password: user.password ? generatePasswordHash(user.password) : null,
+  };
+  return data.id ? axios.put(url, data) : axios.post(url + "register", data);
 }
 
 export function remove(id) {

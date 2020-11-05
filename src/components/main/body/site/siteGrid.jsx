@@ -47,11 +47,16 @@ function SiteGrid({ removeSite, ...props }) {
 
   return (
     <Grid className="list-grid" data={props.sites} resizable>
-      <Column field="name" title={t("common.name")} width="80" locked />
-      <Column field="siteId" title={t("site.siteId")} width="90" locked />
-      <Column field="serialNo" title={t("site.serialNo")} width="80" />
-      <Column field="phoneNumber" title={t("site.phoneNumber")} width="80" />
-      <Column field="ipAddress" title="IP" width="130" />
+      <Column field="name" title={t("common.name")} width="70" locked />
+      <Column field="siteId" title={t("site.siteId")} width="70" locked />
+      <Column field="serialNo" title={t("site.serialNo")} width="100" />
+      <Column field="phoneNumber" title={t("site.phoneNumber")} width="100" />
+      <Column
+        field="ipAddress"
+        title="IP"
+        width="130"
+        cell={(props) => <td>{props.dataItem.status.ipAddress}</td>}
+      />
       <Column field="interval" title={t("site.interval")} width="50" />
       <Column
         title={t("common.location")}
