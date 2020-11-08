@@ -13,8 +13,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export default function SiteCatalogBody({ site, onMap, ...props }) {
   const [t, i18n] = useTranslation();
 
-  const statusText = (state) =>
-    state ? (
+  const statusText = (enabled, state) =>
+    !enabled ? (
+      <span style={{ color: colors.amber[500] }}>{t("common.off")}</span>
+    ) : state ? (
       <span style={{ color: colors.red[500] }}>{t("catalog.fault")}</span>
     ) : (
       <span style={{ color: colors.green[500] }}>{t("catalog.ok")}</span>
@@ -38,15 +40,15 @@ export default function SiteCatalogBody({ site, onMap, ...props }) {
       >
         <Grid item lg>
           HV:&nbsp;
-          {statusText(site.status.hvAlarm)}
+          {statusText(site.hvEnabled, site.status.hvAlarm)}
         </Grid>
         <Grid item lg>
           LV:&nbsp;
-          {statusText(site.status.lvAlarm)}
+          {statusText(site.lvEnabled, site.status.lvAlarm)}
         </Grid>
         <Grid item lg>
           Tamper:&nbsp;
-          {statusText(site.status.tamperAlarm)}
+          {statusText(site.tamperEnabled, site.status.tamperAlarm)}
         </Grid>
       </Grid>
       <Divider />
@@ -77,10 +79,11 @@ export default function SiteCatalogBody({ site, onMap, ...props }) {
       >
         <Grid item lg>
           {t("catalog.mainPower")}:&nbsp;
-          {statusText(site.status.mainPowerFault)}
+          {statusText(true, site.status.mainPowerFault)}
         </Grid>
         <Grid item lg>
-          {t("catalog.hvCharge")}:&nbsp;{statusText(site.status.hvChargeFault)}
+          {t("catalog.hvCharge")}:&nbsp;
+          {statusText(true, site.status.hvChargeFault)}
         </Grid>
       </Grid>
       <Grid
@@ -91,11 +94,12 @@ export default function SiteCatalogBody({ site, onMap, ...props }) {
         alignItems="baseline"
       >
         <Grid item lg>
-          {t("catalog.hvPower")}:&nbsp;{statusText(site.status.hvPowerFault)}
+          {t("catalog.hvPower")}:&nbsp;
+          {statusText(true, site.status.hvPowerFault)}
         </Grid>
         <Grid item lg>
           {t("catalog.hvDischarge")}:&nbsp;
-          {statusText(site.status.hvDischargeFault)}
+          {statusText(true, site.status.hvDischargeFault)}
         </Grid>
       </Grid>
       <Divider />
