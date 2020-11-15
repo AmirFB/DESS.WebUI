@@ -3,14 +3,14 @@ export function dateToString(date) {
   return (
     data.getFullYear() +
     "/" +
-    (data.getMonth() + 1) +
+    (data.getMonth() + 1).toString().padStart(2, "0") +
     "/" +
-    data.getDate() +
+    data.getDate().toString().padStart(2, "0") +
     " " +
-    data.getHours() +
+    data.getHours().toString().padStart(2, "0") +
     ":" +
-    data.getMinutes() +
+    data.getMinutes().toString().padStart(2, "0") +
     ":" +
-    data.getSeconds()
+    data.getSeconds().toString().padStart(2, "0")
   );
 }
