@@ -33,7 +33,7 @@ export default function SiteCatalog({ site, ...props }) {
       key={site.id}
       title={
         <>
-          {site.siteId}&nbsp;|&nbsp;T:{site.status.temperature}°C&nbsp;
+          {site.name}&nbsp;|&nbsp;T:{site.status.temperature}°C&nbsp;
           {site.status.batteryLevel}%&nbsp;
           <img className="signal-img" src={getIcon()} />
         </>

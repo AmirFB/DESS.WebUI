@@ -69,7 +69,7 @@ class SideBar extends React.Component {
   renderHeader = (site) => (
     <Grid container direction="row" alignItems="center">
       <Grid item lg={4}>
-        <span style={{ color: colors.blue[500] }}>{site.siteId}</span>
+        <span style={{ color: colors.blue[500] }}>{site.name}</span>
       </Grid>
       <Grid item lg>
         <StateIcon site={site} />

@@ -48,7 +48,6 @@ function SiteGrid({ removeSite, ...props }) {
   return (
     <Grid className="list-grid" data={props.sites} resizable>
       <Column field="name" title={t("common.name")} width="70" locked />
-      <Column field="siteId" title={t("site.siteId")} width="70" locked />
       <Column field="serialNo" title={t("site.serialNo")} width="100" />
       <Column field="phoneNumber" title={t("site.phoneNumber")} width="100" />
       <Column
