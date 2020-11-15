@@ -42,8 +42,8 @@ export const faultType = {
   Input2: 1,
   Hv: 2,
   Lv: 3,
-  Power: 4,
-  Tamper: 5,
+  Tamper: 4,
+  Power: 5,
 };
 
 export function getState(site) {
