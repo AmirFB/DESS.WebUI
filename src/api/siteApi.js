@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "efs/";
+const url = "sites/";
 
 export function getAll() {
   return axios.get(url);
