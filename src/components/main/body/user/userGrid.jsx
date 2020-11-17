@@ -53,6 +53,7 @@ function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
     },
     { field: "firstName", headerName: t("users.firstName"), width: 110 },
     { field: "lastName", headerName: t("users.lastName"), width: 140 },
+    { field: "phoneNumber", headerName: t("users.phoneNumber"), width: 110 },
     {
       field: "groupName",
       headerName: t("users.groupName"),
