@@ -62,7 +62,7 @@ export default function userRecuder(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         hasError: true,
-        users: action.users,
+        users: state.users,
         error: action.error,
       };
 
@@ -85,7 +85,7 @@ export default function userRecuder(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         hasError: true,
-        groups: action.groups,
+        groups: state.groups,
         error: action.error,
       };
 
@@ -108,7 +108,7 @@ export default function userRecuder(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         hasError: true,
-        users: action.users,
+        users: state.users,
         error: action.error,
       };
 
@@ -131,7 +131,7 @@ export default function userRecuder(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         hasError: true,
-        permissions: action.permissions,
+        permissions: state.permissions,
         error: action.error,
       };
 

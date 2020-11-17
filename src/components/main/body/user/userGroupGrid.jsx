@@ -23,7 +23,7 @@ function UserGroupGrid({ groups, permissions, removeGroup, ...props }) {
 
   const handleEdit = (id) => {
     history.push({
-      pathname: "/groups/groupEdit",
+      pathname: "/userGroups/userGroupEdit",
       state: { id },
     });
   };
