@@ -2,6 +2,9 @@ import {
   GET_SITES_REQUEST,
   GET_SITES_SUCCESS,
   GET_SITES_ERROR,
+  GET_GROUPS_REQUEST,
+  GET_GROUPS_SUCCESS,
+  GET_GROUPS_ERROR,
   UPDATE_SITE_REQUEST,
   UPDATE_SITE_SUCCESS,
   UPDATE_SITE_ERROR,
@@ -22,6 +25,8 @@ const INITIAL_STATE = {
   error: null,
   sites: [],
   log: [],
+  groups: [],
+  permissions: [],
 };
 
 function getStatusState(site, status) {
@@ -79,6 +84,29 @@ export default function siteRecuder(state = INITIAL_STATE, action) {
         loading: false,
         hasError: true,
         sites: state.sites,
+        error: action.error,
+      };
+
+    case GET_GROUPS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case GET_GROUPS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        hasError: false,
+        groups: action.groups,
+      };
+
+    case GET_GROUPS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        hasError: true,
+        groups: state.groups,
         error: action.error,
       };
 

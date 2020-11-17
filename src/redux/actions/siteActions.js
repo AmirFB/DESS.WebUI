@@ -9,6 +9,10 @@ export const GET_ALL_LOG_REQUEST = "GET_ALL_LOG_REQUEST";
 export const GET_ALL_LOG_SUCCESS = "GET_ALL_LOG_SUCCESS";
 export const GET_ALL_LOG_ERROR = "GET_ALL_LOG_ERROR";
 
+export const GET_GROUPS_REQUEST = "GET_SITE_GROUPS_REQUEST";
+export const GET_GROUPS_SUCCESS = "GET_SITE_GROUPS_SUCCESS";
+export const GET_GROUPS_ERROR = "GET_SITE_GROUPS_ERROR";
+
 export const ADD_SITE_REQUEST = "ADD_SITE_REQUEST";
 export const ADD_SITE_SUCCESS = "ADD_SITE_SUCCESS";
 export const ADD_SITE_ERROR = "ADD_SITE_ERROR";
@@ -64,6 +68,29 @@ function getLogSuccess(log) {
 function getLogError(error) {
   return {
     type: GET_ALL_LOG_ERROR,
+    error,
+  };
+}
+
+// GET GROUP
+
+function getGroupsRequest(siteGroups) {
+  return {
+    type: GET_GROUPS_REQUEST,
+    siteGroups,
+  };
+}
+
+function getGroupsSuccess(siteGroups) {
+  return {
+    type: GET_GROUPS_SUCCESS,
+    siteGroups,
+  };
+}
+
+function getGroupsError(error) {
+  return {
+    type: GET_GROUPS_ERROR,
     error,
   };
 }
@@ -151,6 +178,25 @@ export function getAll() {
       })
       .catch((error) => {
         dispatch(getSitesError(error));
+        dispatch(apiCallError());
+        throw error;
+      });
+  };
+}
+
+export function getGroups() {
+  return function (dispatch) {
+    dispatch(getGroupsRequest());
+    dispatch(beginApiCall());
+
+    return siteApi
+      .getGroups()
+      .then((response) => {
+        console.log(response.data);
+        dispatch(getGroupsSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(getGroupsError(error));
         dispatch(apiCallError());
         throw error;
       });

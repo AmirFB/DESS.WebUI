@@ -31,3 +31,7 @@ export function getAllLog() {
 export function getLog(id) {
   return axios.get(url + id + "/log");
 }
+
+export function getGroups() {
+  return axios.get(url + "groups");
+}
