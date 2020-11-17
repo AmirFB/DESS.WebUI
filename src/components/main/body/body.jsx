@@ -11,8 +11,10 @@ import Report from "./report/report";
 import SiteList from "./site/siteList";
 import SiteConfig from "./site/siteConfig";
 import Profile from "./profile/profile";
-import Groups from "./user/userGroupList";
-import GroupsConfig from "./user/userGroupConfig";
+import UserGroup from "./user/userGroupList";
+import UserGroupsConfig from "./user/userGroupConfig";
+import SiteGroupConfig from "./site/siteGroupConfig";
+import siteGroupList from "./site/siteGroupList";
 
 import HomeIcon from "@material-ui/icons/Home";
 import MemoryIcon from "@material-ui/icons/Memory";
@@ -20,10 +22,11 @@ import PeopleIcon from "@material-ui/icons/People";
 import HistoryIcon from "@material-ui/icons/History";
 import PersonIcon from "@material-ui/icons/Person";
 import GroupWorkIcon from "@material-ui/icons/GroupWork";
+
 import "@progress/kendo-theme-material/dist/all.css";
 import "./body.css";
 
-function Body({ userReducer, props }) {
+function Body({ userReducer, ...props }) {
   const [selected, setSelected] = useState(0);
   const [t, i18n] = useTranslation();
 
@@ -71,6 +74,25 @@ function Body({ userReducer, props }) {
           <Route path="/siteList/siteEdit" component={SiteConfig} />
         </TabStripTab>
 
+        <TabStripTab
+          title={
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <MemoryIcon color="primary" />
+              {/* {t("common.sites")} */}Site Groups
+            </div>
+          }
+        >
+          <Redirect push to="/siteGroups" />
+          <Route exact path="/siteGroups" component={siteGroupList} />
+          <Route path="/siteGroups/GroupEdit" component={SiteGroupConfig} />
+        </TabStripTab>
+
         {/* <TabStripTab title={t("common.settings")}>
           <Redirect push to="/settings" />
           <Route path="/settings" component={Settings} />
@@ -116,9 +138,12 @@ function Body({ userReducer, props }) {
               </div>
             }
           >
-            <Redirect push to="/groups" />
-            <Route exact path="/groups" component={Groups} />
-            <Route path="/groups/groupEdit" component={GroupsConfig} />
+            <Redirect push to="/userGroups" />
+            <Route exact path="/userGroups" component={UserGroup} />
+            <Route
+              path="/userGroups/userGroupEdit"
+              component={UserGroupsConfig}
+            />
           </TabStripTab>
         )}
 
