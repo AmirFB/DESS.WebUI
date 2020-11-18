@@ -1,3 +1,5 @@
+import store from "../storeConfig";
+
 import { updateStatus } from "../actions/signalrActions";
 import {
   HttpTransportType,
@@ -6,14 +8,9 @@ import {
   withCallbacks,
 } from "redux-signalr";
 
-function getToken() {
-  return JSON.parse(window.localStorage.getItem("user")).token;
-}
-
 export const connection = new HubConnectionBuilder()
   .configureLogging(LogLevel.Debug)
   .withUrl("http://" + window.location.hostname + ":5000/api/web/hub/ef/", {
-    accessTokenFactory: () => getToken(),
     skipNegotiation: true,
     transport: HttpTransportType.WebSockets,
   })

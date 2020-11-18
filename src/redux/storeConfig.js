@@ -11,15 +11,12 @@ const signalR = signalMiddleware({
   shouldConnectionStartImmediately: false,
 });
 
-export default function storeConfig(initialState) {
-  const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  rootReducer,
+  {},
+  (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose)(
+    applyMiddleware(thunk, signalR, reduxImmutableStateInvariant())
+  )
+);
 
-  return createStore(
-    rootReducer,
-    initialState,
-    composeEnhancers(
-      applyMiddleware(thunk, signalR, reduxImmutableStateInvariant())
-    )
-  );
-}
+export default store;

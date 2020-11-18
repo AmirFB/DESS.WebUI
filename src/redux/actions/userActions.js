@@ -366,8 +366,6 @@ export function authenticate(user) {
       .authenticate(user)
       .then((response) => {
         const data = { username: user.username, ...response.data };
-        window.localStorage.setItem("user", JSON.stringify(data));
-        axios.defaults.headers.common["Authorization"] = "Bearer " + data.token;
         dispatch(authenticateUserSuccess(data));
       })
       .catch((error) => {

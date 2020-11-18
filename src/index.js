@@ -17,12 +17,13 @@ import "helvatica-neue-lt/index.css";
 
 axios.defaults.baseURL =
   "http://" + window.location.hostname + ":5000/api/web/";
+axios.defaults.withCredentials = true;
 
 startSignalR();
 
 ReactDOM.render(
   <Router>
-    <ReduxProvider store={storeConfig()}>
+    <ReduxProvider store={storeConfig}>
       <App />
     </ReduxProvider>
   </Router>,
