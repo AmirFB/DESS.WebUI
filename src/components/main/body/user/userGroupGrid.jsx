@@ -51,7 +51,7 @@ function UserGroupGrid({ groups, permissions, removeGroup, ...props }) {
     {
       field: "permission",
       headerName: t("users.permissions"),
-      width: 600,
+      width: 950,
       renderCell: (params) => (
         <>
           {permissions.map((permission) => (
@@ -136,7 +136,7 @@ function UserGroupGrid({ groups, permissions, removeGroup, ...props }) {
   }, [groups]);
 
   return (
-    <div style={{ height: "99%", width: "99%" }}>
+    <div style={{ height: "91%", width: "99%" }}>
       <DataGrid
         rows={rows}
         columns={columns}

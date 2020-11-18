@@ -180,10 +180,13 @@
   },
 
   "users": {
-    "CanResetFaults": "Reset Faults",
+    "CanAddRemoveSites": "Edit and remove site",
+    "CanAssignAdmin": "Assign admin",
     "CanEditSites": "Edit sites",
     "CanEditUsers": "Edit users",
-    "CanEditUserGroups": "Edit user groups",
+    "CanHandleSiteGroups": "Handle site groups",
+    "CanHandleUserGroup": "Handle user group",
+    "CanSecure": "Secure",
     "firstName": "First Name",
     "getUserssFailed": "Loading users from server failed.",
     "group": "Group",

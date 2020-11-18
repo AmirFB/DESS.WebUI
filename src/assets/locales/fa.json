@@ -180,10 +180,13 @@
   },
 
   "users": {
-    "CanResetFaults": "بازنشانی خطاها",
+    "CanAddRemoveSites": "افزودن و حذف سایت",
+    "CanAssignAdmin": "تعیین ادمین",
     "CanEditSites": "مدیریت سایت ها",
     "CanEditUsers": "مدیریت کاربر ها",
-    "CanEditUserGroups": "مدیریت گروه کاربر ها",
+    "CanHandleSiteGroups": "مدیریت گروه های سایت",
+    "CanHandleUserGroup": "مدیریت گروه های کاربر",
+    "CanSecure": "تعیین امنیت",
     "firstName": "نام",
     "getUserssFailed": "بارگذاری لیست کاربر ها از سرور با مشکل مواجه شد",
     "group": "گروه",
