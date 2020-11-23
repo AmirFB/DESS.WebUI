@@ -89,7 +89,7 @@ function UserGroupList({ userReducer, getGroups, getPermissions, ...props }) {
             <Notification
               type={{ style: "error", icon: true }}
               closable={true}
-              onClose={() => this.setGetFailed(false)}
+              onClose={() => setGetFailed(false)}
             >
               <span>{t("user.getUsersFailed")}</span>
             </Notification>

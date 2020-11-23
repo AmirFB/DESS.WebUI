@@ -78,7 +78,7 @@ function SiteGroupList({ siteReducer, getGroups, getPermissions, ...props }) {
             <Notification
               type={{ style: "error", icon: true }}
               closable={true}
-              onClose={() => this.setGetFailed(false)}
+              onClose={() => setGetFailed(false)}
             >
               <span>{t("site.getSitesFailed")}</span>
             </Notification>

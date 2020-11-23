@@ -74,17 +74,16 @@ function getLogError(error) {
 
 // GET GROUP
 
-function getGroupsRequest(siteGroups) {
+function getGroupsRequest() {
   return {
     type: GET_GROUPS_REQUEST,
-    siteGroups,
   };
 }
 
-function getGroupsSuccess(siteGroups) {
+function getGroupsSuccess(groups) {
   return {
     type: GET_GROUPS_SUCCESS,
-    siteGroups,
+    groups,
   };
 }
 

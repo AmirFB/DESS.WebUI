@@ -74,24 +74,28 @@ function Body({ userReducer, ...props }) {
           <Route path="/siteList/siteEdit" component={SiteConfig} />
         </TabStripTab>
 
-        <TabStripTab
-          title={
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <MemoryIcon color="primary" />
-              {/* {t("common.sites")} */}Site Groups
-            </div>
-          }
-        >
-          <Redirect push to="/siteGroups" />
-          <Route exact path="/siteGroups" component={siteGroupList} />
-          <Route path="/siteGroups/GroupEdit" component={SiteGroupConfig} />
-        </TabStripTab>
+        {(userReducer.currentUser.permissions
+          ? userReducer.currentUser.permissions.includes("CanHandleSiteGroups")
+          : false) && (
+          <TabStripTab
+            title={
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <MemoryIcon color="primary" />
+                {/* {t("common.sites")} */}Site Groups
+              </div>
+            }
+          >
+            <Redirect push to="/siteGroups" />
+            <Route exact path="/siteGroups" component={siteGroupList} />
+            <Route path="/siteGroups/GroupEdit" component={SiteGroupConfig} />
+          </TabStripTab>
+        )}
 
         {/* <TabStripTab title={t("common.settings")}>
           <Redirect push to="/settings" />

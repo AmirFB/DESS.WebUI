@@ -132,7 +132,6 @@ function SiteGrid({ removeSite, ...props }) {
                 >
                   <EditIcon fontSize="inherit" />
                 </IconButton>
-
                 <>
                   <IconButton
                     aria-label="removeSite"
@@ -189,7 +188,7 @@ SiteGrid.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    siteReducer: state.userReducer,
+    siteReducer: state.siteReducer,
   };
 }
 

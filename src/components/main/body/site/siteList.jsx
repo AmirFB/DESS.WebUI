@@ -44,6 +44,7 @@ function SiteList({ siteReducer, userReducer, getSites, ...props }) {
     });
   }
 
+
   function handleRefresh() {
     getSites().catch((error) => {
       setGetFailed(true);
@@ -102,7 +103,7 @@ function SiteList({ siteReducer, userReducer, getSites, ...props }) {
             <Notification
               type={{ style: "error", icon: true }}
               closable={true}
-              onClose={() => this.setGetFailed(false)}
+              onClose={() => setGetFailed(false)}
             >
               <span>{t("site.getSitesFailed")}</span>
             </Notification>

@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
 import { DataGrid } from "@material-ui/data-grid";
-import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
@@ -28,8 +27,6 @@ function SiteGroupGrid({ groups, permissions, removeGroup, ...props }) {
     });
   };
 
-  //console.log(groups);
-
   const handelRemove = () => {
     setOpen(true);
   };
@@ -45,95 +42,81 @@ function SiteGroupGrid({ groups, permissions, removeGroup, ...props }) {
   };
 
   const columns = [
-    // {
-    //   field: "title",
-    //   headerName: t("sites.groupName"),
-    //   width: 130,
-    // },
-    // {
-    //   field: "permission",
-    //   headerName: t("sites.permissions"),
-    //   width: 600,
-    //   renderCell: (params) => (
-    //     <>
-    //       {permissions.map((permission) => (
-    //         <>
-    //           <Checkbox
-    //             checked={params
-    //               .getValue("permissionIds")
-    //               .includes(permission.id)}
-    //             color="primary"
-    //           ></Checkbox>
-    //           {t("sites." + permission.title)}
-    //         </>
-    //       ))}
-    //     </>
-    //   ),
-    // },
-    // {
-    //   field: "actions",
-    //   headerName: t("common.actions"),
-    //   width: 125,
-    //   renderCell: (params) => (
-    //     <>
-    //       <IconButton
-    //         aria-label="editGroup"
-    //         size="medium"
-    //         color="primary"
-    //         onClick={() => {
-    //           handleEdit(params.getValue("id"));
-    //         }}
-    //       >
-    //         <EditIcon fontSize="inherit" />
-    //       </IconButton>
-    //       <>
-    //         <IconButton
-    //           aria-label="removeGroup"
-    //           size="medium"
-    //           style={{ color: red[500] }}
-    //           onClick={() => {
-    //             handelRemove(params.getValue("id"));
-    //           }}
-    //         >
-    //           <DeleteForeverIcon fontSize="inherit" />
-    //         </IconButton>
-    //         <Dialog
-    //           open={open}
-    //           onClose={handleDecline}
-    //           aria-labelledby="alert-dialog-title"
-    //           aria-describedby="alert-dialog-description"
-    //         >
-    //           <DialogTitle id="alert-dialog-title">
-    //             {t("dialog.title")}
-    //           </DialogTitle>
-    //           <DialogContent>
-    //             <DialogContentText id="alert-dialog-description">
-    //               {t("dialog.message")}
-    //             </DialogContentText>
-    //           </DialogContent>
-    //           <DialogActions>
-    //             <Button color="primary" onClick={handleDecline}>
-    //               {t("dialog.disagree")}
-    //             </Button>
-    //             <Button
-    //               onClick={() => {
-    //                 handleAccept(params.getValue("id"));
-    //               }}
-    //               color="primary"
-    //               autoFocus
-    //             >
-    //               {t("dialog.agree")}
-    //             </Button>
-    //           </DialogActions>
-    //         </Dialog>
-    //       </>
-    //     </>
-    //   ),
-    // },
+    {
+      field: "name",
+      headerName: t("users.groupName"),
+      width: 130,
+    },
+    {
+      field: "province",
+      headerName: t("users.permissions"),
+      width: 600,
+    },
+    {
+      field: "actions",
+      headerName: t("common.actions"),
+      width: 125,
+      renderCell: (params) => (
+        <>
+          <IconButton
+            aria-label="editGroup"
+            size="medium"
+            color="primary"
+            onClick={() => {
+              handleEdit(params.getValue("id"));
+            }}
+          >
+            <EditIcon fontSize="inherit" />
+          </IconButton>
+          <>
+            <IconButton
+              aria-label="removeGroup"
+              size="medium"
+              style={{ color: red[500] }}
+              onClick={() => {
+                handelRemove(params.getValue("id"));
+              }}
+            >
+              <DeleteForeverIcon fontSize="inherit" />
+            </IconButton>
+            <Dialog
+              open={open}
+              onClose={handleDecline}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {t("dialog.title")}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  {t("dialog.message")}
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button color="primary" onClick={handleDecline}>
+                  {t("dialog.disagree")}
+                </Button>
+                <Button
+                  onClick={() => {
+                    handleAccept(params.getValue("id"));
+                  }}
+                  color="primary"
+                  autoFocus
+                >
+                  {t("dialog.agree")}
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </>
+        </>
+      ),
+    },
   ];
 
   useEffect(() => {
     setRows(groups);
+    console.log(rows);
   }, [groups]);
 
   return (
