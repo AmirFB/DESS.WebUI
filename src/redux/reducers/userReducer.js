@@ -21,6 +21,9 @@ import {
   AUTHENTICATE_USER_SUCCESS,
   AUTHENTICATE_USER_ERROR,
   LOGOUT_USER,
+  REFRESH_TOKEN_REQUEST,
+  REFRESH_TOKEN_SUCCESS,
+  REFRESH_TOKEN_ERROR,
 } from "../actions/userActions";
 
 const INITIAL_STATE = {
@@ -211,6 +214,28 @@ export default function userRecuder(state = INITIAL_STATE, action) {
         ...state,
         loggedIn: false,
         currentUser: null,
+      };
+
+    case REFRESH_TOKEN_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case REFRESH_TOKEN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        hasError: false,
+        loggedIn: true,
+      };
+
+    case REFRESH_TOKEN_ERROR:
+      return {
+        ...state,
+        loading: false,
+        hasError: true,
+        loggedIn: false,
       };
 
     default:

@@ -36,6 +36,10 @@ export const AUTHENTICATE_USER_REQUEST = "AUTHENTICATE_USER_REQUEST";
 export const AUTHENTICATE_USER_SUCCESS = "AUTHENTICATE_USER_SUCCESS";
 export const AUTHENTICATE_USER_ERROR = "AUTHENTICATE_USER_ERROR";
 
+export const REFRESH_TOKEN_REQUEST = "REFRESH_TOKEN_REQUEST";
+export const REFRESH_TOKEN_SUCCESS = "REFRESH_TOKEN_SUCCESS";
+export const REFRESH_TOKEN_ERROR = "REFRESH_TOKEN_ERROR";
+
 export const LOGOUT_USER = "LOGOUT_USER";
 
 // Get Users
@@ -223,6 +227,28 @@ function logoutUser() {
   return { type: LOGOUT_USER };
 }
 
+// Get Refresh Token
+
+function refreshTokenRequest() {
+  return {
+    type: REFRESH_TOKEN_REQUEST,
+  };
+}
+
+function refreshTokenSuccess(token) {
+  return {
+    type: REFRESH_TOKEN_SUCCESS,
+    token,
+  };
+}
+
+function refreshTokenError(error) {
+  return {
+    type: REFRESH_TOKEN_ERROR,
+    error,
+  };
+}
+
 export function getAll() {
   return function (dispatch) {
     dispatch(getUsersRequest());
@@ -357,10 +383,14 @@ export function initialAuthentication() {
   };
 }
 
+let expireTime = 60;
+let timerId = -1;
+
 export function authenticate(user) {
   return function (dispatch) {
     dispatch(authenticateUserRequest());
     dispatch(beginApiCall());
+    // document.cookie = "LoggedIn=true";
 
     return userApi
       .authenticate(user)
@@ -369,6 +399,10 @@ export function authenticate(user) {
         window.localStorage.setItem("user", JSON.stringify(data));
         axios.defaults.headers.common["Authorization"] = "Bearer " + data.token;
         dispatch(authenticateUserSuccess(data));
+
+        expireTime = (response.data.expireTime - 60) * 1000;
+        if (timerId >= 0) clearTimeout(timerId);
+        setTimeout(() => refreshToken(), expireTime);
       })
       .catch((error) => {
         dispatch(authenticateUserError(error));
@@ -382,5 +416,30 @@ export function logout() {
   return function (dispatch) {
     window.localStorage.removeItem("user");
     dispatch(logoutUser());
+    // document.cookie = "LoggedIn=false";
+    console.log(document.cookie);
+    return userApi.logOut();
+  };
+}
+
+export function refreshToken() {
+  return function (dispatch) {
+    dispatch(refreshTokenRequest());
+    dispatch(beginApiCall());
+
+    return userApi
+      .refreshToken()
+      .then((response) => {
+        dispatch(refreshTokenSuccess(response.data));
+
+        expireTime = (response.data.expireTime - 60) * 1000;
+        if (timerId >= 0) clearTimeout(timerId);
+        setTimeout(() => refreshToken(), expireTime);
+      })
+      .catch((error) => {
+        dispatch(refreshTokenError(error));
+        dispatch(apiCallError());
+        throw error;
+      });
   };
 }

@@ -46,6 +46,15 @@ export function removeGroups() {
 export function addGroups() {
   return axios.post(url + "groups");
 }
+
 export function getPermissions() {
   return axios.get(url + "permissions");
+}
+
+export function refreshToken() {
+  return axios.get(url + "refresh");
+}
+
+export function logOut() {
+  return axios.post(url + "logout");
 }
