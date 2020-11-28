@@ -45,12 +45,12 @@ function SiteGroupGrid({ groups, permissions, removeGroup, ...props }) {
     {
       field: "name",
       headerName: t("users.groupName"),
-      width: 130,
+      width: 150,
     },
     {
       field: "province",
-      headerName: t("users.permissions"),
-      width: 600,
+      headerName: t("site.provinceName"),
+      width: 500,
     },
     {
       field: "actions",
@@ -116,17 +116,16 @@ function SiteGroupGrid({ groups, permissions, removeGroup, ...props }) {
 
   useEffect(() => {
     setRows(groups);
-    console.log(rows);
   }, [groups]);
 
   return (
     <div style={{ height: "99%", width: "99%" }}>
-      {/* <DataGrid
+      <DataGrid
         rows={rows}
         columns={columns}
         pageSize={7}
         hideFooterSelectedRowCount
-      /> */}
+      />
     </div>
   );
 }

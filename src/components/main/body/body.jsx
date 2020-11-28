@@ -87,7 +87,7 @@ function Body({ userReducer, ...props }) {
                 }}
               >
                 <MemoryIcon color="primary" />
-                {/* {t("common.sites")} */}Site Groups
+                {t("site.siteGroups")}
               </div>
             }
           >
@@ -138,7 +138,7 @@ function Body({ userReducer, ...props }) {
                 }}
               >
                 <GroupWorkIcon color="primary" />
-                {t("common.groups")}
+                {t("users.userGroups")}
               </div>
             }
           >

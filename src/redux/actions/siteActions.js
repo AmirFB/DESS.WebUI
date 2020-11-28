@@ -191,7 +191,6 @@ export function getGroups() {
     return siteApi
       .getGroups()
       .then((response) => {
-        console.log(response.data);
         dispatch(getGroupsSuccess(response.data));
       })
       .catch((error) => {

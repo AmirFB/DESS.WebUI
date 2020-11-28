@@ -428,9 +428,6 @@ export function refreshToken() {
       .refreshToken()
       .then((response) => {
         refreshTokenSuccess(response.data);
-
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-
         timer(response.data.expireTime);
       })
       .catch((error) => {
