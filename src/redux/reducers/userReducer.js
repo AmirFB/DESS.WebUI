@@ -219,21 +219,17 @@ export default function userRecuder(state = INITIAL_STATE, action) {
     case REFRESH_TOKEN_REQUEST:
       return {
         ...state,
-        loading: true,
       };
 
     case REFRESH_TOKEN_SUCCESS:
       return {
         ...state,
-        loading: false,
-        hasError: false,
         loggedIn: true,
       };
 
     case REFRESH_TOKEN_ERROR:
       return {
         ...state,
-        loading: false,
         hasError: true,
         loggedIn: false,
       };

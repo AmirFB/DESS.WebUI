@@ -229,9 +229,10 @@ function logoutUser() {
 
 // Get Refresh Token
 
-function refreshTokenRequest() {
+function refreshTokenRequest(token) {
   return {
     type: REFRESH_TOKEN_REQUEST,
+    token,
   };
 }
 
@@ -390,7 +391,6 @@ export function authenticate(user) {
   return function (dispatch) {
     dispatch(authenticateUserRequest());
     dispatch(beginApiCall());
-    // document.cookie = "LoggedIn=true";
 
     return userApi
       .authenticate(user)
@@ -400,7 +400,7 @@ export function authenticate(user) {
 
         expireTime = (response.data.expireTime - 60) * 1000;
         if (timerId >= 0) clearTimeout(timerId);
-        setTimeout(() => refreshToken(), expireTime);
+        setTimeout(refreshToken(), expireTime);
       })
       .catch((error) => {
         dispatch(authenticateUserError(error));
@@ -414,30 +414,35 @@ export function logout() {
   return function (dispatch) {
     window.localStorage.removeItem("user");
     dispatch(logoutUser());
-    // document.cookie = "LoggedIn=false";
-    console.log(document.cookie);
+    document.cookie = "LogedIn=false";
     return userApi.logOut();
   };
 }
 
 export function refreshToken() {
-  return function (dispatch) {
-    dispatch(refreshTokenRequest());
-    dispatch(beginApiCall());
+  return function () {
+    refreshTokenRequest();
+    beginApiCall();
 
     return userApi
       .refreshToken()
       .then((response) => {
-        dispatch(refreshTokenSuccess(response.data));
+        refreshTokenSuccess(response.data);
 
-        expireTime = (response.data.expireTime - 60) * 1000;
-        if (timerId >= 0) clearTimeout(timerId);
-        setTimeout(() => refreshToken(), expireTime);
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+        timer(response.data.expireTime);
       })
       .catch((error) => {
-        dispatch(refreshTokenError(error));
-        dispatch(apiCallError());
+        refreshTokenError(error);
+        apiCallError();
         throw error;
       });
   };
+
+  function timer(time) {
+    expireTime = (time - 60) * 1000;
+    if (timerId >= 0) clearTimeout(timerId);
+    timerId = setTimeout(refreshToken(), expireTime);
+  }
 }

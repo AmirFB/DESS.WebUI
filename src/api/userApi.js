@@ -52,7 +52,7 @@ export function getPermissions() {
 }
 
 export function refreshToken() {
-  return axios.get(url + "refresh");
+  return axios.post(url + "refresh");
 }
 
 export function logOut() {
