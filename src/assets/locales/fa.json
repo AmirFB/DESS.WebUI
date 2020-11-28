@@ -147,6 +147,8 @@
   },
 
   "site": {
+    "addSite": "افزودن سایت",
+    "addList": "افزودن لیست",
     "basicInformation": "اطلاعات پایه",
     "siteId": "مشخصه",
     "alarmLevel": "سطح هشدار",
@@ -159,14 +161,13 @@
     "getReportsFailed": "بارگذاری لیست گزارش ها از سرور با مشکل مواجه شد",
     "group": "گروه",
     "lastUpdate": "آخرین بروزرسانی",
-    "addSite": "افزودن سایت",
-    "addList": "افزودن لیست",
     "operationalParameters": "پارامتر های عملیاتی",
     "remove": "حذف",
     "exportList": "استتخراج لیست",
     "addGroup": "افزودن گروه",
     "editGroup": "ویرایش گروه",
     "search": "جستجو",
+    "siteGroups": "گروه سایت ها",
     "filter": "فیلتر",
     "name": "نام",
     "interval": "فاصله",
@@ -176,7 +177,8 @@
     "timeuut": "مهلت",
     "batteryMin": "حداقل باطری",
     "batteryMax": "حداکثر باطری",
-    "serialNo": "سریال"
+    "serialNo": "سریال",
+    "provinceName": "نام استان"
   },
 
   "users": {
@@ -199,6 +201,7 @@
     "username": "نام کاربری",
     "usernameNull": "لطفا نام کاربری را وارد کنید.",
     "usernameWrong": "نام کاربری فقط می تواند شامل این کاراکتر ها باشد. A-Z, a-z, 0-9, _",
+    "userGroups": "گروه کاربران",
     "worngUsernamePassword": "نام کاربری یا رمز عبور اشتباه"
   },
 

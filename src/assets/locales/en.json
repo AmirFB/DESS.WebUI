@@ -24,7 +24,6 @@
     "save": "Save",
     "enable": "Enable",
     "enabled": "Enabled",
-    "groups": "Groups",
     "disable": "Disable",
     "disabled": "Disabled",
     "min": "Min",
@@ -147,6 +146,8 @@
   },
 
   "site": {
+    "addSite": "Add Site",
+    "addList": "Add List",
     "basicInformation": "Basic Information",
     "siteId": "ID",
     "alarmLevel": "Alarm Level",
@@ -159,14 +160,13 @@
     "getReportsFailed": "Loading reports from server failed.",
     "group": "Group",
     "lastUpdate": "Last Update",
-    "addSite": "Add Site",
-    "addList": "Add List",
     "operationalParameters": "Operational Parameters",
     "remove": "Remove",
     "exportList": "Export List",
     "addGroup": "Add Group",
     "editGroup": "Edit Group",
     "search": "Search",
+    "siteGroups": "Site Groups",
     "filter": "Filter",
     "name": "Name",
     "interval": "Interval",
@@ -176,7 +176,8 @@
     "timeout": "Timeout",
     "batteryMin": "Battery Min",
     "batteryMax": "Battery Max",
-    "serialNo": "Serial"
+    "serialNo": "Serial",
+    "provinceName": "Province name"
   },
 
   "users": {
@@ -199,6 +200,7 @@
     "username": "Username",
     "usernameNull": "Please enter username.",
     "usernameWrong": "Username should only contain A-Z, a-z, 0-9 and _ characters.",
+    "userGroups": "User Groups",
     "worngUsernamePassword": "Wrong Username or Password"
   },
 
