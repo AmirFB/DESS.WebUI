@@ -212,9 +212,10 @@ export default function SiteCatalogBody({ site, onMap, ...props }) {
           </Grid>
         </Grid>
       </Grid>
-      {/* <Grid item>
+      <Divider />
+      <Grid item>
         <FaultList site={site}></FaultList>
-      </Grid> */}
+      </Grid>
     </Grid>
   );
 }
