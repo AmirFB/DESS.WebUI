@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import Grid from "@material-ui/core/Grid";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+} from "@material-ui/core";
 import SiteCatalogBody from "./SiteCatalogBody";
 import SignalIcon from "./signalIcon";
 import BatteryIcon from "./batteryIcon";
@@ -19,7 +21,7 @@ import "./sideBar.css";
 
 const classes = (theme) => ({
   side: {
-    width: "250px",
+    width: "260px",
     padding: "5px",
     backgroundColor: theme.palette.primary[100],
     overflow: "auto",
@@ -103,16 +105,16 @@ class SideBar extends React.Component {
     const sites = this.props.siteReducer.sites;
     return (
       <Accordion>
-        <AccordionSummary id={title} expandIcon={<ExpandMoreIcon />}>
-          {title}&nbsp;(
-          {indexes.length})
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          {title}&nbsp;({indexes.length})
         </AccordionSummary>
         <AccordionDetails style={{ paddingLeft: "5px", paddingRight: "5px" }}>
           <Grid container direction="column" justify="space-evenly">
             {indexes.map((index) => {
               const site = sites[index];
+
               return (
-                <Grid item id={"grid" + site.id}>
+                <Grid item key={site.id}>
                   <Accordion
                     id={"accordion" + site.id}
                     expanded={this.state.expanded[site.id]}

@@ -91,6 +91,13 @@
     "tamper": "Tamper"
   },
 
+  "faultList": {
+    "faults": "Faults",
+    "ob": "OB",
+    "oc": "OC",
+    "type": "Fault Type"
+  },
+
   "home": {
     "muteAlarm": "Mute Alarm",
     "raiseAlarm": "Raise Alarm",

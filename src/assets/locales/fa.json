@@ -92,6 +92,13 @@
     "tamper": "جعبه"
   },
 
+  "faultList": {
+    "faults": "خطا ها",
+    "ob": "ر",
+    "oc": "و",
+    "type": "نوع خطا"
+  },
+
   "home": {
     "muteAlarm": "سکوت",
     "raiseAlarm": "آژیر",
