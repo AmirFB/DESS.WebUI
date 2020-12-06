@@ -126,7 +126,7 @@ function Body({ userReducer, ...props }) {
         )}
 
         {(userReducer.currentUser.permissions
-          ? userReducer.currentUser.permissions.includes("CanEditUsers")
+          ? userReducer.currentUser.permissions.includes("CanHandleUserGroup")
           : false) && (
           <TabStripTab
             title={
@@ -169,27 +169,23 @@ function Body({ userReducer, ...props }) {
           <Route path="/report" component={Report} />
         </TabStripTab>
 
-        {(userReducer.currentUser.permissions
-          ? userReducer.currentUser.permissions.includes("CanEditUsers")
-          : false) && (
-          <TabStripTab
-            title={
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <PersonIcon color="primary" />
-                {t("common.profile")}
-              </div>
-            }
-          >
-            <Redirect push to="/profile" />
-            <Route path="/profile" component={Profile} />
-          </TabStripTab>
-        )}
+        <TabStripTab
+          title={
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <PersonIcon color="primary" />
+              {t("common.profile")}
+            </div>
+          }
+        >
+          <Redirect push to="/profile" />
+          <Route path="/profile" component={Profile} />
+        </TabStripTab>
 
         {/* <TabStripTab title={t("common.about")}>
           <Redirect push to="/about" />

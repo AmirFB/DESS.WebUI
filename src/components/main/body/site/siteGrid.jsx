@@ -20,7 +20,7 @@ import * as siteActions from "../../../../redux/actions/siteActions";
 
 import "./site.css";
 
-function SiteGrid({ removeSite, ...props }) {
+function SiteGrid({ removeSite, removePermission, editPermission, ...props }) {
   const [t, i18n] = useTranslation();
   const [open, setOpen] = useState(false);
   const history = useHistory();
@@ -113,17 +113,17 @@ function SiteGrid({ removeSite, ...props }) {
         )}
       />
 
-      {props.permission && (
-        <Column
-          title={t("common.actions")}
-          width="125"
-          locked
-          locked
-          cell={(props) => (
-            <td className={props.className} style={props.style}>
-              <div style={{ display: "flex", flexDirection: "row" }}>
+      <Column
+        title={t("common.actions")}
+        width="125"
+        locked
+        locked
+        cell={(props) => (
+          <td className={props.className} style={props.style}>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              {editPermission && (
                 <IconButton
-                  aria-label="addSite"
+                  aria-label="editSite"
                   size="medium"
                   color="primary"
                   onClick={() => {
@@ -132,7 +132,9 @@ function SiteGrid({ removeSite, ...props }) {
                 >
                   <EditIcon fontSize="inherit" />
                 </IconButton>
-                <>
+              )}
+              <>
+                {removePermission && (
                   <IconButton
                     aria-label="removeSite"
                     size="medium"
@@ -141,42 +143,42 @@ function SiteGrid({ removeSite, ...props }) {
                   >
                     <DeleteForeverIcon fontSize="inherit" />
                   </IconButton>
+                )}
 
-                  <Dialog
-                    open={open}
-                    onClose={handleDecline}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                  >
-                    <DialogTitle id="alert-dialog-title">
-                      {t("dialog.title")}
-                    </DialogTitle>
-                    <DialogContent>
-                      <DialogContentText id="alert-dialog-description">
-                        {t("dialog.message")}
-                      </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                      <Button color="primary" onClick={handleDecline}>
-                        {t("dialog.disagree")}
-                      </Button>
-                      <Button
-                        onClick={() => {
-                          handleAccept(props.dataItem.id);
-                        }}
-                        color="primary"
-                        autoFocus
-                      >
-                        {t("dialog.agree")}
-                      </Button>
-                    </DialogActions>
-                  </Dialog>
-                </>
-              </div>
-            </td>
-          )}
-        />
-      )}
+                <Dialog
+                  open={open}
+                  onClose={handleDecline}
+                  aria-labelledby="alert-dialog-title"
+                  aria-describedby="alert-dialog-description"
+                >
+                  <DialogTitle id="alert-dialog-title">
+                    {t("dialog.title")}
+                  </DialogTitle>
+                  <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                      {t("dialog.message")}
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button color="primary" onClick={handleDecline}>
+                      {t("dialog.disagree")}
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        handleAccept(props.dataItem.id);
+                      }}
+                      color="primary"
+                      autoFocus
+                    >
+                      {t("dialog.agree")}
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+              </>
+            </div>
+          </td>
+        )}
+      />
     </Grid>
   );
 }
