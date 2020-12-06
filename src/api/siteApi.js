@@ -25,7 +25,7 @@ export function getStatus(id) {
 }
 
 export function getAllLog() {
-  return axios.get(url + "log");
+  return axios.get(url + "log_old");
 }
 
 export function getLog(id) {

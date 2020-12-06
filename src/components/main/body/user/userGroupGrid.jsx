@@ -47,11 +47,15 @@ function UserGroupGrid({ groups, permissions, removeGroup, ...props }) {
       field: "title",
       headerName: t("users.groupName"),
       width: 130,
+      headerAlign: "center",
+      align: "center",
     },
     {
       field: "permission",
       headerName: t("users.permissions"),
       width: 950,
+      headerAlign: "center",
+      align: "center",
       renderCell: (params) => (
         <>
           {permissions.map((permission) => (
@@ -71,7 +75,9 @@ function UserGroupGrid({ groups, permissions, removeGroup, ...props }) {
     {
       field: "actions",
       headerName: t("common.actions"),
-      width: 125,
+      width: 115,
+      headerAlign: "center",
+      align: "center",
       renderCell: (params) => (
         <>
           <IconButton
