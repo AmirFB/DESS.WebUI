@@ -23,6 +23,9 @@ div[role="tabpanel"] {
   height: 100%;
   padding: 0;
 }
+.k-tabstrip > .k-content.k-state-active {
+  overflow: hidden;
+}
 
 .k-animation-container {
   width: 100%;

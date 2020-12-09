@@ -22,7 +22,7 @@ function SiteGroupGrid({ groups, permissions, removeGroup, ...props }) {
 
   const handleEdit = (id) => {
     history.push({
-      pathname: "/siteGroups/siteGroupEdit",
+      pathname: "/siteGroups/GroupEdit",
       state: { id },
     });
   };
@@ -46,16 +46,22 @@ function SiteGroupGrid({ groups, permissions, removeGroup, ...props }) {
       field: "name",
       headerName: t("users.groupName"),
       width: 150,
+      headerAlign: "center",
+      align: "center",
     },
     {
       field: "province",
       headerName: t("site.provinceName"),
-      width: 500,
+      width: 400,
+      headerAlign: "center",
+      align: "center",
     },
     {
       field: "actions",
       headerName: t("common.actions"),
       width: 125,
+      headerAlign: "center",
+      align: "center",
       renderCell: (params) => (
         <>
           <IconButton
@@ -119,7 +125,7 @@ function SiteGroupGrid({ groups, permissions, removeGroup, ...props }) {
   }, [groups]);
 
   return (
-    <div style={{ height: "99%", width: "99%" }}>
+    <div style={{ height: "91%", width: "100%" }}>
       <DataGrid
         rows={rows}
         columns={columns}

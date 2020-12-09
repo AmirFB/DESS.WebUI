@@ -50,10 +50,30 @@ function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
       field: "username",
       headerName: t("users.username"),
       width: 130,
+      headerAlign: "center",
+      align: "center",
     },
-    { field: "firstName", headerName: t("users.firstName"), width: 110 },
-    { field: "lastName", headerName: t("users.lastName"), width: 140 },
-    { field: "phoneNumber", headerName: t("site.phoneNumber"), width: 130 },
+    {
+      field: "firstName",
+      headerName: t("users.firstName"),
+      width: 110,
+      headerAlign: "center",
+      align: "center",
+    },
+    {
+      field: "lastName",
+      headerName: t("users.lastName"),
+      width: 140,
+      headerAlign: "center",
+      align: "center",
+    },
+    {
+      field: "phoneNumber",
+      headerName: t("site.phoneNumber"),
+      width: 130,
+      headerAlign: "center",
+      align: "center",
+    },
     {
       field: "groupName",
       headerName: t("users.groupName"),
@@ -70,6 +90,8 @@ function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
       field: "actions",
       headerName: t("common.actions"),
       width: 125,
+      headerAlign: "center",
+      align: "center",
       renderCell: (params) => (
         <>
           <IconButton
@@ -132,7 +154,7 @@ function UserGrid({ users, groups, removeUser, getUsers, ...props }) {
   }, [users]);
 
   return (
-    <div style={{ height: "99%", width: "99%" }}>
+    <div style={{ height: "91%", width: "100%" }}>
       <DataGrid
         rows={rows}
         columns={columns}

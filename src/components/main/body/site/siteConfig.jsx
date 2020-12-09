@@ -257,7 +257,7 @@ function SiteConfig({
 
   return (
     <form onSubmit={handleSubmit}>
-      <Container style={{ width: "900px" }}>
+      <Container style={{ width: "900px", height: "0px" }}>
         {/* Basic Information */}
         <Grid container direction="column" justify="flex-start">
           <Grid item>
@@ -877,7 +877,7 @@ function SiteConfig({
 
           <Button
             variant="contained"
-            style={{ margin: "0px 30px" }}
+            style={{ margin: "5px 30px" }}
             onClick={() => {
               history.push({
                 pathname: "/siteList/",

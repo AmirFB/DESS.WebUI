@@ -44,7 +44,6 @@ function SiteList({ siteReducer, userReducer, getSites, ...props }) {
     });
   }
 
-
   function handleRefresh() {
     getSites().catch((error) => {
       setGetFailed(true);
@@ -59,14 +58,18 @@ function SiteList({ siteReducer, userReducer, getSites, ...props }) {
 
   return (
     <div>
-      <IconButton
-        aria-label="addSite"
-        color="primary"
-        size="medium"
-        onClick={handleAddSite}
-      >
-        <AddBoxIcon fontSize="inherit" />
-      </IconButton>
+      {(userReducer.currentUser.permissions
+        ? userReducer.currentUser.permissions.includes("CanAddRemoveSites")
+        : false) && (
+        <IconButton
+          aria-label="addSite"
+          color="primary"
+          size="medium"
+          onClick={handleAddSite}
+        >
+          <AddBoxIcon fontSize="inherit" />
+        </IconButton>
+      )}
 
       <IconButton
         aria-label="addSite"
@@ -83,9 +86,16 @@ function SiteList({ siteReducer, userReducer, getSites, ...props }) {
       ) : (
         <SiteGrid
           sites={siteReducer.sites}
-          permission={
+          editPermission={
             userReducer.currentUser.permissions
               ? userReducer.currentUser.permissions.includes("CanEditSites")
+              : false
+          }
+          removePermission={
+            userReducer.currentUser.permissions
+              ? userReducer.currentUser.permissions.includes(
+                  "CanAddRemoveSites"
+                )
               : false
           }
         />

@@ -67,7 +67,7 @@ function UserList({ userReducer, getUsers, getGroups, ...props }) {
   return (
     <>
       <IconButton
-        aria-label="addSite"
+        aria-label="refresh"
         color="primary"
         size="medium"
         onClick={handleRefresh}

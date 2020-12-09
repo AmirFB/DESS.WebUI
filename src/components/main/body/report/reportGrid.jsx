@@ -15,6 +15,7 @@ export default function ReportGrid({ sites, ...props }) {
       field: "id",
       headerName: t("report.site"),
       width: 100,
+      headerAlign: "center",
       renderCell: (params) => {
         const site = sites.find((s) => s.id === params.getValue("siteId"));
         return site ? site.siteId : "-";
@@ -24,6 +25,7 @@ export default function ReportGrid({ sites, ...props }) {
       field: "type",
       headerName: t("report.type"),
       width: 100,
+      headerAlign: "center",
       renderCell: (params) => {
         switch (params.getValue("type")) {
           case faultType.Hv:
@@ -45,6 +47,7 @@ export default function ReportGrid({ sites, ...props }) {
       field: "occuredOn",
       headerName: t("report.occuredOn"),
       width: 150,
+      headerAlign: "center",
       renderCell: (params) =>
         params.getValue("occuredOn") > 0
           ? dateToString(params.getValue("occuredOn"))
@@ -54,12 +57,14 @@ export default function ReportGrid({ sites, ...props }) {
       field: "seenBy",
       headerName: t("report.seenBy"),
       width: 200,
+      headerAlign: "center",
       renderCell: (params) => params.getValue("seenBy").toString(),
     },
     {
       field: "obviatedOn",
       headerName: t("report.obviatedOn"),
       width: 150,
+      headerAlign: "center",
       renderCell: (params) =>
         params.getValue("obviatedOn") > 0
           ? dateToString(params.getValue("obviatedOn"))
@@ -69,12 +74,18 @@ export default function ReportGrid({ sites, ...props }) {
       field: "resetedOn",
       headerName: t("report.resetedOn"),
       width: 150,
+      headerAlign: "center",
       renderCell: (params) =>
         params.getValue("resetedOn") > 0
           ? dateToString(params.getValue("resetedOn"))
           : "-",
     },
-    { field: "resetedBy", headerName: t("report.resetedBy"), width: 200 },
+    {
+      field: "resetedBy",
+      headerName: t("report.resetedBy"),
+      width: 200,
+      headerAlign: "center",
+    },
   ];
 
   useEffect(() => {
@@ -82,8 +93,8 @@ export default function ReportGrid({ sites, ...props }) {
   }, [props.log]);
 
   return (
-    <div style={{ height: "90%", width: "99%" }}>
-      <DataGrid rows={rows} columns={columns} autoPageSize />
+    <div style={{ height: "99%", width: "98%" }}>
+      <DataGrid rows={rows} columns={columns} />
     </div>
   );
 }
