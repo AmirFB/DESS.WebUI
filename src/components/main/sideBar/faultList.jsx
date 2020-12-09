@@ -134,7 +134,7 @@ export default function FaultList({ site }) {
                 <ListItem>
                   <div className="container">
                     <div className="row">
-                      <div className="column">
+                      <div className="col">
                         <div className="row-1">
                           {renderText(t, site, fault)}
                         </div>
