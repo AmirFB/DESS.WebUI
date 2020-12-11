@@ -46,6 +46,31 @@ export const faultType = {
   Power: 5,
 };
 
+export const filterFaultType = [
+  { label: "Input1", value: 0 },
+  { label: "Input2", value: 1 },
+  { label: "Hv", value: 2 },
+  { label: "Lv", value: 3 },
+  { label: "Tamper", value: 4 },
+  { label: "Power", value: 5 },
+];
+
+export const reportType = {
+  NotObviated: 0,
+  Obviated: 1,
+  NotReseted: 2,
+  Reseted: 3,
+  All: 4,
+};
+
+export const filterReportType = [
+  { label: "NotObviated", value: 0 },
+  { label: "Obviated", value: 1 },
+  { label: "NotReseted", value: 2 },
+  { label: "Reseted", value: 3 },
+  { label: "All", value: 4 },
+];
+
 export function getState(site) {
   if ((!site.status || !site.status.state) && site.status.state !== 0)
     return statusType.Null;
