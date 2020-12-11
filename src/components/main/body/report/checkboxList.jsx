@@ -1,41 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
-import Checkbox from "@material-ui/core/Checkbox";
-import ListItemText from "@material-ui/core/ListItemText";
+import Select from "react-select";
 
-export default function CheckboxList({ header, data, ...props }) {
-  const handleTriggerChange = (e) => {
-    const { name, value, checked, type } = e.target;
-    console.log(value);
+export default function CheckboxList({
+  header,
+  data,
+  disabled,
+  handleChange,
+  ...props
+}) {
+  const [values, setValues] = useState();
+  const [checked, setChecked] = useState(false);
+
+  const handleChangeCheckbox = (e) => {
+    const isChecked = !checked;
+
+    setChecked(isChecked);
+    setValues(isChecked ? data : values);
+  };
+
+  const hanldeChange = (opt) => {
+    const allOptionsSelected = opt.length === data.length;
+
+    setChecked(allOptionsSelected ? true : false);
+    setValues(opt);
+    handleChange(opt);
   };
 
   return (
-    <div style={{ zIndex: 10 }}>
-      <InputLabel id="label">{header}</InputLabel>
+    <div>
+      {header}
       <Select
-        labelId="label"
-        width="80px"
-        multiple
-        name="output2"
-        style={{ width: 100 }}
-        value={data}
-        renderValue={(value) =>
-          value.sort().map((v, index) => (v.checked ? v.title + ", " : ""))
-        }
-        input={<Input />}
-        onChange={handleTriggerChange}
-      >
-        {data.map((type, index) => (
-          <MenuItem key={type.value} value={type.value}>
-            <Checkbox checked={type.checked} />
-            <ListItemText primary={type.title} />
-          </MenuItem>
-        ))}
-      </Select>
+        isMulti
+        options={data}
+        value={values}
+        onChange={hanldeChange}
+        closeMenuOnSelect={false}
+        isDisabled={disabled}
+      />
+      <p>
+        <input
+          onChange={handleChangeCheckbox}
+          type="checkbox"
+          value="selectAll"
+          checked={checked}
+          disabled={disabled}
+        />
+        <label>Select all</label>
+      </p>
     </div>
   );
 }
