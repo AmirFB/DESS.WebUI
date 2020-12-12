@@ -93,7 +93,7 @@ export default function ReportGrid({ sites, ...props }) {
   }, [props.log]);
 
   return (
-    <div style={{ height: "99%", width: "98%" }}>
+    <div style={{ width: "100%", height: "91%", zIndex: 0 }}>
       <DataGrid rows={rows} columns={columns} />
     </div>
   );

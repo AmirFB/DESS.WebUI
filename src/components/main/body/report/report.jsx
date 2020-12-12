@@ -14,34 +14,100 @@ import CheckboxList from "./checkboxList";
 import IconButton from "@material-ui/core/IconButton";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import DatePicker from "react-datepicker";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { Collapse } from "react-collapse";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "./report.css";
+import FilterIcon from "../../../../assets/images/icon/filter.svg";
 
 import * as siteActions from "../../../../redux/actions/siteActions";
+import * as userActions from "../../../../redux/actions/userActions";
+import { filterFaultType, filterReportType } from "../../../../types/siteTypes";
 
-function Report({ siteReducer, getAllLog, ...props }) {
+function Report({
+  siteReducer,
+  userReducer,
+  getAllLog,
+  getUsers,
+  getSites,
+  getGroups,
+  ...props
+}) {
   const [t, i18n] = useTranslation();
   const [getFailed, setGetFailed] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [seenAll, setSeenAll] = useState(false);
+  const [resetedAll, setResetedAll] = useState(false);
+  const [allSites, setAllSites] = useState(false);
+  const [allGroups, setAllGroups] = useState(false);
+  const [toggled, setToggled] = useState(false);
+  const [selectedGroups, setSelectedGroups] = useState([]);
+  const [selectedFaultTypes, setSelectedFaultTypes] = useState([]);
+  const [selectedSites, setSelectedSites] = useState([]);
+  const [selectedSeenBy, setSelectedSeenBy] = useState([]);
+  const [selectedResetedBy, setSelectedResetedBy] = useState([]);
+  const [selectedTypes, setSelectedTypes] = useState([]);
+
+  //Get Users
+  let users = [];
 
   useEffect(() => {
-    getAllLog().catch((error) => {
-      setGetFailed(true);
-      if (!getFailed) {
-        setTimeout(() => {
-          setGetFailed(false);
-        }, 10000);
-      }
-    });
-  }, [props.log]);
+    users = [];
+
+    if (userReducer.users.length === 0)
+      getUsers().catch((error) => {
+        setGetFailed(true);
+
+        if (!getFailed) {
+          setTimeout(() => {
+            setGetFailed(false);
+          }, 10000);
+        }
+      });
+  }, [userReducer.users]);
+
+  userReducer.users.map((o) =>
+    users.push({ value: o.id, label: o.firstName + " " + o.lastName })
+  );
+
+  //Get Sites and Site Groups
+  let sites = [];
+  let groups = [];
+
+  useEffect(() => {
+    sites = [];
+    groups = [];
+
+    if (siteReducer.sites.length === 0)
+      getSites().catch((error) => {
+        setGetFailed(true);
+
+        if (!getFailed) {
+          setTimeout(() => {
+            setGetFailed(false);
+          }, 10000);
+        }
+      });
+
+    if (siteReducer.groups.length === 0)
+      getGroups().catch((error) => {
+        setGetFailed(true);
+
+        if (!getFailed) {
+          setTimeout(() => {
+            setGetFailed(false);
+          }, 10000);
+        }
+      });
+  }, [siteReducer.sites]);
+
+  siteReducer.sites.map((o) => sites.push({ value: o.id, label: o.name }));
+  siteReducer.groups.map((o) => groups.push({ value: o.id, label: o.name }));
 
   function handleRefresh() {
     getAllLog().catch((error) => {
@@ -54,163 +120,255 @@ function Report({ siteReducer, getAllLog, ...props }) {
     });
   }
 
+  function handleToggle(e) {
+    setSeenAll(e.target.checked);
+  }
+  function handleToggle2(e) {
+    setResetedAll(e.target.checked);
+  }
+  function handleToggle3(e) {
+    setAllGroups(e.target.checked);
+  }
+  function handleToggle4(e) {
+    setAllSites(e.target.checked);
+  }
+
   const handleSubmit = (e) => {
-    alert("hi");
-    e.preventDefault();
+    let temp = [];
+    let filter = {};
+
+    selectedGroups.map((s) => temp.push(s.value));
+    filter.siteGroupIds = [...temp];
+
+    temp = [];
+
+    selectedSites.map((s) => temp.push(s.value));
+    filter.SiteIds = [...temp];
+
+    temp = [];
+
+    selectedTypes.map((s) => temp.push(s.value));
+    filter.Type = [...temp];
+
+    temp = [];
+
+    selectedResetedBy.map((s) => temp.push(s.value));
+    filter.ResetedBy = [...temp];
+
+    temp = [];
+
+    selectedSeenBy.map((s) => temp.push(s.value));
+    filter.SeenBy = [...temp];
+
+    temp = [];
+
+    selectedFaultTypes.map((s) => temp.push(s.value));
+    filter.FaultTypes = [...temp];
+
+    temp = [];
+
+    console.log(filter);
   };
 
-  var a = [
-    { value: 0, title: "2", checked: true },
-    { value: 1, title: "3", checked: false },
-    { value: 2, title: "4", checked: true },
-  ];
+  function handleFilter(e) {
+    setToggled((oldState) => !oldState);
+  }
 
-  var b = [
-    { title: "a", checked: false },
-    { title: "b", checked: true },
-    { title: "c", checked: false },
-  ];
+  function handlesetGroups(value) {
+    setSelectedGroups(value);
+  }
+
+  function handlesetTypes(value) {
+    setSelectedTypes(value);
+  }
+
+  function handlesetSites(value) {
+    setSelectedSites(value);
+  }
+
+  function handlesetFaultTypes(value) {
+    setSelectedFaultTypes(value);
+  }
+
+  function handlesetSeenBy(value) {
+    setSelectedSeenBy(value);
+  }
+
+  function handlesetResetedBy(value) {
+    setSelectedResetedBy(value);
+  }
 
   return (
-    <div className="list-div">
-      <IconButton
-        aria-label="refresh"
-        color="primary"
-        size="medium"
-        style={{ width: "45px" }}
-        onClick={handleRefresh}
-      >
-        <RefreshIcon fontSize="inherit" />
-      </IconButton>
+    <div style={{ width: "100%", height: "100%" }}>
+      <div>
+        <IconButton
+          aria-label="refresh"
+          color="primary"
+          size="medium"
+          style={{ width: "30px", margin: 2 }}
+          onClick={handleRefresh}
+        >
+          <RefreshIcon fontSize="inherit" />
+        </IconButton>
 
-      <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}></AccordionSummary>
-        <AccordionDetails style={{ paddingLeft: "4px", paddingRight: "8px" }}>
-          <form>
-            <div className="row">
-              <div className="col-3">
-                <div className="col">
-                  <InputLabel
-                    id="label"
-                    style={{ marginTop: 10, marginBottom: 10 }}
-                  >
-                    From
-                  </InputLabel>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)}
-                    selectsStart
-                    showTimeSelect
-                    style={{
-                      marginTop: 5,
-                      marginBottom: 5,
-                    }}
-                    timeFormat="HH:mm"
-                    dateFormat="MMMM d, yyyy HH:mm"
-                    startDate={startDate}
-                    endDate={endDate}
+        <img
+          src={FilterIcon}
+          style={{ width: "26px", margin: 2 }}
+          onClick={handleFilter}
+        />
+        <Button onClick={handleSubmit}>filter</Button>
+      </div>
+
+      <Collapse isOpened={toggled} theme={{ collapse: "foo", content: "bar" }}>
+        <form style={{ margin: 2, width: "96%" }}>
+          <div className="row">
+            <div className="col-4">
+              <div className="col">
+                <InputLabel
+                  id="label"
+                  style={{ marginTop: 10, marginBottom: 10 }}
+                >
+                  From
+                </InputLabel>
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                  selectsStart
+                  showTimeSelect
+                  style={{ marginTop: 5, marginBottom: 5 }}
+                  timeFormat="HH:mm"
+                  dateFormat="MMMM d, yyyy HH:mm"
+                  startDate={startDate}
+                  endDate={endDate}
+                />
+                <InputLabel
+                  id="label"
+                  style={{ marginTop: 10, marginBottom: 10 }}
+                >
+                  To
+                </InputLabel>
+                <DatePicker
+                  selected={endDate}
+                  onChange={(date) => setEndDate(date)}
+                  selectsEnd
+                  showTimeSelect
+                  style={{ marginTop: 5, marginBottom: 5 }}
+                  timeFormat="HH:mm"
+                  dateFormat="MMMM d, yyyy HH:mm"
+                  startDate={startDate}
+                  endDate={endDate}
+                  minDate={startDate}
+                />
+              </div>
+            </div>
+            <div className="col">
+              <div className="row">
+                <div className="col-3">
+                  <CheckboxList
+                    header="Type"
+                    data={filterReportType}
+                    handleChange={handlesetTypes}
                   />
-                  <InputLabel
-                    id="label"
-                    style={{ marginTop: 10, marginBottom: 10 }}
-                  >
-                    To
-                  </InputLabel>
-                  <DatePicker
-                    selected={endDate}
-                    onChange={(date) => setEndDate(date)}
-                    selectsEnd
-                    showTimeSelect
-                    style={{ marginTop: 6, marginBottom: 6 }}
-                    timeFormat="HH:mm"
-                    dateFormat="MMMM d, yyyy HH:mm"
-                    startDate={startDate}
-                    endDate={endDate}
-                    minDate={startDate}
+                </div>
+                <div className="col-3">
+                  <CheckboxList
+                    header="Site groups"
+                    name="siteGroups"
+                    data={groups}
+                    disabled={allGroups}
+                    handleChange={handlesetGroups}
+                  />
+                </div>
+                <div className="col-3">
+                  <CheckboxList
+                    header="Sites"
+                    data={sites}
+                    disabled={allSites}
+                    handleChange={handlesetSites}
+                  />
+                </div>
+                <div className="col-3">
+                  <CheckboxList
+                    header="Fault types"
+                    data={filterFaultType}
+                    handleChange={handlesetFaultTypes}
+                  />
+                </div>
+                <div className="col-3">
+                  <CheckboxList
+                    header="Seen by"
+                    data={users}
+                    disabled={seenAll}
+                    handleChange={handlesetSeenBy}
+                  />
+                </div>
+                <div className="col-3">
+                  <CheckboxList
+                    header="Reseted by"
+                    data={users}
+                    disabled={resetedAll}
+                    handleChange={handlesetResetedBy}
                   />
                 </div>
               </div>
-              <div className="col">
-                <div className="row">
-                  <div
-                    className="col-2"
-                    style={{ marginTop: 6, marginBottom: 6 }}
-                  >
-                    <CheckboxList header="Type" data={a} />
-                  </div>
-                  <div
-                    className="col-2"
-                    style={{ marginTop: 6, marginBottom: 6 }}
-                  >
-                    <CheckboxList header="Site group ids" data={a} />
-                  </div>
-                  <div
-                    className="col-2"
-                    style={{ marginTop: 6, marginBottom: 6 }}
-                  >
-                    <CheckboxList header="Site ids" data={b} />
-                  </div>
-                  <div
-                    className="col-2"
-                    style={{ marginTop: 6, marginBottom: 6 }}
-                  >
-                    <CheckboxList header="Fault types" data={a} />
-                  </div>
-                  <div
-                    className="col-2"
-                    style={{ marginTop: 6, marginBottom: 6 }}
-                  >
-                    <CheckboxList header="Seen by" data={a} />
-                  </div>
-                  <div
-                    className="col-2"
-                    style={{ marginTop: 6, marginBottom: 6 }}
-                  >
-                    <CheckboxList header="Reseted by" data={b} />
-                  </div>
-                  <div
-                    className="col-2"
-                    style={{ marginTop: 6, marginBottom: 6 }}
-                  >
-                    <CheckboxList header="All groups" data={a} />
-                  </div>
-                  <div
-                    className="col-2"
-                    style={{ marginTop: 6, marginBottom: 6 }}
-                  >
-                    <CheckboxList header="All sites" data={b} />
-                  </div>
-                  <div
-                    className="col-2"
-                    style={{ marginTop: 6, marginBottom: 6 }}
-                  >
-                    <CheckboxList header="Seen by all" data={a} />
-                  </div>
-                  <div
-                    className="col-2"
-                    style={{ marginTop: 6, marginBottom: 6 }}
-                  >
-                    <CheckboxList header="Reseted by all" data={b} />
-                  </div>
-                  <div
-                    className="col-2"
-                    style={{ marginTop: 6, marginBottom: 6 }}
-                  >
-                    <Button
-                      color="primary"
-                      variant="contained"
-                      onClick={handleSubmit}
-                      style={{ marginTop: 18 }}
-                    >
-                      Filter
-                    </Button>
-                  </div>
+              <div className="row">
+                <div>
+                  <FormControlLabel
+                    value="start"
+                    control={
+                      <Checkbox
+                        color="primary"
+                        checked={allGroups}
+                        onChange={handleToggle3}
+                      />
+                    }
+                    label="All groups"
+                  />
+                </div>
+                <div>
+                  <FormControlLabel
+                    value="start"
+                    control={
+                      <Checkbox
+                        color="primary"
+                        checked={allSites}
+                        onChange={handleToggle4}
+                      />
+                    }
+                    label="All sites"
+                  />
+                </div>
+                <div>
+                  <FormControlLabel
+                    value="start"
+                    control={
+                      <Checkbox
+                        color="primary"
+                        checked={seenAll}
+                        onChange={handleToggle}
+                      />
+                    }
+                    label="Seen by all"
+                  />
+                </div>
+                <div>
+                  <FormControlLabel
+                    value="start"
+                    control={
+                      <Checkbox
+                        color="primary"
+                        checked={resetedAll}
+                        onChange={handleToggle2}
+                      />
+                    }
+                    label="Reseted by all"
+                  />
                 </div>
               </div>
             </div>
-          </form>
-        </AccordionDetails>
-      </Accordion>
+          </div>
+        </form>
+      </Collapse>
 
       {siteReducer.loading ? (
         <Loading />
@@ -247,16 +405,26 @@ function Report({ siteReducer, getAllLog, ...props }) {
 Report.propTypes = {
   siteReducer: PropTypes.object.isRequired,
   getAllLog: PropTypes.func.isRequired,
+  getUsers: PropTypes.func.isRequired,
+  siteReducer: PropTypes.object.isRequired,
+  getSites: PropTypes.func.isRequired,
+  getGroups: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     siteReducer: state.siteReducer,
+    userReducer: state.userReducer,
+    siteReducer: state.siteReducer,
+    userReducer: state.userReducer,
   };
 }
 
 const mapDispatchToProps = {
   getAllLog: siteActions.getAllLog,
+  getUsers: userActions.getAll,
+  getSites: siteActions.getAll,
+  getGroups: siteActions.getGroups,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Report);
