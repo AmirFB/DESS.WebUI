@@ -9,6 +9,10 @@ export const GET_ALL_LOG_REQUEST = "GET_ALL_LOG_REQUEST";
 export const GET_ALL_LOG_SUCCESS = "GET_ALL_LOG_SUCCESS";
 export const GET_ALL_LOG_ERROR = "GET_ALL_LOG_ERROR";
 
+export const GET_LOG_REQUEST = "GET_LOG_REQUEST";
+export const GET_LOG_SUCCESS = "GET_LOG_SUCCESS";
+export const GET_LOG_ERROR = "GET_LOG_ERROR";
+
 export const GET_GROUPS_REQUEST = "GET_SITE_GROUPS_REQUEST";
 export const GET_GROUPS_SUCCESS = "GET_SITE_GROUPS_SUCCESS";
 export const GET_GROUPS_ERROR = "GET_SITE_GROUPS_ERROR";
@@ -51,6 +55,8 @@ function getSitesError(error) {
   };
 }
 
+//Get Logs
+
 function getAllLogRequest(logs) {
   return {
     type: GET_ALL_LOG_REQUEST,
@@ -58,16 +64,39 @@ function getAllLogRequest(logs) {
   };
 }
 
-function getLogSuccess(log) {
+function getAllLogSuccess(logs) {
   return {
     type: GET_ALL_LOG_SUCCESS,
+    logs,
+  };
+}
+
+function getAllLogError(error) {
+  return {
+    type: GET_ALL_LOG_ERROR,
+    error,
+  };
+}
+
+//Get Log
+
+function getLogRequest(filter) {
+  return {
+    type: GET_LOG_REQUEST,
+    filter,
+  };
+}
+
+function getLogSuccess(log) {
+  return {
+    type: GET_LOG_SUCCESS,
     log,
   };
 }
 
 function getLogError(error) {
   return {
-    type: GET_ALL_LOG_ERROR,
+    type: GET_LOG_ERROR,
     error,
   };
 }
@@ -209,7 +238,26 @@ export function getAllLog() {
     return siteApi
       .getAllLog()
       .then((response) => {
+        dispatch(getAllLogSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(getAllLogError(error));
+        dispatch(apiCallError());
+        throw error;
+      });
+  };
+}
+
+export function getLog(filter) {
+  return function (dispatch) {
+    dispatch(getLogRequest());
+    dispatch(beginApiCall());
+
+    return siteApi
+      .getLog(filter)
+      .then((response) => {
         dispatch(getLogSuccess(response.data));
+        console.log(response.data);
       })
       .catch((error) => {
         dispatch(getLogError(error));

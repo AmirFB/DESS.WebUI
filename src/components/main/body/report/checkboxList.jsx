@@ -17,6 +17,7 @@ export default function CheckboxList({
 
     setChecked(isChecked);
     setValues(isChecked ? data : values);
+    handleChange(isChecked ? data : values);
   };
 
   const hanldeChange = (opt) => {

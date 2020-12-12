@@ -10,7 +10,6 @@ import {
 import { Zoom } from "@progress/kendo-react-animation";
 import Loading from "../../../common/loading";
 import ReportGrid from "./reportGrid";
-import CheckboxList from "./checkboxList";
 import IconButton from "@material-ui/core/IconButton";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import DatePicker from "react-datepicker";
@@ -24,6 +23,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./report.css";
 import FilterIcon from "../../../../assets/images/icon/filter.svg";
 
+import CheckboxList from "./checkboxList";
+import RadioList from "./radioList";
+
 import * as siteActions from "../../../../redux/actions/siteActions";
 import * as userActions from "../../../../redux/actions/userActions";
 import { filterFaultType, filterReportType } from "../../../../types/siteTypes";
@@ -35,6 +37,7 @@ function Report({
   getUsers,
   getSites,
   getGroups,
+  getLog,
   ...props
 }) {
   const [t, i18n] = useTranslation();
@@ -52,6 +55,7 @@ function Report({
   const [selectedSeenBy, setSelectedSeenBy] = useState([]);
   const [selectedResetedBy, setSelectedResetedBy] = useState([]);
   const [selectedTypes, setSelectedTypes] = useState([]);
+  const [filter, setFilter] = useState(true);
 
   //Get Users
   let users = [];
@@ -143,35 +147,60 @@ function Report({
     temp = [];
 
     selectedSites.map((s) => temp.push(s.value));
-    filter.SiteIds = [...temp];
+    filter.siteIds = [...temp];
 
     temp = [];
 
-    selectedTypes.map((s) => temp.push(s.value));
-    filter.Type = [...temp];
-
-    temp = [];
+    //filter.type = selectedTypes;
+    filter.type = 4;
 
     selectedResetedBy.map((s) => temp.push(s.value));
-    filter.ResetedBy = [...temp];
+    filter.resetedBy = [...temp];
 
     temp = [];
 
     selectedSeenBy.map((s) => temp.push(s.value));
-    filter.SeenBy = [...temp];
+    filter.seenBy = [...temp];
 
     temp = [];
 
-    selectedFaultTypes.map((s) => temp.push(s.value));
-    filter.FaultTypes = [...temp];
+    // selectedFaultTypes.map((s) => temp.push(s.value));
+    // filter.faultTypes = [...temp];
+    filter.faultTypes = [0, 1, 2, 3, 4];
 
-    temp = [];
+    // temp = [];
+
+    var from = new Date(startDate);
+    filter.from = from.toJSON();
+
+    filter.from = null;
+
+    // var to = new Date(endDate);
+    // filter.to = to.toJSON();
+
+    filter.to = null;
+
+    filter.seenByAll = seenAll;
+    filter.resetedByAll = resetedAll;
+    filter.allGroups = allGroups;
+    filter.allSites = allSites;
+
+    getLog(filter).catch((error) => {
+      setGetFailed(true);
+
+      if (!getFailed) {
+        setTimeout(() => {
+          setGetFailed(false);
+        }, 10000);
+      }
+    });
 
     console.log(filter);
   };
 
   function handleFilter(e) {
     setToggled((oldState) => !oldState);
+    setFilter(!filter);
   }
 
   function handlesetGroups(value) {
@@ -216,7 +245,9 @@ function Report({
           style={{ width: "26px", margin: 2 }}
           onClick={handleFilter}
         />
-        <Button onClick={handleSubmit}>filter</Button>
+        <Button onClick={handleSubmit} disabled={filter}>
+          filter
+        </Button>
       </div>
 
       <Collapse isOpened={toggled} theme={{ collapse: "foo", content: "bar" }}>
@@ -235,7 +266,7 @@ function Report({
                   onChange={(date) => setStartDate(date)}
                   selectsStart
                   showTimeSelect
-                  style={{ marginTop: 5, marginBottom: 5 }}
+                  style={{ marginTop: 5, marginBottom: 5, width: 400 }}
                   timeFormat="HH:mm"
                   dateFormat="MMMM d, yyyy HH:mm"
                   startDate={startDate}
@@ -264,12 +295,13 @@ function Report({
             <div className="col">
               <div className="row">
                 <div className="col-3">
-                  <CheckboxList
-                    header="Type"
+                  <RadioList
+                    header="Types"
                     data={filterReportType}
-                    handleChange={handlesetTypes}
+                    handleChange={handlesetFaultTypes}
                   />
                 </div>
+
                 <div className="col-3">
                   <CheckboxList
                     header="Site groups"
@@ -409,12 +441,11 @@ Report.propTypes = {
   siteReducer: PropTypes.object.isRequired,
   getSites: PropTypes.func.isRequired,
   getGroups: PropTypes.func.isRequired,
+  getLog: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    siteReducer: state.siteReducer,
-    userReducer: state.userReducer,
     siteReducer: state.siteReducer,
     userReducer: state.userReducer,
   };
@@ -422,9 +453,10 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   getAllLog: siteActions.getAllLog,
-  getUsers: userActions.getAll,
   getSites: siteActions.getAll,
   getGroups: siteActions.getGroups,
+  getLog: siteActions.getLog,
+  getUsers: userActions.getAll,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Report);

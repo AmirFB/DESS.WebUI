@@ -15,6 +15,9 @@ import {
   GET_ALL_LOG_REQUEST,
   GET_ALL_LOG_SUCCESS,
   GET_ALL_LOG_ERROR,
+  GET_LOG_REQUEST,
+  GET_LOG_SUCCESS,
+  GET_LOG_ERROR,
   UPDATE_STATUS,
 } from "../actions/siteActions";
 import { statusType, batteryStatusType } from "../../types/siteTypes";
@@ -25,6 +28,7 @@ const INITIAL_STATE = {
   error: null,
   sites: [],
   log: [],
+  logs: [],
   groups: [],
   permissions: [],
 };
@@ -169,10 +173,33 @@ export default function siteRecuder(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         hasError: false,
-        log: action.log,
+        logs: action.logs,
       };
 
     case GET_ALL_LOG_ERROR:
+      return {
+        ...state,
+        loading: false,
+        hasError: true,
+        logs: state.logs,
+        error: action.error,
+      };
+
+    case GET_LOG_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case GET_LOG_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        hasError: false,
+        log: action.log,
+      };
+
+    case GET_LOG_ERROR:
       return {
         ...state,
         loading: false,

@@ -28,8 +28,8 @@ export function getAllLog() {
   return axios.get(url + "log_old");
 }
 
-export function getLog(id) {
-  return axios.get(url + id + "/log");
+export function getLog(filter) {
+  return axios.post(url + "log", filter);
 }
 
 export function getGroups() {
