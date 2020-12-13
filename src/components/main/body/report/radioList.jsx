@@ -9,8 +9,6 @@ export default function CheckboxList({
   handleChange,
   ...props
 }) {
-  handleChange(0);
-
   const hanldeChange = (opt) => {
     handleChange(opt.value);
   };
