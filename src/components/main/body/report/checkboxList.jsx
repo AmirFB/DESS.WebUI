@@ -12,18 +12,7 @@ export default function CheckboxList({
   const [values, setValues] = useState();
   const [checked, setChecked] = useState(false);
 
-  const handleChangeCheckbox = (e) => {
-    const isChecked = !checked;
-
-    setChecked(isChecked);
-    setValues(isChecked ? data : values);
-    handleChange(isChecked ? data : values);
-  };
-
   const hanldeChange = (opt) => {
-    const allOptionsSelected = opt.length === data.length;
-
-    setChecked(allOptionsSelected ? true : false);
     setValues(opt);
     handleChange(opt);
   };
@@ -39,16 +28,6 @@ export default function CheckboxList({
         closeMenuOnSelect={false}
         isDisabled={disabled}
       />
-      <p>
-        <input
-          onChange={handleChangeCheckbox}
-          type="checkbox"
-          value="selectAll"
-          checked={checked}
-          disabled={disabled}
-        />
-        <label>Select all</label>
-      </p>
     </div>
   );
 }
