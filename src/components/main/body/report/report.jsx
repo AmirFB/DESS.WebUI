@@ -151,8 +151,7 @@ function Report({
 
     temp = [];
 
-    //filter.type = selectedTypes;
-    filter.type = 4;
+    filter.type = selectedTypes;
 
     selectedResetedBy.map((s) => temp.push(s.value));
     filter.resetedBy = [...temp];
@@ -164,38 +163,46 @@ function Report({
 
     temp = [];
 
-    // selectedFaultTypes.map((s) => temp.push(s.value));
-    // filter.faultTypes = [...temp];
-    filter.faultTypes = [0, 1, 2, 3, 4];
+    selectedFaultTypes.map((s) => temp.push(s.value));
+    filter.faultTypes = [...temp];
 
-    // temp = [];
+    temp = [];
 
-    var from = new Date(startDate);
-    filter.from = from.toJSON();
-
-    filter.from = null;
-
-    // var to = new Date(endDate);
-    // filter.to = to.toJSON();
-
-    filter.to = null;
-
+    filter.from = Date.parse(startDate);
+    filter.to = Date.parse(endDate);
     filter.seenByAll = seenAll;
     filter.resetedByAll = resetedAll;
     filter.allGroups = allGroups;
     filter.allSites = allSites;
 
-    getLog(filter).catch((error) => {
-      setGetFailed(true);
+    if (filter.siteIds.length == 0 && filter.allSites == false) {
+      alert("Please fill siteIds.");
+    }
+    if (filter.siteGroupIds == 0 && filter.allGroups == false) {
+      alert("Please fill siteGroupIds.");
+    }
+    if (filter.faultTypes.lenght == 0) {
+      alert("Please faultTypes.");
+    }
+    if (filter.resetedBy.length == 0 && filter.resetedByAll == false) {
+      alert("Please fill resetedAll.");
+    }
+    if (filter.seenBy.length == 0 && filter.seenByAll == false) {
+      alert("Please fill seenAll.");
+    }
+    if (filter.type.length == 0) {
+      alert("Please fill type.");
+    } else {
+      getLog(filter).catch((error) => {
+        setGetFailed(true);
 
-      if (!getFailed) {
-        setTimeout(() => {
-          setGetFailed(false);
-        }, 10000);
-      }
-    });
-
-    console.log(filter);
+        if (!getFailed) {
+          setTimeout(() => {
+            setGetFailed(false);
+          }, 10000);
+        }
+      });
+    }
   };
 
   function handleFilter(e) {
@@ -298,7 +305,7 @@ function Report({
                   <RadioList
                     header="Types"
                     data={filterReportType}
-                    handleChange={handlesetFaultTypes}
+                    handleChange={handlesetTypes}
                   />
                 </div>
 
