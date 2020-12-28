@@ -51,8 +51,8 @@ function Body({ userReducer, ...props }) {
             </div>
           }
         >
-          <Redirect push to="/home" />
-          <Route path="/home" component={Home} />
+          <Redirect push to="" />
+          <Route path="" component={Home} />
         </TabStripTab>
 
         <TabStripTab
