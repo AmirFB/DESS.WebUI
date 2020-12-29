@@ -4,17 +4,15 @@ import { connect } from "react-redux";
 
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
+import { Label } from "@progress/kendo-react-labels";
 
 import { useTranslation } from "react-i18next";
 
 function SiteGroupConfig({ siteReducer, ...props }) {
   const [t, i18n] = useTranslation();
-  const a = siteReducer.groups.find((id) => id.id == props.location.state.id);
-  a.siteIds = 1;
-
-  console.log(a);
+  const groupData = siteReducer.groups.find(
+    (id) => id.id == props.location.state.id
+  );
 
   return (
     <Grid container direction="column">
@@ -22,7 +20,7 @@ function SiteGroupConfig({ siteReducer, ...props }) {
         <Grid item>
           <TextField
             name="name"
-            value={a.name}
+            value={groupData.name}
             label={t("users.groupName")}
             //onChange={handleChange}
           />
@@ -30,7 +28,7 @@ function SiteGroupConfig({ siteReducer, ...props }) {
         <Grid item style={{ marginLeft: "50px" }}>
           <TextField
             name="province"
-            value={a.province}
+            value={groupData.province}
             label={t("site.provinceName")}
             //onChange={handleChange}
           />
@@ -38,30 +36,13 @@ function SiteGroupConfig({ siteReducer, ...props }) {
       </Grid>
       <Grid container>
         <Grid item>
-          <TextField
-            name="siteIds"
-            value={a.siteIds}
-            label="siteIds"
-            //onChange={handleChange}
-          />
-          <Select
-            name="siteIds"
-            style={{ margin: "10px 0px", width: 100 }}
-            value={a.siteIds}
-            //nChange={handleChange}
-          >
-            {a.siteIds.map((group) => (
-              <MenuItem value={group}></MenuItem>
-            ))}
-          </Select>
+          <Label>Sites :&nbsp;</Label>
+          <Label>{groupData.siteIds}</Label>
         </Grid>
         <Grid item style={{ marginLeft: "50px" }}>
-          <TextField
-            name="userIds"
-            value={a.userIds}
-            label="userIds"
-            //onChange={handleChange}
-          />
+          {" "}
+          <Label>Users :&nbsp;</Label>
+          <Label>{groupData.userIds}</Label>
         </Grid>
       </Grid>
     </Grid>
