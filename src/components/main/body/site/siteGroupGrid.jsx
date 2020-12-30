@@ -57,6 +57,20 @@ function SiteGroupGrid({ groups, permissions, removeGroup, ...props }) {
       align: "center",
     },
     {
+      filed: "userIds",
+      headerName: "Users",
+      width: 400,
+      headerAlign: "center",
+      align: "center",
+    },
+    {
+      filed: "siteIds",
+      headerName: "Users",
+      width: 400,
+      headerAlign: "center",
+      align: "center",
+    },
+    {
       field: "actions",
       headerName: t("common.actions"),
       width: 125,
