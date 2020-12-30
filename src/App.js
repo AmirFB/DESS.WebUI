@@ -47,7 +47,7 @@ const theme = responsiveFontSizes(
 
 function App({ userReducer, initialAuthentication, ...props }) {
   const bodyClass =
-    window.localStorage.getItem("lang") == "fa" ? "body-fa" : "body-en";
+    window.localStorage.getItem("lang") === "fa" ? "body-fa" : "body-en";
 
   useEffect(() => {
     if (!userReducer.loggedIn && window.localStorage.getItem("user")) {
