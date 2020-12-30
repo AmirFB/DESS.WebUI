@@ -9,7 +9,7 @@ import redMarker from "../../../../assets/images/markers/redMarker.svg";
 import blackMarker from "../../../../assets/images/markers/blackMarker.svg";
 import SiteCatalogBody from "../../sideBar/SiteCatalogBody";
 
-import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import { Map, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
 import { statusType } from "../../../../types/siteTypes";
 
 import "../body.css";
@@ -81,6 +81,9 @@ export default function MapForm({ sites, ...props }) {
           <Popup>
             <SiteCatalogBody site={site} onMap />
           </Popup>
+          <Tooltip direction="bottom" offset={[0, 5]} opacity={0.0} permanent>
+            <div>{site.name}</div>
+          </Tooltip>
         </Marker>
       ))}
     </Map>
