@@ -140,7 +140,11 @@
 
   "sideBar": {
     "enterSiteName": "Enter Site name",
+    "faultySites": "ّFaulty Sites",
+    "warningSites": "Warningly Sites",
     "activeSites": "Active Sites",
+    "faultyOfflineSites": "Offline Faulty Sites",
+    "warninOfflinegSites": "Offline Warningly Sites",
     "offlineSites": "Offline Sites",
     "notDefined": "Not defined"
   },

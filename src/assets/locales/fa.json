@@ -147,8 +147,12 @@
   },
 
   "sidePanel": {
+    "faultySites": "سایت های دارای خطا",
+    "warningSites": "سایت های دارای هشدار",
     "activeSites": "سابت های فعال",
-    "offlineSites": "سایت های فعال",
+    "faultyOfflineSites": "سایت های خطا غیر فعال",
+    "warninOfflinegSites": "سایت های هشدار غیر فعال",
+    "offlineSites": "سایت های غیر فعال",
     "notDefined": "تعریف نشده",
     "searchSite": "نام سایت را وارد کنید."
   },
