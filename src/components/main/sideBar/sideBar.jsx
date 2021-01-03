@@ -14,6 +14,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 import { withStyles } from "@material-ui/core/styles";
+import { statusType } from "../../../../src/types/siteTypes";
 
 import * as colors from "@material-ui/core/colors";
 
@@ -30,7 +31,11 @@ const classes = (theme) => ({
 
 class SideBar extends React.Component {
   state = {
+    faultyIndexes: [],
+    warningIndexes: [],
     activeIndexes: [],
+    faultyInactiveIndexes: [],
+    warningInactiveIndexes: [],
     inactiveIndexes: [],
     expanded: {},
     timerKey: null,
@@ -43,7 +48,11 @@ class SideBar extends React.Component {
   }
 
   populateSites = () => {
-    const activeIndexes = [],
+    const faultyIndexes = [],
+      warningIndexes = [],
+      activeIndexes = [],
+      faultyInactiveIndexes = [],
+      warningInactiveIndexes = [],
       inactiveIndexes = [];
 
     this.props.siteReducer.sites.map((site, index) => {
@@ -59,12 +68,27 @@ class SideBar extends React.Component {
       });
       clearInterval(this.timerKey);
 
-      if (site.status && Date.now() < site.status.date + site.timeout * 1000)
-        activeIndexes.push(index);
-      else inactiveIndexes.push(index);
+      if (site.status && Date.now() < site.status.date + site.timeout * 1000) {
+        if (site.status.state == statusType.Fault) faultyIndexes.push(index);
+        else if (site.status.state == statusType.Warning)
+          warningIndexes.push(index);
+        else activeIndexes.push(index);
+      } else {
+        if (site.status.state == statusType.Fault)
+          faultyInactiveIndexes.push(index);
+        else if (site.status.state == statusType.Warning)
+          warningInactiveIndexes.push(index);
+        else inactiveIndexes.push(index);
+      }
 
-      this.setState({ activeIndexes, inactiveIndexes });
-      this.setState({ inactiveIndexes });
+      this.setState({
+        faultyIndexes,
+        warningIndexes,
+        activeIndexes,
+        faultyInactiveIndexes,
+        warningInactiveIndexes,
+        inactiveIndexes,
+      });
     });
   };
 
@@ -161,10 +185,30 @@ class SideBar extends React.Component {
 
     return (
       <div className={classes.side}>
+        {this.state.faultyIndexes.length > 0 &&
+          this.rednerAccordion(
+            this.state.faultyIndexes,
+            t("sideBar.faultySites")
+          )}
+        {this.state.warningIndexes.length > 0 &&
+          this.rednerAccordion(
+            this.state.waringIndexes,
+            t("sideBar.warningSites")
+          )}
         {this.rednerAccordion(
           this.state.activeIndexes,
           t("sideBar.activeSites")
         )}
+        {this.state.faultyInactiveIndexes.length > 0 &&
+          this.rednerAccordion(
+            this.state.faultyInactiveIndexes,
+            t("sideBar.faultyOfflineSites")
+          )}
+        {this.state.warningInactiveIndexes.length > 0 &&
+          this.rednerAccordion(
+            this.state.warningInactiveIndexes,
+            t("sideBar.warninOfflinegSites")
+          )}
         {this.rednerAccordion(
           this.state.inactiveIndexes,
           t("sideBar.offlineSites")
