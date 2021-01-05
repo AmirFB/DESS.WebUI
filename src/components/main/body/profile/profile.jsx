@@ -12,14 +12,23 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import Select2 from "react-select";
 
 import * as userActions from "../../../../redux/actions/userActions";
+import * as siteActions from "../../../../redux/actions/siteActions";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-function Profile({ userReducer, getUser, saveUser, ...props }) {
+function Profile({
+  userReducer,
+  siteReducer,
+  getGroups,
+  getUser,
+  saveUser,
+  ...props
+}) {
   const [t, i18n] = useTranslation();
   const [groupEdit, setGroupEdit] = useState(false);
   const [user, setUser] = useState({ ...userReducer.user });
@@ -27,6 +36,9 @@ function Profile({ userReducer, getUser, saveUser, ...props }) {
   const vertical = "bottom";
   const horizontal = "right";
   const history = useHistory();
+  const [getFailed, setGetFailed] = useState(false);
+  const [values, setValues] = useState();
+  var siteGroups = [];
 
   useEffect(() => {
     if (props.location.state) {
@@ -40,6 +52,27 @@ function Profile({ userReducer, getUser, saveUser, ...props }) {
     }
     if (userReducer.hasError) handleClick();
   }, [userReducer]);
+
+  useEffect(() => {
+    if (siteReducer.groups.length === 0)
+      getGroups().catch((error) => {
+        setGetFailed(true);
+
+        if (!getFailed) {
+          setTimeout(() => {
+            setGetFailed(false);
+          }, 10000);
+        }
+      });
+  }, []);
+
+  const hanldeChange = (opt) => {
+    setValues(opt);
+  };
+
+  siteReducer.groups.map((s) =>
+    siteGroups.push({ value: s.id, label: s.name })
+  );
 
   const handleClick = () => {
     setOpen(true);
@@ -110,6 +143,26 @@ function Profile({ userReducer, getUser, saveUser, ...props }) {
         </Grid>
       )}
       <Grid item>
+        "Site Groups"
+        <Select2
+          isMulti
+          style={{ margin: "10px 0px" }}
+          options={siteGroups}
+          value={values}
+          onChange={hanldeChange}
+          closeMenuOnSelect={false}
+          //isDisabled={disabled}
+        />
+      </Grid>
+      <Grid item>
+        <TextField
+          name={"phoneNumber"}
+          value={user.phoneNumber}
+          label={t("site.phoneNumber")}
+          onChange={handleChange}
+        />
+      </Grid>
+      <Grid item>
         <TextField
           name={"username"}
           value={user.username}
@@ -136,11 +189,22 @@ function Profile({ userReducer, getUser, saveUser, ...props }) {
         </Grid>
       </Grid>
       <Grid item style={{ margin: "60px 0px" }}>
-        {!userReducer.currentUser.permissions.includes("IsAlmighty") && (
-          <Button variant="contained" color="primary" onClick={handleSaveUser}>
-            Save
-          </Button>
-        )}
+        {/* {!userReducer.currentUser.permissions.includes("IsAlmighty") && ( */}
+        <Button variant="contained" color="primary" onClick={handleSaveUser}>
+          Save
+        </Button>
+
+        <Button
+          variant="contained"
+          style={{ margin: "5px 30px" }}
+          onClick={() => {
+            history.push({
+              pathname: "/users/",
+            });
+          }}
+        >
+          {t("common.cancel")}
+        </Button>
 
         <Snackbar
           open={open}
@@ -159,6 +223,8 @@ function Profile({ userReducer, getUser, saveUser, ...props }) {
 
 Profile.propTypes = {
   userReducer: PropTypes.object.isRequired,
+  siteReducer: PropTypes.object.isRequired,
+  getGroups: PropTypes.func.isRequired,
   getUser: PropTypes.func.isRequired,
   saveUser: PropTypes.func.isRequired,
 };
@@ -166,12 +232,15 @@ Profile.propTypes = {
 function mapStateToProps(state) {
   return {
     userReducer: state.userReducer,
+    siteReducer: state.siteReducer,
+    getGroups: siteActions.getGroups,
   };
 }
 
 const mapDispatchToProps = {
   getUser: userActions.get,
   saveUser: userActions.save,
+  getGroups: siteActions.getGroups,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
