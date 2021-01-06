@@ -76,12 +76,16 @@ function SiteConfig({
   saveSite,
   saveSiteDone,
   getSites,
+  getGroups,
   ...props
 }) {
   const [t, i18n] = useTranslation();
   const [site, setSite] = useState({ ...defaultSite });
   const [locatonDisabled, setLocatonDisabled] = useState(true);
   const [open, setOpen] = useState(false);
+  const [siteGroups, setSiteGroups] = useState([]);
+  const [groupValue, setGroupValue] = useState();
+  const [getFailed, setGetFailed] = useState(false);
   const vertical = "bottom";
   const horizontal = "right";
   const classes = useStyles();
@@ -125,6 +129,21 @@ function SiteConfig({
   const handleClick = () => {
     setOpen(true);
   };
+
+  useEffect(() => {
+    if (siteReducer.groups.length === 0)
+      getGroups().catch((error) => {
+        setGetFailed(true);
+
+        if (!getFailed) {
+          setTimeout(() => {
+            setGetFailed(false);
+          }, 10000);
+        }
+      });
+  }, [siteReducer.groups]);
+
+  siteReducer.groups.map((s) => siteGroups.push({ id: s.id, title: s.name }));
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -253,6 +272,11 @@ function SiteConfig({
         triggers: value,
       },
     }));
+  };
+
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setGroupValue((prevSite) => ({ ...prevSite, [name]: value }));
   };
 
   return (
@@ -870,6 +894,21 @@ function SiteConfig({
           </Grid>
         </Grid>
         <Divider className={classes.divider} />
+
+        <Grid item>
+          <Select
+            name="groupId"
+            value={groupValue}
+            style={{ margin: "10px 0px", width: 100 }}
+            onChange={handleChange}
+          >
+            {siteGroups.map((group) => (
+              <MenuItem value={group.id}>{group.title}</MenuItem>
+            ))}
+          </Select>
+        </Grid>
+
+        <Divider className={classes.divider} />
         <Grid item xs>
           <Button type="submit" variant="contained" color="primary">
             {t("common.save")}
@@ -906,11 +945,13 @@ SiteConfig.propTypes = {
   siteReducer: PropTypes.object.isRequired,
   saveSite: PropTypes.func.isRequired,
   getSites: PropTypes.func.isRequired,
+  getGroups: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     siteReducer: state.siteReducer,
+    getGroups: siteActions.getGroups,
   };
 }
 
@@ -918,6 +959,7 @@ const mapDispatchToProps = {
   saveSite: siteActions.save,
   saveSiteDone: siteActions.saveDone,
   getSites: siteActions.getAll,
+  getGroups: siteActions.getGroups,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SiteConfig);
