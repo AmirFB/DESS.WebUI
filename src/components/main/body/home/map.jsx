@@ -81,7 +81,7 @@ export default function MapForm({ sites, ...props }) {
           <Popup>
             <SiteCatalogBody site={site} onMap />
           </Popup>
-          <Tooltip direction="bottom" offset={[0, 5]} opacity={0.0} permanent>
+          <Tooltip direction="bottom" offset={[0, 5]} opacity={0.6} permanent>
             <div>{site.name}</div>
           </Tooltip>
         </Marker>
