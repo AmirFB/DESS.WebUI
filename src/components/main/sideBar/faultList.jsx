@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import Collapsible from "react-collapsible";
+import PropTypes from "prop-types";
+import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 
+import { connect } from "react-redux";
 import {
   Accordion,
   AccordionDetails,
@@ -17,9 +19,8 @@ import { dateToString } from "../../../helpers/dateTime";
 import { withStyles } from "@material-ui/core/styles";
 import { Collapse } from "react-collapse";
 
-import RotateLeftIcon from "@material-ui/icons/RotateLeft";
-
 import * as colors from "@material-ui/core/colors";
+import * as siteActions from "../../../redux/actions/siteActions";
 
 const MyAccordion = withStyles({
   root: {
@@ -100,7 +101,7 @@ function renderText(t, site, fault) {
   );
 }
 
-export default function FaultList({ site }) {
+function FaultList({ site }) {
   const [t, i18n] = useTranslation();
   const [toggled, setToggled] = useState(false);
 
@@ -182,3 +183,20 @@ export default function FaultList({ site }) {
     </>
   );
 }
+
+FaultList.propTypes = {
+  siteReducer: PropTypes.object.isRequired,
+  resetFaults: PropTypes.func.isRequired,
+};
+
+function mapStateToProps(state) {
+  return {
+    siteReducer: state.siteReducer,
+  };
+}
+
+const mapDispatchToProps = {
+  resetFaults: siteActions.resetFaults,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FaultList);
