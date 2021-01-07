@@ -30,6 +30,10 @@ export const UPDATE_SITE_SUCCESS = "UPDATE_SITE_SUCCESS";
 export const UPDATE_SITE_ERROR = "UPDATE_SITE_ERROR";
 export const SAVE_SITE_DONE = "SAVE_SITE_DONE";
 
+export const RESET_FAULTS_REQUEST = "RESET_FAULTS_REQUEST";
+export const RESET_FAULTS_SUCCESS = "RESET_FAULTS_SUCCESS";
+export const RESET_FAULTS_ERROR = "RESET_FAULTS_ERROR";
+
 export const UPDATE_STATUS = "UPDATE_STATUS";
 
 // Get Sites
@@ -146,7 +150,7 @@ function addSiteError(error) {
   };
 }
 
-// REMOVE Site
+// Remove Site
 
 function removeSiteRequest(id) {
   return {
@@ -191,6 +195,27 @@ function updateSiteError(error) {
 function saveSiteDone() {
   return {
     type: SAVE_SITE_DONE,
+  };
+}
+
+// Reset Faults
+
+function resetFaultsRequest(moduleId, faultId) {
+  return {
+    type: RESET_FAULTS_REQUEST,
+  };
+}
+
+function resetFaultsSuccess(moduleId, faultId) {
+  return {
+    type: RESET_FAULTS_SUCCESS,
+  };
+}
+
+function resetFaultsError(error) {
+  return {
+    type: RESET_FAULTS_ERROR,
+    error,
   };
 }
 
@@ -310,5 +335,23 @@ export function remove(id) {
 export function saveDone() {
   return function (dispatch) {
     dispatch(saveSiteDone());
+  };
+}
+
+export function resetFaults(moduleId, faultId) {
+  return function (dispatch) {
+    dispatch(resetFaultsRequest(moduleId, faultId));
+    dispatch(beginApiCall());
+
+    return siteApi
+      .resetFaults(moduleId, faultId)
+      .then((response) => {
+        dispatch(resetFaultsSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(resetFaultsError(error));
+        dispatch(apiCallError());
+        throw error;
+      });
   };
 }
