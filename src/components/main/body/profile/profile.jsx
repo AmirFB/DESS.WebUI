@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
-
-import { useTranslation } from "react-i18next";
-
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -13,6 +8,10 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import Select2 from "react-select";
+
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import * as userActions from "../../../../redux/actions/userActions";
 import * as siteActions from "../../../../redux/actions/siteActions";
