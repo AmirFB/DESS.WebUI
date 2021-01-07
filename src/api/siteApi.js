@@ -35,3 +35,7 @@ export function getLog(filter) {
 export function getGroups() {
   return axios.get(url + "groups");
 }
+
+export function resetFaults(moduleId, faultId) {
+  return axios.get(url + "reset/" + moduleId + "/" + faultId ? faultId : "");
+}
